@@ -11,7 +11,11 @@ function SafeBeep(){
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
-      name = 'LoginScreen' component={Login}/>
+      name = 'LoginScreen'
+      component={Login}
+      options={{
+        headerShown:false,
+      }}/>
     </Stack.Navigator>
   </NavigationContainer>
   )
