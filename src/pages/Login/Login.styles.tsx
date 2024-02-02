@@ -11,8 +11,8 @@ export default StyleSheet.create({
     image:{
         marginTop: Dimensions.get('screen').height / 10,
         marginBottom: Dimensions.get('screen').height / 10,
-        width: Dimensions.get('screen').width / 1.8,
-        height: Dimensions.get('screen').height / 4,
+        width: Dimensions.get('screen').width / 1.7,
+        height: Dimensions.get('screen').height / 3.7,
     },
     text:{
         color:'black',
