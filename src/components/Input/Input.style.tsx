@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     input_container:{
         borderWidth:1,
-        borderColor:'bdbdbd',
+        borderColor:'gray',
         margin:3,
         borderRadius:10,
     },

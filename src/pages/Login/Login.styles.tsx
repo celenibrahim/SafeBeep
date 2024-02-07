@@ -14,7 +14,4 @@ export default StyleSheet.create({
         width: Dimensions.get('screen').width / 1.7,
         height: Dimensions.get('screen').height / 3.7,
     },
-    text:{
-        color:'black',
-    },
 })
