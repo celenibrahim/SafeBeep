@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import MMCards from '../../components/MMCards';
 
-function Test() {
+function Menu() {
   return (
     <ScrollView>
       <MMCards
@@ -48,4 +48,4 @@ function Test() {
     </ScrollView>
   );
 }
-export default Test;
+export default Menu;
