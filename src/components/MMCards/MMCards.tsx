@@ -12,13 +12,11 @@ const MMCards = ({
   onPress: any;
 }) => {
   return (
-    <View style={styles.container}>
-      <Image style={styles.icon} source={iconUrl} />
-      <View style={styles.inner_container}>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={styles.title}>{title}</Text>
-        </TouchableOpacity>
-      </View>
+    <View>
+      <TouchableOpacity style={styles.inner_container} onPress={onPress}>
+        <Image style={styles.icon} source={iconUrl} />
+        <Text style={styles.title}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
