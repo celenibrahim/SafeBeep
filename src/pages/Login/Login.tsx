@@ -28,7 +28,7 @@ function Login({navigation}: {navigation: any}) {
         userInfo.usercode === Usercode &&
         userInfo.password === Password
       ) {
-        navigation.navigate('TestPage');
+        navigation.navigate('Menu');
       } else {
         Alert.alert(
           'Warning',

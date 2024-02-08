@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {UserProvider} from './context/GlobalContext';
 
 import Login from './pages/Login';
-import Test from './pages/Menu';
+import Menu from './pages/Menu';
 import AdminPanel from './pages/AdminPanel';
 
 const Stack = createNativeStackNavigator();
@@ -17,22 +17,22 @@ const SellStack = () => {
       }}>
       <Stack.Screen
         name="Sell 1"
-        component={Test}
+        component={Menu}
         options={{title: 'Sell 1'}}
       />
       <Stack.Screen
         name="Sell 2"
-        component={Test}
+        component={Menu}
         options={{title: 'Sell 2'}}
       />
       <Stack.Screen
         name="Sell 3"
-        component={Test}
+        component={Menu}
         options={{title: 'Sell 3'}}
       />
       <Stack.Screen
         name="Sell 4"
-        component={Test}
+        component={Menu}
         options={{title: 'Sell 4'}}
       />
     </Stack.Navigator>
@@ -52,8 +52,8 @@ function Router() {
             }}
           />
           <Stack.Screen
-            name="TestPage"
-            component={Test}
+            name="Menu"
+            component={Menu}
             options={{
               headerShown: false,
             }}
