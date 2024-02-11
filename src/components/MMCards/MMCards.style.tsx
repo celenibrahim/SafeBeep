@@ -5,7 +5,7 @@ export default StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 10,
-    backgroundColor: '#fab2c8',
+    backgroundColor: '#6acdf7',
   },
   inner_container: {
     padding: 10,

@@ -6,9 +6,9 @@ import {UserProvider} from './context/GlobalContext';
 import Login from './pages/Login';
 import Menu from './pages/Menu';
 import AdminPanel from './pages/AdminPanel';
+import Settings from './pages/Settings';
 
 const Stack = createNativeStackNavigator();
-
 const SellStack = () => {
   return (
     <Stack.Navigator
@@ -61,6 +61,13 @@ function Router() {
           <Stack.Screen
             name="AdminPanel"
             component={AdminPanel}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SettingsPage"
+            component={Settings}
             options={{
               headerShown: false,
             }}
