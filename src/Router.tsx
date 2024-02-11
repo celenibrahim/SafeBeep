@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Menu from './pages/Menu';
 import AdminPanel from './pages/AdminPanel';
 import Settings from './pages/Settings';
+import SellScreen from './pages/Sell/SellScreen';
 
 const Stack = createNativeStackNavigator();
 const SellStack = () => {
@@ -16,9 +17,9 @@ const SellStack = () => {
         headerTitleAlign: 'center',
       }}>
       <Stack.Screen
-        name="Sell 1"
-        component={Menu}
-        options={{title: 'Sell 1'}}
+        name="SellScreen"
+        component={SellScreen}
+        options={{title: 'Sell Screen'}}
       />
       <Stack.Screen
         name="Sell 2"
@@ -68,6 +69,13 @@ function Router() {
           <Stack.Screen
             name="SettingsPage"
             component={Settings}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SellStack"
+            component={SellStack}
             options={{
               headerShown: false,
             }}

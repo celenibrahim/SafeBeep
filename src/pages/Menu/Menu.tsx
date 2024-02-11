@@ -6,12 +6,15 @@ function Menu({navigation}: any) {
   function goToSettings() {
     navigation.navigate('SettingsPage');
   }
+  function goToSellStack() {
+    navigation.navigate('SellStack');
+  }
   return (
     <View style={{flex: 1}}>
       <ScrollView>
         <MMCards
           title="Sell"
-          onPress={null}
+          onPress={goToSellStack}
           iconUrl={require('../../assets/icons/sell.png')}
         />
         <MMCards
