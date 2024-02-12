@@ -1,8 +1,13 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
+
 import styles from './SellScreen.styles';
+
 import SearchBar from '../../../components/SearchBar';
 import CategoryCard from '../../../components/CategoryCard';
+
+import Button from '../../../components/Button';
+
 function SellScreen({navigation}: any) {
   function goToProducts() {
     navigation.navigate('Products');
@@ -10,10 +15,11 @@ function SellScreen({navigation}: any) {
   return (
     <ScrollView style={styles.container}>
       <SearchBar placeholder="Klavyeden Barkod Girişi..." />
+      <Button text={'All Products'} onPress={goToProducts} />
       <View style={{flexDirection: 'row', flex: 3}}>
         <CategoryCard
           Title="Market"
-          onpress={goToProducts}
+          onpress={null}
           imageUrl={require('../../../assets/images/market.png')}
         />
         <CategoryCard

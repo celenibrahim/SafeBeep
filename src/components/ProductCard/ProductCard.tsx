@@ -35,8 +35,8 @@ const ProductCard = (props: {
   return (
     <View style={styles.container}>
       <Text>{props.item.id}</Text>
-      <Text>{props.item.product_name}</Text>
-      <Text>{props.item.price}</Text>
+      <Text style={styles.title}>{props.item.product_name}</Text>
+      <Text style={styles.price}>{props.item.price}</Text>
     </View>
   );
 };

@@ -5,4 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  button: {
+    borderRadius: 10,
+  },
 });
