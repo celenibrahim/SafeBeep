@@ -8,8 +8,10 @@ import Menu from './pages/Menu';
 import AdminPanel from './pages/AdminPanel';
 import Settings from './pages/Settings';
 import SellScreen from './pages/Sell/SellScreen';
+import Products from './pages/Sell/Products';
 
 const Stack = createNativeStackNavigator();
+
 const SellStack = () => {
   return (
     <Stack.Navigator
@@ -22,9 +24,9 @@ const SellStack = () => {
         options={{title: 'Sell Screen'}}
       />
       <Stack.Screen
-        name="Sell 2"
-        component={Menu}
-        options={{title: 'Sell 2'}}
+        name="Products"
+        component={Products}
+        options={{title: 'All Products'}}
       />
       <Stack.Screen
         name="Sell 3"
