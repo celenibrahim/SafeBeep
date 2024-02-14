@@ -9,7 +9,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     margin: 2,
-    padding: 2,
     borderRadius: 10,
     borderColor: 'black',
     borderWidth: 0.5,
