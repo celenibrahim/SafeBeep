@@ -1,7 +1,5 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
-
-import styles from './SellScreen.styles';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 import SearchBar from '../../../components/SearchBar';
 import CategoryCard from '../../../components/CategoryCard';
@@ -56,3 +54,12 @@ function SellScreen({navigation}: any) {
   );
 }
 export default SellScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  button: {
+    borderRadius: 10,
+  },
+});
