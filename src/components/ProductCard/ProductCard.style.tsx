@@ -4,9 +4,6 @@ export default StyleSheet.create({
   container: {
     padding: 10,
     margin: 2,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 10,
   },
   inner_container: {
     alignItems: 'center',
