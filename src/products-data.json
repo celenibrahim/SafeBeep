@@ -2,79 +2,79 @@
   {
     "id": "0001",
     "category": "market",
-    "product_name": "bagel",
+    "product_name": "Bagel",
     "price": 2.5
   },
   {
     "id": "0002",
     "category": "electronics",
-    "product_name": "headphones",
+    "product_name": "Headphones",
     "price": 49.99
   },
   {
     "id": "0003",
     "category": "clothes",
-    "product_name": "t-shirt",
+    "product_name": "T-shirt",
     "price": 19.99
   },
   {
     "id": "0004",
     "category": "accessories",
-    "product_name": "watch",
+    "product_name": "Watch",
     "price": 79.99
   },
   {
     "id": "0005",
     "category": "books",
-    "product_name": "notebook",
+    "product_name": "Notebook",
     "price": 4.99
   },
   {
     "id": "0006",
     "category": "cleaning",
-    "product_name": "soap",
+    "product_name": "Soap",
     "price": 1.99
   },
   {
     "id": "0007",
     "category": "market",
-    "product_name": "bread",
+    "product_name": "Bread",
     "price": 3.25
   },
   {
     "id": "0008",
     "category": "electronics",
-    "product_name": "mobile charger",
+    "product_name": "Mobile charger",
     "price": 29.99
   },
   {
     "id": "0009",
     "category": "clothes",
-    "product_name": "jacket",
+    "product_name": "Jacket",
     "price": 59.99
   },
   {
     "id": "0010",
     "category": "accessories",
-    "product_name": "wallet",
+    "product_name": "Wallet",
     "price": 39.99
   },
   {
     "id": "0011",
     "category": "books",
-    "product_name": "pen",
+    "product_name": "Pen",
     "price": 1.49
   },
   {
     "id": "0012",
     "category": "cleaning",
-    "product_name": "toilet paper",
+    "product_name": "Toilet paper",
     "price": 6.99
   },
   {
     "id": "0013",
     "category": "market",
-    "product_name": "yogurt",
+    "product_name": "Yogurt",
     "price": 3.75
   },
   {
@@ -86,25 +86,25 @@
   {
     "id": "0015",
     "category": "clothes",
-    "product_name": "shorts",
+    "product_name": "Shorts",
     "price": 29.99
   },
   {
     "id": "0016",
     "category": "accessories",
-    "product_name": "necklace",
+    "product_name": "Necklace",
     "price": 24.99
   },
   {
     "id": "0017",
     "category": "books",
-    "product_name": "notebook",
+    "product_name": "Notebook",
     "price": 3.99
   },
   {
     "id": "0018",
     "category": "cleaning",
-    "product_name": "dish soap",
+    "product_name": "Dish soap",
     "price": 5.49
   }
 ]

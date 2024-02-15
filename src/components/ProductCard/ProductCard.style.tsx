@@ -8,6 +8,16 @@ export default StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 10,
   },
+  inner_container: {
+    alignItems: 'center',
+  },
+  info_container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  button_container: {
+    flexDirection: 'row',
+  },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
