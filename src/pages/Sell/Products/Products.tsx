@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet, Text} from 'react-native';
 //data
 import products_data from '../../../products-data.json';
 //components
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
+import IconButton from '../../../components/IconButton';
 
 function Products() {
   const [list, setList] = useState(products_data);
@@ -23,10 +24,17 @@ function Products() {
 
   return (
     <View style={styles.container}>
-      <SearchBar
-        placeholder="write the name of the product you want to search for"
-        onChangeText={handleSearch}
-      />
+      <View style={{flexDirection: 'row'}}>
+        <View style={{flex: 1}}>
+          <SearchBar
+            placeholder="write the name of the product you want to search for"
+            onChangeText={handleSearch}
+          />
+        </View>
+        <View style={{margin: 4}}>
+          <IconButton iconUrl={require('../../../assets/icons/filter.png')} />
+        </View>
+      </View>
       <FlatList
         keyExtractor={item => item.id}
         data={list}

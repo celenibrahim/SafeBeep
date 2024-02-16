@@ -45,7 +45,7 @@ const ProductCard = (props: {
           <Text style={styles.price}>Price : {props.item.price}</Text>
         </View>
 
-        <View style={styles.button_container}>
+        <View>
           <Button text={'Add to Cart'} onPress={null} />
         </View>
       </View>

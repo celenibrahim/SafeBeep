@@ -9,10 +9,6 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   info_container: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  button_container: {
     flexDirection: 'row',
   },
   title: {

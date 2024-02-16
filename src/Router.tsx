@@ -26,7 +26,7 @@ const SellStack = () => {
       <Stack.Screen
         name="Products"
         component={Products}
-        options={{title: 'All Products'}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Sell 3"
