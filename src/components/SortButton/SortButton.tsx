@@ -33,7 +33,7 @@ const MyComponent = ({iconUrl, onpress, onpressB, onpressC}: any) => {
         onRequestClose={closeModal}>
         <View style={styles.container}>
           <View style={styles.inner_container}>
-            <Text style={styles.title}>Price Sorting Options:</Text>
+            <Text style={styles.title}>Sorting Options:</Text>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <TouchableOpacity onPress={onpress}>
                 <Text style={styles.text}>Sort Ascending</Text>
