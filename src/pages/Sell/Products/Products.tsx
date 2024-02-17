@@ -9,9 +9,21 @@ import SortButton from '../../../components/SortButton';
 
 function Products() {
   const [list, setList] = useState(products_data);
-  const renderProduct = ({item}: any) => <ProductCard item={item} />;
+  const renderProduct = ({item}: any) => (
+    <ProductCard
+      item={item}
+      addToCartPress={() => handleAddToCart(item.id)}
+      addToFavoritesPress={() => handleAddToFavorites(item.id)}
+    />
+  );
   const renderSeperator = () => <View style={styles.seperator} />;
+  const handleAddToCart = (productId: string) => {
+    console.log('Ürün (' + productId + ') sepete eklendi!');
+  };
 
+  const handleAddToFavorites = (productId: string) => {
+    console.log('Ürün (' + productId + ') favorilere eklendi!');
+  };
   const sortByPriceAscending = () => {
     const sortedData = [...list].sort((a, b) => a.price - b.price);
     setList(sortedData);

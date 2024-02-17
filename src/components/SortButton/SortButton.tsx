@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-const MyComponent = ({iconUrl, onpress, onpressB, onpressC}: any) => {
+const SortButton = ({iconUrl, onpress, onpressB, onpressC}: any) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
@@ -53,7 +53,7 @@ const MyComponent = ({iconUrl, onpress, onpressB, onpressC}: any) => {
   );
 };
 
-export default MyComponent;
+export default SortButton;
 
 const styles = StyleSheet.create({
   container: {

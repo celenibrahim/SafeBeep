@@ -2,36 +2,15 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './ProductCard.style';
 import Button from '../Button';
+import FavButton from '../FavButton';
 const ProductCard = (props: {
   item: {
-    id:
-      | string
-      | number
-      | boolean
-      | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-      | Iterable<React.ReactNode>
-      | React.ReactPortal
-      | null
-      | undefined;
-    product_name:
-      | string
-      | number
-      | boolean
-      | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-      | Iterable<React.ReactNode>
-      | React.ReactPortal
-      | null
-      | undefined;
-    price:
-      | string
-      | number
-      | boolean
-      | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-      | Iterable<React.ReactNode>
-      | React.ReactPortal
-      | null
-      | undefined;
+    id: string | number;
+    product_name: string;
+    price: number;
   };
+  addToCartPress: () => void;
+  addToFavoritesPress: () => void;
 }) => {
   return (
     <View style={styles.container}>
@@ -45,8 +24,12 @@ const ProductCard = (props: {
           <Text style={styles.price}>Price : {props.item.price}</Text>
         </View>
 
-        <View>
-          <Button text={'Add to Cart'} onPress={null} />
+        <View style={{flexDirection: 'row'}}>
+          <FavButton
+            iconUrl={require('../../assets/icons/favourite.png')}
+            onPress={props.addToFavoritesPress}
+          />
+          <Button text={'Add to Cart'} onPress={props.addToCartPress} />
         </View>
       </View>
     </View>

@@ -12,7 +12,7 @@ function SellScreen({navigation}: any) {
   }
   return (
     <ScrollView style={styles.container}>
-      <SearchBar placeholder="Klavyeden Barkod Girişi..." />
+      <SearchBar placeholder="Type Product Code..." />
       <Button text={'All Products'} onPress={goToProducts} />
       <View style={{flexDirection: 'row', flex: 3}}>
         <CategoryCard
