@@ -17,6 +17,7 @@ export default StyleSheet.create({
     color: 'black',
   },
   price: {
+    color: 'black',
     fontSize: 20,
     fontStyle: 'italic',
   },

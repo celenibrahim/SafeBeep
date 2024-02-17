@@ -5,13 +5,27 @@ import products_data from '../../../products-data.json';
 //components
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
-import IconButton from '../../../components/IconButton';
+import SortButton from '../../../components/SortButton';
 
 function Products() {
   const [list, setList] = useState(products_data);
   const renderProduct = ({item}: any) => <ProductCard item={item} />;
   const renderSeperator = () => <View style={styles.seperator} />;
 
+  const sortByPriceAscending = () => {
+    const sortedData = [...list].sort((a, b) => a.price - b.price);
+    setList(sortedData);
+  };
+  const sortByPriceDescending = () => {
+    const sortedData = [...list].sort((a, b) => b.price - a.price);
+    setList(sortedData);
+  };
+  const sortByAlphabeticalOrder = () => {
+    const sortedData = [...list].sort((a, b) =>
+      a.product_name.localeCompare(b.product_name),
+    );
+    setList(sortedData);
+  };
   const handleSearch = (text: any) => {
     const filteredList = products_data.filter(product => {
       const searchedText = text.toLowerCase();
@@ -32,7 +46,12 @@ function Products() {
           />
         </View>
         <View style={{margin: 4}}>
-          <IconButton iconUrl={require('../../../assets/icons/filter.png')} />
+          <SortButton
+            onpress={sortByPriceAscending}
+            onpressB={sortByPriceDescending}
+            onpressC={sortByAlphabeticalOrder}
+            iconUrl={require('../../../assets/icons/sort.png')}
+          />
         </View>
       </View>
       <FlatList
