@@ -104,7 +104,319 @@
   {
     "id": "0018",
     "category": "cleaning",
-    "product_name": "Dish soap",
+    "product_name": "Hand soap",
+    "price": 3.99
+  },
+  {
+    "id": "0019",
+    "category": "cleaning",
+    "product_name": "Laundry detergent",
+    "price": 9.99
+  },
+  {
+    "id": "0020",
+    "category": "cleaning",
+    "product_name": "Glass cleaner",
+    "price": 4.49
+  },
+  {
+    "id": "0021",
+    "category": "cleaning",
+    "product_name": "All-purpose cleaner",
+    "price": 6.99
+  },
+  {
+    "id": "0022",
+    "category": "cleaning",
+    "product_name": "Bathroom cleaner",
+    "price": 5.99
+  },
+  {
+    "id": "0023",
+    "category": "cleaning",
+    "product_name": "Floor cleaner",
+    "price": 7.49
+  },
+  {
+    "id": "0024",
+    "category": "cleaning",
+    "product_name": "Surface cleaner",
+    "price": 4.29
+  },
+  {
+    "id": "0025",
+    "category": "cleaning",
+    "product_name": "Toilet cleaner",
+    "price": 3.79
+  },
+  {
+    "id": "0026",
+    "category": "cleaning",
+    "product_name": "Stainless steel cleaner",
+    "price": 8.99
+  },
+  {
+    "id": "0027",
+    "category": "cleaning",
+    "product_name": "Carpet cleaner",
+    "price": 10.49
+  },
+  {
+    "id": "0028",
+    "category": "cleaning",
+    "product_name": "Oven cleaner",
+    "price": 6.49
+  },
+  {
+    "id": "0029",
+    "category": "cleaning",
+    "product_name": "Dishwasher detergent",
     "price": 5.49
+  },
+  {
+    "id": "0030",
+    "category": "cleaning",
+    "product_name": "Air freshener",
+    "price": 2.99
+  },
+  {
+    "id": "0031",
+    "category": "market",
+    "product_name": "Apple",
+    "price": 0.99
+  },
+  {
+    "id": "0032",
+    "category": "market",
+    "product_name": "Banana",
+    "price": 1.49
+  },
+  {
+    "id": "0033",
+    "category": "market",
+    "product_name": "Orange",
+    "price": 1.29
+  },
+  {
+    "id": "0034",
+    "category": "market",
+    "product_name": "Carrot",
+    "price": 0.79
+  },
+  {
+    "id": "0035",
+    "category": "market",
+    "product_name": "Tomato",
+    "price": 1.99
+  },
+  {
+    "id": "0036",
+    "category": "market",
+    "product_name": "Potato",
+    "price": 0.69
+  },
+  {
+    "id": "0037",
+    "category": "market",
+    "product_name": "Lettuce",
+    "price": 1.79
+  },
+  {
+    "id": "0038",
+    "category": "market",
+    "product_name": "Cucumber",
+    "price": 1.09
+  },
+  {
+    "id": "0039",
+    "category": "market",
+    "product_name": "Onion",
+    "price": 0.89
+  },
+  {
+    "id": "0040",
+    "category": "market",
+    "product_name": "Garlic",
+    "price": 2.49
+  },
+  {
+    "id": "0041",
+    "category": "market",
+    "product_name": "Ginger",
+    "price": 3.99
+  },
+  {
+    "id": "0042",
+    "category": "market",
+    "product_name": "Lemon",
+    "price": 0.59
+  },
+  {
+    "id": "0043",
+    "category": "market",
+    "product_name": "Pineapple",
+    "price": 2.99
+  },
+  {
+    "id": "0044",
+    "category": "market",
+    "product_name": "Watermelon",
+    "price": 4.99
+  },
+  {
+    "id": "0045",
+    "category": "market",
+    "product_name": "Grapes",
+    "price": 3.49
+  },
+  {
+    "id": "0046",
+    "category": "accessories",
+    "product_name": "Bracelet",
+    "price": 19.99
+  },
+  {
+    "id": "0047",
+    "category": "accessories",
+    "product_name": "Necklace",
+    "price": 24.99
+  },
+  {
+    "id": "0048",
+    "category": "accessories",
+    "product_name": "Earrings",
+    "price": 14.99
+  },
+  {
+    "id": "0049",
+    "category": "accessories",
+    "product_name": "Ring",
+    "price": 29.99
+  },
+  {
+    "id": "0050",
+    "category": "accessories",
+    "product_name": "Hairpin",
+    "price": 9.99
+  },
+  {
+    "id": "0051",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 39.99
+  },
+  {
+    "id": "0052",
+    "category": "accessories",
+    "product_name": "Watch",
+    "price": 79.99
+  },
+  {
+    "id": "0053",
+    "category": "accessories",
+    "product_name": "Wallet",
+    "price": 49.99
+  },
+  {
+    "id": "0054",
+    "category": "accessories",
+    "product_name": "Belt",
+    "price": 34.99
+  },
+  {
+    "id": "0055",
+    "category": "accessories",
+    "product_name": "Hat",
+    "price": 29.99
+  },
+  {
+    "id": "0056",
+    "category": "accessories",
+    "product_name": "Scarf",
+    "price": 19.99
+  },
+  {
+    "id": "0057",
+    "category": "accessories",
+    "product_name": "Gloves",
+    "price": 14.99
+  },
+  {
+    "id": "0058",
+    "category": "books",
+    "product_name": "The Great Gatsby",
+    "price": 12.99
+  },
+  {
+    "id": "0059",
+    "category": "books",
+    "product_name": "To Kill a Mockingbird",
+    "price": 10.99
+  },
+  {
+    "id": "0060",
+    "category": "books",
+    "product_name": "1984",
+    "price": 9.99
+  },
+  {
+    "id": "0061",
+    "category": "books",
+    "product_name": "Harry Potter and the Sorcerer's Stone",
+    "price": 14.99
+  },
+  {
+    "id": "0062",
+    "category": "books",
+    "product_name": "The Catcher in the Rye",
+    "price": 11.99
+  },
+  {
+    "id": "0063",
+    "category": "books",
+    "product_name": "Animal Farm",
+    "price": 8.99
+  },
+  {
+    "id": "0064",
+    "category": "books",
+    "product_name": "Lord of the Flies",
+    "price": 13.99
+  },
+  {
+    "id": "0065",
+    "category": "books",
+    "product_name": "Pride and Prejudice",
+    "price": 10.49
+  },
+  {
+    "id": "0066",
+    "category": "books",
+    "product_name": "The Hobbit",
+    "price": 15.99
+  },
+  {
+    "id": "0067",
+    "category": "books",
+    "product_name": "Brave New World",
+    "price": 12.49
+  },
+  {
+    "id": "0068",
+    "category": "books",
+    "product_name": "The Lord of the Rings",
+    "price": 18.99
+  },
+  {
+    "id": "0069",
+    "category": "electronics",
+    "product_name": "Smartphone",
+    "price": 699.99
+  },
+  {
+    "id": "0070",
+    "category": "electronics",
+    "product_name": "Laptop",
+    "price": 999.99
   }
 ]

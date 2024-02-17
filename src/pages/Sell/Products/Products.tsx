@@ -26,16 +26,14 @@ function Products() {
     );
     setList(sortedData);
   };
-  const handleSearch = (text: any) => {
+  const handleSearch = (text: string) => {
+    const searchedText = text.toLowerCase();
     const filteredList = products_data.filter(product => {
-      const searchedText = text.toLowerCase();
       const currentTitle = product.product_name.toLowerCase();
-
-      return currentTitle.indexOf(searchedText) > -1;
+      return currentTitle.startsWith(searchedText);
     });
     setList(filteredList);
   };
-
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>

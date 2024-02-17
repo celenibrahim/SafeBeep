@@ -42,7 +42,7 @@ const MyComponent = ({iconUrl, onpress, onpressB, onpressC}: any) => {
                 <Text style={styles.text}>Sort Descending</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={onpressC}>
-                <Text style={styles.text}>Sort AlphabeticalOrder</Text>
+                <Text style={styles.text}>Sort Alphabetical</Text>
               </TouchableOpacity>
             </View>
             <Button title="Close" onPress={closeModal} />
