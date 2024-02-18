@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 //data
 import products_data from '../../../products-data.json';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //components
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
@@ -20,12 +21,32 @@ function Products({navigation}: any) {
     />
   );
   const renderSeperator = () => <View style={styles.seperator} />;
-  const handleAddToCart = (productId: string) => {
-    console.log('Ürün (' + productId + ') sepete eklendi!');
+  const handleAddToCart = async (productId: string) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@cart');
+      let cart = jsonValue != null ? JSON.parse(jsonValue) : [];
+      cart.push(productId);
+      await AsyncStorage.setItem('@cart', JSON.stringify(cart));
+
+      console.log('Ürün (' + productId + ') sepete eklendi!');
+    } catch (e) {
+      console.error('Error adding product to cart:', e);
+    }
   };
 
-  const handleAddToFavorites = (productId: string) => {
-    console.log('Ürün (' + productId + ') favorilere eklendi!');
+  const handleAddToFavorites = async (productId: string) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@favorites');
+      let favorites = jsonValue != null ? JSON.parse(jsonValue) : [];
+
+      favorites.push(productId);
+
+      await AsyncStorage.setItem('@favorites', JSON.stringify(favorites));
+
+      console.log('Ürün (' + productId + ') favorilere eklendi!');
+    } catch (e) {
+      console.error('Error adding product to favorites:', e);
+    }
   };
   const sortByPriceAscending = () => {
     const sortedData = [...list].sort((a, b) => a.price - b.price);
