@@ -6,8 +6,11 @@ import products_data from '../../../products-data.json';
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
-
-function Products() {
+import CartButton from '../../../components/CartButton';
+function Products({navigation}: any) {
+  function goToCart() {
+    navigation.navigate('CartPage');
+  }
   const [list, setList] = useState(products_data);
   const renderProduct = ({item}: any) => (
     <ProductCard
@@ -55,12 +58,16 @@ function Products() {
             onChangeText={handleSearch}
           />
         </View>
-        <View style={{margin: 4}}>
+        <View style={{margin: 2, flexDirection: 'row'}}>
           <SortButton
             onpress={sortByPriceAscending}
             onpressB={sortByPriceDescending}
             onpressC={sortByAlphabeticalOrder}
             iconUrl={require('../../../assets/icons/sort.png')}
+          />
+          <CartButton
+            onpress={goToCart}
+            iconUrl={require('../../../assets/icons/sell.png')}
           />
         </View>
       </View>
