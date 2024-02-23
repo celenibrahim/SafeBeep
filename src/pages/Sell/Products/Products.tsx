@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
-import {View, FlatList, StyleSheet, Text} from 'react-native';
-//data
-import products_data from '../../../products-data.json';
+import {View, FlatList, StyleSheet, Text, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//components
+import products_data from '../../../products-data.json';
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
+
 function Products({navigation}: any) {
   function goToCart() {
     navigation.navigate('CartPage');
   }
+
   const [list, setList] = useState(products_data);
+
   const renderProduct = ({item}: any) => (
     <ProductCard
       item={item}
@@ -20,14 +21,18 @@ function Products({navigation}: any) {
       addToFavoritesPress={() => handleAddToFavorites(item.id)}
     />
   );
+
   const renderSeperator = () => <View style={styles.seperator} />;
+
   const handleAddToCart = async (productId: string) => {
     try {
       const jsonValue = await AsyncStorage.getItem('@cart');
       let cart = jsonValue != null ? JSON.parse(jsonValue) : [];
-      cart.push(productId);
-      await AsyncStorage.setItem('@cart', JSON.stringify(cart));
-
+      const newCart = [
+        ...cart.filter((item: any) => typeof item === 'string'),
+        productId,
+      ];
+      await AsyncStorage.setItem('@cart', JSON.stringify(newCart));
       console.log('Ürün (' + productId + ') sepete eklendi!');
     } catch (e) {
       console.error('Error adding product to cart:', e);
@@ -38,30 +43,31 @@ function Products({navigation}: any) {
     try {
       const jsonValue = await AsyncStorage.getItem('@favorites');
       let favorites = jsonValue != null ? JSON.parse(jsonValue) : [];
-
-      favorites.push(productId);
-
-      await AsyncStorage.setItem('@favorites', JSON.stringify(favorites));
-
+      const newFavorites = [...favorites, productId];
+      await AsyncStorage.setItem('@favorites', JSON.stringify(newFavorites));
       console.log('Ürün (' + productId + ') favorilere eklendi!');
     } catch (e) {
       console.error('Error adding product to favorites:', e);
     }
   };
+
   const sortByPriceAscending = () => {
     const sortedData = [...list].sort((a, b) => a.price - b.price);
     setList(sortedData);
   };
+
   const sortByPriceDescending = () => {
     const sortedData = [...list].sort((a, b) => b.price - a.price);
     setList(sortedData);
   };
+
   const sortByAlphabeticalOrder = () => {
     const sortedData = [...list].sort((a, b) =>
       a.product_name.localeCompare(b.product_name),
     );
     setList(sortedData);
   };
+
   const handleSearch = (text: string) => {
     const searchedText = text.toLowerCase();
     const filteredList = products_data.filter(product => {
@@ -70,6 +76,25 @@ function Products({navigation}: any) {
     });
     setList(filteredList);
   };
+
+  const clearCartData = async () => {
+    try {
+      await AsyncStorage.removeItem('@cart');
+      console.log('Sepet verileri temizlendi.');
+    } catch (error) {
+      console.error('Error clearing cart data:', error);
+    }
+  };
+
+  const clearFavoriteData = async () => {
+    try {
+      await AsyncStorage.removeItem('@favorites');
+      console.log('Favori ürün verileri temizlendi.');
+    } catch (error) {
+      console.error('Error clearing favorite data:', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
@@ -90,6 +115,8 @@ function Products({navigation}: any) {
             onpress={goToCart}
             iconUrl={require('../../../assets/icons/sell.png')}
           />
+          <Button title="Clear Cart" onPress={clearCartData} />
+          <Button title="Clear Favorites" onPress={clearFavoriteData} />
         </View>
       </View>
       <FlatList
@@ -101,6 +128,7 @@ function Products({navigation}: any) {
     </View>
   );
 }
+
 export default Products;
 
 const styles = StyleSheet.create({

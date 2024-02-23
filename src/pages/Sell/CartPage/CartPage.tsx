@@ -7,28 +7,24 @@ const CartPage = () => {
   const [favoriteItems, setFavoriteItems] = useState([]);
 
   useEffect(() => {
-    const getCartItems = async () => {
+    const fetchData = async () => {
       try {
-        const jsonValue = await AsyncStorage.getItem('@cart');
-        const cartData = jsonValue != null ? JSON.parse(jsonValue) : [];
-        setCartItems(cartData);
-      } catch (e) {
-        console.error('Error getting cart items:', e);
+        const favoritesData = await AsyncStorage.getItem('@favorites');
+        if (favoritesData !== null) {
+          const parsedFavorites = JSON.parse(favoritesData);
+          setFavoriteItems(parsedFavorites);
+        }
+        const cartData = await AsyncStorage.getItem('@cart');
+        if (cartData !== null) {
+          const parsedCart = JSON.parse(cartData);
+          setCartItems(parsedCart);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     };
 
-    const getFavoriteItems = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('@favorites');
-        const favoriteData = jsonValue != null ? JSON.parse(jsonValue) : [];
-        setFavoriteItems(favoriteData);
-      } catch (e) {
-        console.error('Error getting favorite items:', e);
-      }
-    };
-
-    getCartItems();
-    getFavoriteItems();
+    fetchData();
   }, []);
 
   return (
