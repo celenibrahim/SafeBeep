@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -30,5 +30,31 @@ export default StyleSheet.create({
     fontSize: 18,
     color: 'green',
     marginBottom: 5,
+  },
+  bottom_container: {
+    backgroundColor: '#2669b1',
+    borderRadius: 10,
+    width: Dimensions.get('window').width / 1,
+    height: Dimensions.get('window').height / 10,
+  },
+  bottom_inner: {
+    justifyContent: 'center',
+    flex: 1,
+    borderBottomWidth: 1,
+    borderColor: 'white',
+    alignItems: 'center',
+  },
+  bc_text: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  bottom_button: {
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'white',
+    alignItems: 'center',
+    marginTop: 6,
+    width: Dimensions.get('window').width / 3,
   },
 });

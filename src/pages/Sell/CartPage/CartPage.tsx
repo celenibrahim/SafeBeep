@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CartItem from './../../../components/CartCard'; // CartItem component'ını import edin
 import productsData from '../../../products-data.json'; // productsData'yı import edin
@@ -69,35 +69,62 @@ const CartPage = () => {
     setCartItems(updatedCartItems);
     await AsyncStorage.setItem('@cart', JSON.stringify(updatedCartItems));
   };
+  const calculateTotalPrice = (): number => {
+    let totalPrice = 0;
+    cartItems.forEach(id => {
+      const product = productsData.find(item => item.id === id);
+      if (product) {
+        totalPrice += product.price;
+      }
+    });
+    return totalPrice;
+  };
 
   return (
-    <ScrollView style={{flex: 1}}>
-      <View style={styles.container}>
-        <View style={styles.cartItemsContainer}>
-          {Object.entries(countItems(cartItems)).map(([id, count], index) => (
-            <CartItem
-              key={'cart_' + index}
-              productName={findProductInfo(id)}
-              price={
-                productsData.find((item: Product) => item.id === id)?.price || 0
-              }
-              quantity={count}
-              onIncrease={() => increaseQuantity(id)}
-              onDecrease={() => decreaseQuantity(id)}
-              onRemove={() => removeFromCart(id)}
-            />
-          ))}
+    <View style={{flex: 1}}>
+      <ScrollView style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style={styles.cartItemsContainer}>
+            {Object.entries(countItems(cartItems)).map(([id, count], index) => (
+              <CartItem
+                key={'cart_' + index}
+                productName={findProductInfo(id)}
+                price={
+                  productsData.find((item: Product) => item.id === id)?.price ||
+                  0
+                }
+                quantity={count}
+                onIncrease={() => increaseQuantity(id)}
+                onDecrease={() => decreaseQuantity(id)}
+                onRemove={() => removeFromCart(id)}
+              />
+            ))}
+          </View>
+          <View style={styles.favoriteItemsContainer}>
+            <Text style={styles.sectionTitle}>Favorite Items:</Text>
+            {Object.entries(countItems(favoriteItems)).map(([id], index) => (
+              <Text key={'favorite_' + index} style={styles.favoriteItem}>
+                {findProductInfo(id)}
+              </Text>
+            ))}
+          </View>
         </View>
-        <View style={styles.favoriteItemsContainer}>
-          <Text style={styles.sectionTitle}>Favorite Items:</Text>
-          {Object.entries(countItems(favoriteItems)).map(([id], index) => (
-            <Text key={'favorite_' + index} style={styles.favoriteItem}>
-              {findProductInfo(id)}
-            </Text>
-          ))}
+      </ScrollView>
+      <View style={styles.bottom_container}>
+        <View style={styles.bottom_inner}>
+          <Text style={styles.bc_text}>
+            Total Price: {calculateTotalPrice()} $
+          </Text>
+        </View>
+        <View style={{flex: 1, alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => {}}>
+            <View style={styles.bottom_button}>
+              <Text style={styles.bc_text}>Pay</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
