@@ -28,6 +28,9 @@ export default StyleSheet.create({
     color: 'black',
     fontSize: 15,
   },
+  taxes: {
+    color: 'black',
+  },
   button_pm: {
     flexDirection: 'row',
     alignItems: 'center',

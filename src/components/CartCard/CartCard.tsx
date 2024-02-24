@@ -5,6 +5,7 @@ import Button from '../Button';
 const CartCard = ({
   productName,
   price,
+  taxRate,
   quantity,
   onIncrease,
   onDecrease,
@@ -20,6 +21,7 @@ const CartCard = ({
         <View style={{flex: 1}}>
           <Text style={styles.price}>Price: {price} $</Text>
           <Text style={styles.piece}>Piece: {quantity}</Text>
+          <Text style={styles.taxes}>Tax Rate: %{taxRate}</Text>
         </View>
         <View>
           <View style={styles.button_pm}>

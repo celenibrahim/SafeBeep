@@ -1,15 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CartItem from './../../../components/CartCard'; // CartItem component'ını import edin
-import productsData from '../../../products-data.json'; // productsData'yı import edin
+import CartItem from './../../../components/CartCard';
+import productsData from '../../../products-data.json';
 import styles from './CartPage.style';
+
 interface Product {
   id: string;
   product_name: string;
   price: number;
   category: string;
 }
+const categoryTaxRates: {[key: string]: number} = {
+  market: 2,
+  clothes: 5,
+  accessories: 7,
+  electronics: 4,
+  books: 1,
+  cleaning: 3,
+};
+
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<string[]>([]);
   const [favoriteItems, setFavoriteItems] = useState<string[]>([]);
@@ -69,12 +79,15 @@ const CartPage = () => {
     setCartItems(updatedCartItems);
     await AsyncStorage.setItem('@cart', JSON.stringify(updatedCartItems));
   };
+
   const calculateTotalPrice = (): number => {
     let totalPrice = 0;
     cartItems.forEach(id => {
       const product = productsData.find(item => item.id === id);
       if (product) {
-        totalPrice += product.price;
+        const taxRate = categoryTaxRates[product.category] || 0;
+        const totalProductPrice = product.price * (1 + taxRate / 100);
+        totalPrice += totalProductPrice;
       }
     });
     return totalPrice;
@@ -97,6 +110,12 @@ const CartPage = () => {
                 onIncrease={() => increaseQuantity(id)}
                 onDecrease={() => decreaseQuantity(id)}
                 onRemove={() => removeFromCart(id)}
+                taxRate={
+                  categoryTaxRates[
+                    productsData.find((item: Product) => item.id === id)
+                      ?.category || ''
+                  ] || 0
+                }
               />
             ))}
           </View>
@@ -113,7 +132,7 @@ const CartPage = () => {
       <View style={styles.bottom_container}>
         <View style={styles.bottom_inner}>
           <Text style={styles.bc_text}>
-            Total Price: {calculateTotalPrice()} $
+            Total Price: {calculateTotalPrice().toFixed(2)} $
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
