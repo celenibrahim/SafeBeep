@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CartItem from './../../../components/CartCard';
 import productsData from '../../../products-data.json';
@@ -23,7 +29,7 @@ const categoryTaxRates: {[key: string]: number} = {
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<string[]>([]);
   const [favoriteItems, setFavoriteItems] = useState<string[]>([]);
-
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,6 +43,7 @@ const CartPage = () => {
           const parsedFavorites: string[] = JSON.parse(favoritesData);
           setFavoriteItems(parsedFavorites);
         }
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -100,45 +107,83 @@ const CartPage = () => {
 
   return (
     <View style={{flex: 1}}>
-      <ScrollView style={{flex: 1}}>
-        <View style={styles.container}>
-          <View style={styles.cartItemsContainer}>
-            {Object.entries(countItems(cartItems)).map(([id, count], index) => (
-              <CartItem
-                key={'cart_' + index}
-                productName={findProductInfo(id)}
-                price={
-                  productsData.find((item: Product) => item.id === id)?.price ||
-                  0
-                }
-                quantity={count}
-                onIncrease={() => increaseQuantity(id)}
-                onDecrease={() => decreaseQuantity(id)}
-                onRemove={() => removeFromCart(id)}
-                taxRate={
-                  categoryTaxRates[
-                    productsData.find((item: Product) => item.id === id)
-                      ?.category || ''
-                  ] || 0
-                }
-              />
-            ))}
-          </View>
-          <View style={styles.favoriteItemsContainer}>
-            <Text style={styles.sectionTitle}>Favorite Items:</Text>
-            <Text style={styles.section_info}>
-              Tap on it to remove favorite products.
-            </Text>
-            {Object.entries(countItems(favoriteItems)).map(([id], index) => (
-              <TouchableOpacity
-                key={'favorite_' + index}
-                onPress={() => removeFavorites(id)}>
-                <Text style={styles.favoriteItem}>{findProductInfo(id)}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+      {isLoading ? (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      </ScrollView>
+      ) : (
+        <ScrollView style={{flex: 1}}>
+          {cartItems.length === 0 ? (
+            <View
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <View>
+                <Text style={styles.emptyText}>Sepetiniz Boş</Text>
+              </View>
+              <View style={styles.favoriteItemsContainer}>
+                <Text style={styles.sectionTitle}>Favorite Items:</Text>
+                <Text style={styles.section_info}>
+                  Tap on it to remove favorite products.
+                </Text>
+                {Object.entries(countItems(favoriteItems)).map(
+                  ([id], index) => (
+                    <TouchableOpacity
+                      key={'favorite_' + index}
+                      onPress={() => removeFavorites(id)}>
+                      <Text style={styles.favoriteItem}>
+                        {findProductInfo(id)}
+                      </Text>
+                    </TouchableOpacity>
+                  ),
+                )}
+              </View>
+            </View>
+          ) : (
+            <View style={styles.container}>
+              <View style={styles.cartItemsContainer}>
+                {Object.entries(countItems(cartItems)).map(
+                  ([id, count], index) => (
+                    <CartItem
+                      key={'cart_' + index}
+                      productName={findProductInfo(id)}
+                      price={
+                        productsData.find((item: Product) => item.id === id)
+                          ?.price || 0
+                      }
+                      quantity={count}
+                      onIncrease={() => increaseQuantity(id)}
+                      onDecrease={() => decreaseQuantity(id)}
+                      onRemove={() => removeFromCart(id)}
+                      taxRate={
+                        categoryTaxRates[
+                          productsData.find((item: Product) => item.id === id)
+                            ?.category || ''
+                        ] || 0
+                      }
+                    />
+                  ),
+                )}
+              </View>
+              <View style={styles.favoriteItemsContainer}>
+                <Text style={styles.sectionTitle}>Favorite Items:</Text>
+                <Text style={styles.section_info}>
+                  Tap on it to remove favorite products.
+                </Text>
+                {Object.entries(countItems(favoriteItems)).map(
+                  ([id], index) => (
+                    <TouchableOpacity
+                      key={'favorite_' + index}
+                      onPress={() => removeFavorites(id)}>
+                      <Text style={styles.favoriteItem}>
+                        {findProductInfo(id)}
+                      </Text>
+                    </TouchableOpacity>
+                  ),
+                )}
+              </View>
+            </View>
+          )}
+        </ScrollView>
+      )}
       <View style={styles.bottom_container}>
         <View style={styles.bottom_inner}>
           <Text style={styles.bc_text}>

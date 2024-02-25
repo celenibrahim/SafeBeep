@@ -15,6 +15,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  emptyText: {
+    fontStyle: 'italic',
+    color: 'black',
+    fontSize: 40,
+  },
   section_info: {
     fontSize: 15,
     color: 'black',
