@@ -10,10 +10,20 @@ function SellScreen({navigation}: any) {
   function goToProducts() {
     navigation.navigate('Products');
   }
+  function goToFavorites() {
+    navigation.navigate('FavPage');
+  }
   return (
     <ScrollView style={styles.container}>
       <SearchBar placeholder="Type Product Code..." />
-      <Button text={'All Products'} onPress={goToProducts} />
+      <View style={{flexDirection: 'row', flex: 1}}>
+        <View style={{flex: 1}}>
+          <Button text={'Favorites'} onPress={goToFavorites} />
+        </View>
+        <View style={{flex: 1}}>
+          <Button text={'All Products'} onPress={goToProducts} />
+        </View>
+      </View>
       <View style={{flexDirection: 'row', flex: 3}}>
         <CategoryCard
           Title="Market"

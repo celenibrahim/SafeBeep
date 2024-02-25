@@ -28,7 +28,6 @@ const categoryTaxRates: {[key: string]: number} = {
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<string[]>([]);
-  const [favoriteItems, setFavoriteItems] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -37,11 +36,6 @@ const CartPage = () => {
         if (cartData !== null) {
           const parsedCart: string[] = JSON.parse(cartData);
           setCartItems(parsedCart);
-        }
-        const favoritesData = await AsyncStorage.getItem('@favorites');
-        if (favoritesData !== null) {
-          const parsedFavorites: string[] = JSON.parse(favoritesData);
-          setFavoriteItems(parsedFavorites);
         }
         setIsLoading(false);
       } catch (error) {
@@ -86,11 +80,6 @@ const CartPage = () => {
     setCartItems(updatedCartItems);
     await AsyncStorage.setItem('@cart', JSON.stringify(updatedCartItems));
   };
-  const removeFavorites = async (id: string) => {
-    const updatedFavItems = favoriteItems.filter(item => item !== id);
-    setFavoriteItems(updatedFavItems);
-    await AsyncStorage.setItem('@favorites', JSON.stringify(updatedFavItems));
-  };
 
   const calculateTotalPrice = (): number => {
     let totalPrice = 0;
@@ -117,24 +106,7 @@ const CartPage = () => {
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <View>
-                <Text style={styles.emptyText}>Sepetiniz Boş</Text>
-              </View>
-              <View style={styles.favoriteItemsContainer}>
-                <Text style={styles.sectionTitle}>Favorite Items:</Text>
-                <Text style={styles.section_info}>
-                  Tap on it to remove favorite products.
-                </Text>
-                {Object.entries(countItems(favoriteItems)).map(
-                  ([id], index) => (
-                    <TouchableOpacity
-                      key={'favorite_' + index}
-                      onPress={() => removeFavorites(id)}>
-                      <Text style={styles.favoriteItem}>
-                        {findProductInfo(id)}
-                      </Text>
-                    </TouchableOpacity>
-                  ),
-                )}
+                <Text style={styles.emptyText}>Your Cart is empty...</Text>
               </View>
             </View>
           ) : (
@@ -160,23 +132,6 @@ const CartPage = () => {
                         ] || 0
                       }
                     />
-                  ),
-                )}
-              </View>
-              <View style={styles.favoriteItemsContainer}>
-                <Text style={styles.sectionTitle}>Favorite Items:</Text>
-                <Text style={styles.section_info}>
-                  Tap on it to remove favorite products.
-                </Text>
-                {Object.entries(countItems(favoriteItems)).map(
-                  ([id], index) => (
-                    <TouchableOpacity
-                      key={'favorite_' + index}
-                      onPress={() => removeFavorites(id)}>
-                      <Text style={styles.favoriteItem}>
-                        {findProductInfo(id)}
-                      </Text>
-                    </TouchableOpacity>
                   ),
                 )}
               </View>

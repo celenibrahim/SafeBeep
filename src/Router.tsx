@@ -10,7 +10,7 @@ import Settings from './pages/Settings';
 import SellScreen from './pages/Sell/SellScreen';
 import Products from './pages/Sell/Products';
 import CartPage from './pages/Sell/CartPage';
-
+import FavPage from './pages/Sell/FavPage';
 const Stack = createNativeStackNavigator();
 
 const SellStack = () => {
@@ -35,9 +35,9 @@ const SellStack = () => {
         options={{title: 'My Cart'}}
       />
       <Stack.Screen
-        name="Sell 4"
-        component={Menu}
-        options={{title: 'Sell 4'}}
+        name="FavPage"
+        component={FavPage}
+        options={{title: 'Favorites'}}
       />
     </Stack.Navigator>
   );
