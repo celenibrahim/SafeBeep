@@ -15,6 +15,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  section_info: {
+    fontSize: 15,
+    color: 'black',
+    marginBottom: 10,
+  },
   cartItemsContainer: {
     alignItems: 'center',
     marginBottom: 20,

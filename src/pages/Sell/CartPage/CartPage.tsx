@@ -79,6 +79,11 @@ const CartPage = () => {
     setCartItems(updatedCartItems);
     await AsyncStorage.setItem('@cart', JSON.stringify(updatedCartItems));
   };
+  const removeFavorites = async (id: string) => {
+    const updatedFavItems = favoriteItems.filter(item => item !== id);
+    setFavoriteItems(updatedFavItems);
+    await AsyncStorage.setItem('@favorites', JSON.stringify(updatedFavItems));
+  };
 
   const calculateTotalPrice = (): number => {
     let totalPrice = 0;
@@ -121,10 +126,15 @@ const CartPage = () => {
           </View>
           <View style={styles.favoriteItemsContainer}>
             <Text style={styles.sectionTitle}>Favorite Items:</Text>
+            <Text style={styles.section_info}>
+              Tap on it to remove favorite products.
+            </Text>
             {Object.entries(countItems(favoriteItems)).map(([id], index) => (
-              <Text key={'favorite_' + index} style={styles.favoriteItem}>
-                {findProductInfo(id)}
-              </Text>
+              <TouchableOpacity
+                key={'favorite_' + index}
+                onPress={() => removeFavorites(id)}>
+                <Text style={styles.favoriteItem}>{findProductInfo(id)}</Text>
+              </TouchableOpacity>
             ))}
           </View>
         </View>

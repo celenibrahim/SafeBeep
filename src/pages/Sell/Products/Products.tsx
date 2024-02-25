@@ -77,24 +77,6 @@ function Products({navigation}: any) {
     setList(filteredList);
   };
 
-  const clearCartData = async () => {
-    try {
-      await AsyncStorage.removeItem('@cart');
-      console.log('Sepet verileri temizlendi.');
-    } catch (error) {
-      console.error('Error clearing cart data:', error);
-    }
-  };
-
-  const clearFavoriteData = async () => {
-    try {
-      await AsyncStorage.removeItem('@favorites');
-      console.log('Favori ürün verileri temizlendi.');
-    } catch (error) {
-      console.error('Error clearing favorite data:', error);
-    }
-  };
-
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
@@ -115,8 +97,6 @@ function Products({navigation}: any) {
             onpress={goToCart}
             iconUrl={require('../../../assets/icons/sell.png')}
           />
-          <Button title="Clear Cart" onPress={clearCartData} />
-          <Button title="Clear Favorites" onPress={clearFavoriteData} />
         </View>
       </View>
       <FlatList
