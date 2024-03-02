@@ -1,10 +1,24 @@
+import React, {useState} from 'react';
 import {Dimensions, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
 
-const FavButton = ({iconUrl, onPress}: any) => {
+const FavButton = ({onPress}: any) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(prevState => !prevState);
+    onPress();
+  };
+
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Image style={styles.icon} source={iconUrl} />
+    <TouchableOpacity onPress={toggleFavorite}>
+      <Image
+        style={styles.icon}
+        source={
+          isFavorite
+            ? require('../../assets/icons/favorited.png')
+            : require('../../assets/icons/favorite.png')
+        }
+      />
     </TouchableOpacity>
   );
 };

@@ -45,7 +45,7 @@ export default StyleSheet.create({
     backgroundColor: '#2669b1',
     borderRadius: 10,
     width: Dimensions.get('window').width / 1,
-    height: Dimensions.get('window').height / 10,
+    height: Dimensions.get('window').height / 8,
   },
   bottom_inner: {
     justifyContent: 'center',
@@ -64,7 +64,7 @@ export default StyleSheet.create({
     borderRadius: 10,
     borderColor: 'white',
     alignItems: 'center',
-    marginTop: 6,
+    marginTop: 12,
     width: Dimensions.get('window').width / 3,
   },
 });

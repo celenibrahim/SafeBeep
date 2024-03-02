@@ -1,17 +1,50 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './ProductCard.style';
 import Button from '../Button';
 import FavButton from '../FavButton';
-const ProductCard = (props: {
-  item: {
-    id: string | number;
-    product_name: string;
-    price: number;
+
+const ProductCard = (props: any) => {
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const favorites = await AsyncStorage.getItem('@favorites');
+        if (favorites !== null) {
+          const parsedFavorites = JSON.parse(favorites);
+          if (parsedFavorites.includes(props.item.id)) {
+            setIsFavorited(true);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching favorites:', error);
+      }
+    };
+
+    fetchFavorites();
+  }, [props.item.id]);
+
+  const addToFavoritesPress = async () => {
+    try {
+      setIsFavorited(!isFavorited);
+      const favorites = await AsyncStorage.getItem('@favorites');
+      let favoritesArray = favorites ? JSON.parse(favorites) : [];
+      if (isFavorited) {
+        const index = favoritesArray.indexOf(props.item.id);
+        if (index > -1) {
+          favoritesArray.splice(index, 1);
+        }
+      } else {
+        favoritesArray.push(props.item.id);
+      }
+      await AsyncStorage.setItem('@favorites', JSON.stringify(favoritesArray));
+    } catch (error) {
+      console.error('Error toggling favorites:', error);
+    }
   };
-  addToCartPress: () => void;
-  addToFavoritesPress: () => void;
-}) => {
+
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>
@@ -26,8 +59,12 @@ const ProductCard = (props: {
 
         <View style={{flexDirection: 'row'}}>
           <FavButton
-            iconUrl={require('../../assets/icons/favourite.png')}
-            onPress={props.addToFavoritesPress}
+            onPress={addToFavoritesPress}
+            iconUrl={
+              isFavorited
+                ? require('../../assets/icons/favorited.png')
+                : require('../../assets/icons/favorite.png')
+            }
           />
           <Button text={'Add to Cart'} onPress={props.addToCartPress} />
         </View>

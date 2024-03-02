@@ -26,7 +26,7 @@ const categoryTaxRates: {[key: string]: number} = {
   cleaning: 3,
 };
 
-const CartPage = () => {
+const CartPage = ({navigation}: any) => {
   const [cartItems, setCartItems] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -45,6 +45,9 @@ const CartPage = () => {
 
     fetchData();
   }, []);
+  function goToPay() {
+    navigation.navigate('PayPage');
+  }
 
   const findProductInfo = (id: string): string => {
     const product = productsData.find((item: Product) => item.id === id);
@@ -89,6 +92,16 @@ const CartPage = () => {
         const taxRate = categoryTaxRates[product.category] || 0;
         const totalProductPrice = product.price * (1 + taxRate / 100);
         totalPrice += totalProductPrice;
+      }
+    });
+    return totalPrice;
+  };
+  const subTotalPrice = (): number => {
+    let totalPrice = 0;
+    cartItems.forEach(id => {
+      const product = productsData.find(item => item.id === id);
+      if (product) {
+        totalPrice += product.price;
       }
     });
     return totalPrice;
@@ -142,11 +155,14 @@ const CartPage = () => {
       <View style={styles.bottom_container}>
         <View style={styles.bottom_inner}>
           <Text style={styles.bc_text}>
+            Subtotal: {subTotalPrice().toFixed(2)} $
+          </Text>
+          <Text style={styles.bc_text}>
             Total Price: {calculateTotalPrice().toFixed(2)} $
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={goToPay}>
             <View style={styles.bottom_button}>
               <Text style={styles.bc_text}>Pay</Text>
             </View>
