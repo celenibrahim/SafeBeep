@@ -67,7 +67,22 @@ function Products({navigation}: any) {
     );
     setList(sortedData);
   };
-
+  const sortFavoriteProducts = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@favorites');
+      const favoriteProductsIds =
+        jsonValue != null ? JSON.parse(jsonValue) : [];
+      const favoriteProducts = products_data.filter(product =>
+        favoriteProductsIds.includes(product.id),
+      );
+      setList(favoriteProducts);
+    } catch (error) {
+      console.error('Error sorting favorite products:', error);
+    }
+  };
+  const reset = () => {
+    setList(products_data);
+  };
   const handleSearch = (text: string) => {
     const searchedText = text.toLowerCase();
     const filteredList = products_data.filter(product => {
@@ -91,6 +106,8 @@ function Products({navigation}: any) {
             onpress={sortByPriceAscending}
             onpressB={sortByPriceDescending}
             onpressC={sortByAlphabeticalOrder}
+            onPressD={sortFavoriteProducts}
+            onPressE={reset}
             iconUrl={require('../../../assets/icons/sort.png')}
           />
           <CartButton

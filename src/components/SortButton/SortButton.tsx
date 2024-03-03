@@ -10,7 +10,14 @@ import {
   Dimensions,
 } from 'react-native';
 
-const SortButton = ({iconUrl, onpress, onpressB, onpressC}: any) => {
+const SortButton = ({
+  iconUrl,
+  onpress,
+  onpressB,
+  onpressC,
+  onPressD,
+  onPressE,
+}: any) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
@@ -43,6 +50,12 @@ const SortButton = ({iconUrl, onpress, onpressB, onpressC}: any) => {
               </TouchableOpacity>
               <TouchableOpacity onPress={onpressC}>
                 <Text style={styles.text}>Sort Alphabetical</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onPressD}>
+                <Text style={styles.text}>See Favorites</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onPressE}>
+                <Text style={styles.text}>Reset</Text>
               </TouchableOpacity>
             </View>
             <Button title="Close" onPress={closeModal} />
