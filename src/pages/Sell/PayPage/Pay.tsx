@@ -1,10 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
 import styles from './Pay.styles';
+import PaymentSelection from '../../../components/PaymentSelection';
+
 const Pay = () => {
   return (
     <View style={styles.container}>
-      <Text>Pay</Text>
+      <PaymentSelection />
     </View>
   );
 };
