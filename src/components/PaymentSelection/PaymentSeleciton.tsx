@@ -3,18 +3,16 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 
 const PaymentSelection = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
-  const [amount, setAmount] = useState('');
 
   const handleMethodSelect = (method: any) => {
     if (method === 'Cancel') {
       setSelectedMethod(null);
-      setAmount('');
     } else {
       setSelectedMethod(method);
     }
@@ -22,34 +20,47 @@ const PaymentSelection = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Please Select Your Pay Method</Text>
-      <TouchableOpacity
-        style={styles.methodButton}
-        onPress={() => handleMethodSelect('Credit Card')}>
-        <Text>Credit Card</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.methodButton}
-        onPress={() => handleMethodSelect('Cash')}>
-        <Text>Cash</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.methodButton}
-        onPress={() => handleMethodSelect('Cancel')}>
-        <Text>Cancel</Text>
-      </TouchableOpacity>
+      <View style={styles.sub_container}>
+        <TouchableOpacity
+          style={[styles.methodButton, {backgroundColor: 'darkgreen'}]}
+          onPress={() => handleMethodSelect('Credit Card')}>
+          <Text style={styles.bt_text}>Credit Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.methodButton, {backgroundColor: 'darkgreen'}]}
+          onPress={() => handleMethodSelect('Cash')}>
+          <Text style={styles.bt_text}>Cash</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.sub_container}>
+        <TouchableOpacity
+          style={[styles.methodButton, {backgroundColor: 'blue'}]}
+          onPress={() => handleMethodSelect('Installment')}>
+          <Text style={styles.bt_text}>Installment</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.methodButton, {backgroundColor: 'red'}]}
+          onPress={() => handleMethodSelect('Cancel Document')}>
+          <Text style={styles.bt_text}>Cancel Document</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.sub_container}>
+        <TouchableOpacity
+          style={[styles.methodButton, {backgroundColor: 'red'}]}
+          onPress={() => handleMethodSelect('Cencel Line')}>
+          <Text style={styles.bt_text}>Cancel Line</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.methodButton, {backgroundColor: 'red'}]}
+          onPress={() => handleMethodSelect('Cancel')}>
+          <Text style={styles.bt_text}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
       {selectedMethod && (
         <View style={styles.selectedMethodContainer}>
           <Text style={styles.selectedMethodText}>
             Selected Method: {selectedMethod}
           </Text>
-          <TextInput
-            style={styles.amountInput}
-            placeholder="Type amount"
-            keyboardType="numeric"
-            value={amount}
-            onChangeText={text => setAmount(text)}
-          />
         </View>
       )}
     </View>
@@ -60,35 +71,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  sub_container: {
+    flex: 0.07,
+    margin: 2,
+    height: Dimensions.get('screen').height / 22,
+    width: Dimensions.get('screen').width / 1.01,
+    flexDirection: 'row',
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: Dimensions.get('screen').width / 60,
   },
   methodButton: {
+    flex: 1,
     padding: 10,
+    width: Dimensions.get('screen').width / 3.3,
+    height: Dimensions.get('screen').height / 20,
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 5,
-    marginBottom: 10,
+    borderRadius: 10,
+    marginLeft: 5,
+    alignItems: 'center',
+  },
+  bt_text: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   selectedMethodContainer: {
-    marginTop: 20,
     alignItems: 'center',
   },
   selectedMethodText: {
     fontSize: 16,
-    marginBottom: 10,
-  },
-  amountInput: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 5,
-    padding: 10,
-    width: 200,
-    marginBottom: 10,
+    color: 'black',
   },
 });
 
