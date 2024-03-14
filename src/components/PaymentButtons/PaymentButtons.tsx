@@ -1,12 +1,6 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
-
+import {View, Text, TouchableOpacity} from 'react-native';
+import styles from './PaymentButtons.style';
 const PaymentButtons = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
 
@@ -15,6 +9,28 @@ const PaymentButtons = () => {
       setSelectedMethod(null);
     } else {
       setSelectedMethod(method);
+    }
+  };
+  const [input, setInput] = useState('');
+  const [result, setResult] = useState('');
+
+  const handleInput = (value: any) => {
+    setInput(input + value);
+  };
+  const handleDelete = () => {
+    setInput(input.slice(0, -1));
+  };
+
+  const clearInput = () => {
+    setInput('');
+    setResult('');
+  };
+
+  const calculateResult = () => {
+    try {
+      setResult(eval(input).toString());
+    } catch (error) {
+      setResult('Hata');
     }
   };
 
@@ -63,48 +79,95 @@ const PaymentButtons = () => {
           </Text>
         </View>
       )}
+      <View style={styles.container2}>
+        <View style={styles.inputContainer}>
+          <Text style={styles.input}>{input}</Text>
+          <Text style={styles.result}>{result}</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('1')}>
+              <Text>1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('2')}>
+              <Text>2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('3')}>
+              <Text>3</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('4')}>
+              <Text>4</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('5')}>
+              <Text>5</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('6')}>
+              <Text>6</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('7')}>
+              <Text>7</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('8')}>
+              <Text>8</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('9')}>
+              <Text>9</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('0')}>
+              <Text>0</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('+')}>
+              <Text>+</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleInput('-')}>
+              <Text>-</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.button} onPress={handleDelete}>
+              <Text>DEL</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={clearInput}>
+              <Text>C</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={calculateResult}>
+              <Text>=</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  sub_container: {
-    flex: 0.07,
-    margin: 2,
-    height: Dimensions.get('screen').height / 22,
-    width: Dimensions.get('screen').width / 1.01,
-    flexDirection: 'row',
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: Dimensions.get('screen').width / 60,
-  },
-  methodButton: {
-    flex: 1,
-    padding: 10,
-    width: Dimensions.get('screen').width / 3.3,
-    height: Dimensions.get('screen').height / 20,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 10,
-    marginLeft: 5,
-    alignItems: 'center',
-  },
-  bt_text: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  selectedMethodContainer: {
-    alignItems: 'center',
-  },
-  selectedMethodText: {
-    fontSize: 16,
-    color: 'black',
-  },
-});
 
 export default PaymentButtons;
