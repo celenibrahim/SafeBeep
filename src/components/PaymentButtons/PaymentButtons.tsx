@@ -7,7 +7,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-const PaymentSelection = () => {
+const PaymentButtons = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
 
   const handleMethodSelect = (method: any) => {
@@ -23,13 +23,13 @@ const PaymentSelection = () => {
       <View style={styles.sub_container}>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'darkgreen'}]}
-          onPress={() => handleMethodSelect('Credit Card')}>
-          <Text style={styles.bt_text}>Credit Card</Text>
+          onPress={() => handleMethodSelect('Seller')}>
+          <Text style={styles.bt_text}>Seller</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'darkgreen'}]}
-          onPress={() => handleMethodSelect('Cash')}>
-          <Text style={styles.bt_text}>Cash</Text>
+          onPress={() => handleMethodSelect('A101 Hadi')}>
+          <Text style={styles.bt_text}>A101 Hadi</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.sub_container}>
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentSelection;
+export default PaymentButtons;
