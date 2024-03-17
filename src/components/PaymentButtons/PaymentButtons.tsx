@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import styles from './PaymentButtons.style';
 const PaymentButtons = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -30,7 +30,7 @@ const PaymentButtons = () => {
     try {
       setResult(eval(input).toString());
     } catch (error) {
-      setResult('Hata');
+      setResult('Error');
     }
   };
 
@@ -38,12 +38,12 @@ const PaymentButtons = () => {
     <View style={styles.container}>
       <View style={styles.sub_container}>
         <TouchableOpacity
-          style={[styles.methodButton, {backgroundColor: 'darkgreen'}]}
+          style={[styles.methodButton, {backgroundColor: 'green'}]}
           onPress={() => handleMethodSelect('Seller')}>
           <Text style={styles.bt_text}>Seller</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.methodButton, {backgroundColor: 'darkgreen'}]}
+          style={[styles.methodButton, {backgroundColor: 'green'}]}
           onPress={() => handleMethodSelect('A101 Hadi')}>
           <Text style={styles.bt_text}>A101 Hadi</Text>
         </TouchableOpacity>
@@ -84,84 +84,146 @@ const PaymentButtons = () => {
           <Text style={styles.input}>{input}</Text>
           <Text style={styles.result}>{result}</Text>
         </View>
-        <View style={styles.buttonContainer}>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('1')}>
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('2')}>
-              <Text>2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('3')}>
-              <Text>3</Text>
-            </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          <View>
+            <View style={styles.buttonContainer}>
+              <View style={styles.row}>
+                <TouchableOpacity
+                  style={styles.bot_top_buttons}
+                  onPress={() => handleInput('00')}>
+                  <Text style={styles.bt_text}>00</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={handleDelete}>
+                  <Text style={styles.bt_text}>DEL</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.row}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('1')}>
+                  <Text style={styles.bt_text}>1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('2')}>
+                  <Text style={styles.bt_text}>2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('3')}>
+                  <Text style={styles.bt_text}>3</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.row}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('4')}>
+                  <Text style={styles.bt_text}>4</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('5')}>
+                  <Text style={styles.bt_text}>5</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('6')}>
+                  <Text style={styles.bt_text}>6</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.row}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('7')}>
+                  <Text style={styles.bt_text}>7</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('8')}>
+                  <Text style={styles.bt_text}>8</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('9')}>
+                  <Text style={styles.bt_text}>9</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.row}>
+                <TouchableOpacity
+                  style={styles.bot_top_buttons}
+                  onPress={clearInput}>
+                  <Text style={styles.bt_text}>X</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleInput('.')}>
+                  <Text style={styles.bt_text}>.</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-          <View style={styles.row}>
+          <View>
+            <View style={styles.row}>
+              <TouchableOpacity
+                style={{
+                  marginLeft: 3,
+                  marginVertical: 2,
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  width: Dimensions.get('window').width / 3,
+                  height: Dimensions.get('window').height / 11.5,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'green',
+                }}
+                onPress={() => null}>
+                <Text style={styles.bt_text}>Campaign List</Text>
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('4')}>
-              <Text>4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('5')}>
-              <Text>5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('6')}>
-              <Text>6</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('7')}>
-              <Text>7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('8')}>
-              <Text>8</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('9')}>
-              <Text>9</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('0')}>
-              <Text>0</Text>
+              style={{
+                marginLeft: 3,
+                marginVertical: 2,
+                borderWidth: 1,
+                borderRadius: 10,
+                width: Dimensions.get('window').width / 3,
+                height: Dimensions.get('window').height / 11.5,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'red',
+              }}
+              onPress={() => null}>
+              <Text style={styles.bt_text}>Amount</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('+')}>
-              <Text>+</Text>
+              style={{
+                marginLeft: 3,
+                marginVertical: 2,
+                borderWidth: 1,
+                borderRadius: 10,
+                width: Dimensions.get('window').width / 3,
+                height: Dimensions.get('window').height / 5.6,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'green',
+              }}
+              onPress={() => null}>
+              <Text style={styles.bt_text}>SubTotal</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleInput('-')}>
-              <Text>-</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.button} onPress={handleDelete}>
-              <Text>DEL</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={clearInput}>
-              <Text>C</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={calculateResult}>
-              <Text>=</Text>
+              style={{
+                marginLeft: 3,
+                marginVertical: 2,
+                borderWidth: 1,
+                borderRadius: 10,
+                width: Dimensions.get('window').width / 3,
+                height: Dimensions.get('window').height / 11.5,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'darkblue',
+              }}
+              onPress={() => null}>
+              <Text style={styles.bt_text}>Enter</Text>
             </TouchableOpacity>
           </View>
         </View>
