@@ -50,18 +50,20 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   input: {
+    width: Dimensions.get('window').width / 1.5,
     borderWidth: 1,
     fontSize: 24,
-    marginBottom: 10,
+    margin: 10,
+    borderRadius: 10,
   },
   result: {
     textAlign: 'center',
     borderRadius: 10,
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     borderWidth: 1,
+    marginBottom: 10,
     width: Dimensions.get('window').width / 1.5,
-    height: Dimensions.get('window').height / 18,
   },
   buttonContainer: {
     width: '70%',
