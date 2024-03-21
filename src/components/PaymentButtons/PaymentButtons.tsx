@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  Modal,
+  Button,
+} from 'react-native';
 import styles from './PaymentButtons.style';
 const PaymentButtons = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -24,6 +31,13 @@ const PaymentButtons = () => {
   const clearInput = () => {
     setInput('');
     setResult('');
+  };
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
   };
 
   const calculateResult = () => {
@@ -51,9 +65,38 @@ const PaymentButtons = () => {
       <View style={styles.sub_container}>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'blue'}]}
-          onPress={() => handleMethodSelect('Installment')}>
+          onPress={openModal}>
           <Text style={styles.bt_text}>Installment</Text>
         </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={closeModal}>
+          <View style={styles.modal_container}>
+            <View style={styles.modal_inner_container}>
+              <Text style={styles.modal_title}>Installment Options:</Text>
+              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <TouchableOpacity>
+                  <Text style={styles.modal_text}>5 x Installment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={styles.modal_text}>4 x Installment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={styles.modal_text}>3 x Installment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={styles.modal_text}>2 x Installment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={styles.modal_text}>Cancel</Text>
+                </TouchableOpacity>
+              </View>
+              <Button title="Close" onPress={closeModal} />
+            </View>
+          </View>
+        </Modal>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'red'}]}
           onPress={() => handleMethodSelect('Cancel Document')}>

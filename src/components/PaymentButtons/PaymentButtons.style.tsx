@@ -92,4 +92,26 @@ export default StyleSheet.create({
     backgroundColor: 'darkblue',
     width: Dimensions.get('window').width / 2.5,
   },
+  modal_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modal_inner_container: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+  },
+  modal_text: {
+    color: 'black',
+    fontSize: 20,
+    fontStyle: 'italic',
+  },
+  modal_title: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
