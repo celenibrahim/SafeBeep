@@ -8,9 +8,8 @@ import {
   Button,
 } from 'react-native';
 import styles from './PaymentButtons.style';
-const PaymentButtons = () => {
+const PaymentButtons = ({navigation}: any) => {
   const [selectedMethod, setSelectedMethod] = useState(null);
-
   const handleMethodSelect = (method: any) => {
     if (method === 'Cancel') {
       setSelectedMethod(null);
@@ -32,12 +31,13 @@ const PaymentButtons = () => {
     setInput('');
     setResult('');
   };
-  const [modalVisible, setModalVisible] = useState(false);
-  const openModal = () => {
-    setModalVisible(true);
+  const [installmentModalVisible, setInstallmentModalVisible] = useState(false);
+  const [CampListModalVisible, setCampListModalVisible] = useState(false);
+  const openInstallmentModal = () => {
+    setInstallmentModalVisible(true);
   };
-  const closeModal = () => {
-    setModalVisible(false);
+  const openCampListModal = () => {
+    setCampListModalVisible(true);
   };
 
   const calculateResult = () => {
@@ -65,14 +65,14 @@ const PaymentButtons = () => {
       <View style={styles.sub_container}>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'blue'}]}
-          onPress={openModal}>
+          onPress={openInstallmentModal}>
           <Text style={styles.bt_text}>Installment</Text>
         </TouchableOpacity>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={modalVisible}
-          onRequestClose={closeModal}>
+          visible={installmentModalVisible}
+          onRequestClose={() => setInstallmentModalVisible(false)}>
           <View style={styles.modal_container}>
             <View style={styles.modal_inner_container}>
               <Text style={styles.modal_title}>Installment Options:</Text>
@@ -93,10 +93,14 @@ const PaymentButtons = () => {
                   <Text style={styles.modal_text}>Cancel</Text>
                 </TouchableOpacity>
               </View>
-              <Button title="Close" onPress={closeModal} />
+              <Button
+                title="Close"
+                onPress={() => setInstallmentModalVisible(false)}
+              />
             </View>
           </View>
         </Modal>
+
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'red'}]}
           onPress={() => handleMethodSelect('Cancel Document')}>
@@ -109,12 +113,14 @@ const PaymentButtons = () => {
           onPress={() => handleMethodSelect('Cencel Line')}>
           <Text style={styles.bt_text}>Cancel Line</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'red'}]}
           onPress={() => handleMethodSelect('Cancel')}>
           <Text style={styles.bt_text}>Cancel</Text>
         </TouchableOpacity>
       </View>
+
       {selectedMethod && (
         <View style={styles.selectedMethodContainer}>
           <Text style={styles.selectedMethodText}>
@@ -219,9 +225,39 @@ const PaymentButtons = () => {
                   alignItems: 'center',
                   backgroundColor: 'green',
                 }}
-                onPress={() => null}>
+                onPress={openCampListModal}>
                 <Text style={styles.bt_text}>Campaign List</Text>
               </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={CampListModalVisible}
+                onRequestClose={() => setCampListModalVisible(false)}>
+                <View style={styles.modal_container}>
+                  <View style={styles.modal_inner_container}>
+                    <Text style={styles.modal_title}>Campaigns:</Text>
+                    <View
+                      style={{justifyContent: 'center', alignItems: 'center'}}>
+                      <TouchableOpacity>
+                        <Text style={styles.modal_text}>Campaign 1</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
+                        <Text style={styles.modal_text}>Campaign 2</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
+                        <Text style={styles.modal_text}>Campaign 3</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
+                        <Text style={styles.modal_text}>Cancel</Text>
+                      </TouchableOpacity>
+                    </View>
+                    <Button
+                      title="Close"
+                      onPress={() => setCampListModalVisible(false)}
+                    />
+                  </View>
+                </View>
+              </Modal>
             </View>
             <TouchableOpacity
               style={{
@@ -265,7 +301,7 @@ const PaymentButtons = () => {
                 alignItems: 'center',
                 backgroundColor: 'darkblue',
               }}
-              onPress={() => null}>
+              onPress={() => navigation.navigate('PayPage')}>
               <Text style={styles.bt_text}>Enter</Text>
             </TouchableOpacity>
           </View>

@@ -11,6 +11,7 @@ import SellScreen from './pages/Sell/SellScreen';
 import Products from './pages/Sell/Products';
 import CartPage from './pages/Sell/CartPage';
 import FavPage from './pages/Sell/FavPage';
+import TotalPage from './pages/Sell/TotalPage';
 import PayPage from './pages/Sell/PayPage';
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,11 @@ const SellStack = () => {
         name="FavPage"
         component={FavPage}
         options={{title: 'Favorites'}}
+      />
+      <Stack.Screen
+        name="TotalPage"
+        component={TotalPage}
+        options={{title: 'TotalPage'}}
       />
       <Stack.Screen
         name="PayPage"

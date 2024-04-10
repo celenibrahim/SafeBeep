@@ -45,8 +45,8 @@ const CartPage = ({navigation}: any) => {
 
     fetchData();
   }, []);
-  function goToPay() {
-    navigation.navigate('PayPage');
+  function goToTotal() {
+    navigation.navigate('TotalPage');
   }
 
   const findProductInfo = (id: string): string => {
@@ -162,9 +162,9 @@ const CartPage = ({navigation}: any) => {
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
-          <TouchableOpacity onPress={goToPay}>
+          <TouchableOpacity onPress={goToTotal}>
             <View style={styles.bottom_button}>
-              <Text style={styles.bc_text}>Pay</Text>
+              <Text style={styles.bc_text}>Total/Pay</Text>
             </View>
           </TouchableOpacity>
         </View>
