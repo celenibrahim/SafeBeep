@@ -13,6 +13,7 @@ import CartPage from './pages/Sell/CartPage';
 import FavPage from './pages/Sell/FavPage';
 import TotalPage from './pages/Sell/TotalPage';
 import PayPage from './pages/Sell/PayPage';
+
 const Stack = createNativeStackNavigator();
 
 const SellStack = () => {

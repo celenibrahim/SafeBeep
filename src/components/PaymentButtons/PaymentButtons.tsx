@@ -8,7 +8,10 @@ import {
   Button,
 } from 'react-native';
 import styles from './PaymentButtons.style';
-const PaymentButtons = ({navigation}: any) => {
+function PaymentButtons({navigation}: any) {
+  function gotoPay() {
+    navigation.navigate('PayPage');
+  }
   const [selectedMethod, setSelectedMethod] = useState(null);
   const handleMethodSelect = (method: any) => {
     if (method === 'Cancel') {
@@ -301,7 +304,7 @@ const PaymentButtons = ({navigation}: any) => {
                 alignItems: 'center',
                 backgroundColor: 'darkblue',
               }}
-              onPress={() => navigation.navigate('PayPage')}>
+              onPress={gotoPay}>
               <Text style={styles.bt_text}>Enter</Text>
             </TouchableOpacity>
           </View>
@@ -309,6 +312,6 @@ const PaymentButtons = ({navigation}: any) => {
       </View>
     </View>
   );
-};
+}
 
 export default PaymentButtons;
