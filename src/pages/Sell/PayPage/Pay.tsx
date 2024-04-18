@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-
+import styles from './Pay.styles';
 const Pay = () => {
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
@@ -54,11 +54,10 @@ const Pay = () => {
           <Text style={styles.text_button}>Hediye Çeki</Text>
         </TouchableOpacity>
       </View>
-      <View style={{flex: 1, backgroundColor: 'orange'}}>
+      <View style={{flex: 1}}>
         <View
           style={{
             flexDirection: 'row',
-            backgroundColor: 'gray',
             justifyContent: 'center',
             alignItems: 'center',
           }}>
@@ -222,87 +221,3 @@ const Pay = () => {
 };
 
 export default Pay;
-
-const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'white'},
-  optContainer: {flexDirection: 'row'},
-  optButtons: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 3,
-    height: Dimensions.get('screen').height / 14,
-    width: Dimensions.get('screen').width / 2,
-    borderWidth: 1,
-    borderRadius: 8,
-    margin: 5,
-  },
-  text_button: {
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  button: {
-    margin: 2,
-    borderWidth: 1,
-    borderRadius: 10,
-    width: Dimensions.get('window').width / 5,
-    height: Dimensions.get('window').height / 11.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'darkblue',
-  },
-  del_button: {
-    marginLeft: 10,
-    borderWidth: 1,
-    borderRadius: 10,
-    width: Dimensions.get('window').width / 5,
-    height: Dimensions.get('window').height / 11.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  del_button_text: {
-    fontWeight: 'bold',
-    color: 'black',
-  },
-  bot_top_buttons: {
-    marginHorizontal: 2,
-    marginVertical: 2,
-    borderWidth: 1,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'darkblue',
-    width: Dimensions.get('window').width / 2.41,
-  },
-  buttonContainer: {
-    width: '70%',
-    flex: 1,
-  },
-  inputContainer: {
-    borderWidth: 1,
-    borderRadius: 10,
-    marginBottom: 20,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  input: {
-    width: Dimensions.get('window').width / 1.5,
-    borderWidth: 1,
-    fontSize: 24,
-    margin: 10,
-    borderRadius: 10,
-  },
-  result: {
-    textAlign: 'center',
-    borderRadius: 10,
-    fontSize: 24,
-    fontWeight: 'bold',
-    borderWidth: 1,
-    marginBottom: 10,
-    width: Dimensions.get('window').width / 1.5,
-  },
-});

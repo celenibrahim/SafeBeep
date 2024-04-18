@@ -7,11 +7,10 @@ export default StyleSheet.create({
   },
   sub_container: {
     flex: 0.07,
-    margin: 2,
+    margin: 5,
     height: Dimensions.get('screen').height / 22,
     width: Dimensions.get('screen').width / 1.01,
     flexDirection: 'row',
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: Dimensions.get('screen').width / 60,
@@ -43,7 +42,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
-    borderWidth: 1,
     borderRadius: 10,
     marginBottom: 20,
     marginTop: 20,
@@ -83,14 +81,14 @@ export default StyleSheet.create({
     backgroundColor: 'darkblue',
   },
   bot_top_buttons: {
-    marginHorizontal: 4,
+    marginHorizontal: 2,
     marginVertical: 2,
     borderWidth: 1,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'darkblue',
-    width: Dimensions.get('window').width / 2.5,
+    width: Dimensions.get('window').width / 2.44,
   },
   modal_container: {
     flex: 1,
