@@ -178,7 +178,7 @@ const Pay = () => {
                   backgroundColor: 'darkblue',
                 }}
                 onPress={handleDelete}>
-                <Text style={styles.text_button}>Dell</Text>
+                <Text style={styles.text_button}>Del</Text>
               </TouchableOpacity>
             </View>
 
