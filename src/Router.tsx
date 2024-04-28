@@ -13,7 +13,7 @@ import CartPage from './pages/Sell/CartPage';
 import FavPage from './pages/Sell/FavPage';
 import TotalPage from './pages/Sell/TotalPage';
 import PayPage from './pages/Sell/PayPage';
-
+import ReportsPage from './pages/Reports';
 const Stack = createNativeStackNavigator();
 
 const SellStack = () => {
@@ -86,6 +86,13 @@ function Router() {
             <Stack.Screen
               name="SettingsPage"
               component={Settings}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="ReportsPage"
+              component={ReportsPage}
               options={{
                 headerShown: false,
               }}

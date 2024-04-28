@@ -1,5 +1,5 @@
 import React from 'react';
-import SettingsCard from '../../components/SettingsCard';
+import SettingsButton from '../../components/SettingsButtons';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 const Settings = ({navigation}: any) => {
   return (
@@ -7,21 +7,25 @@ const Settings = ({navigation}: any) => {
       <View style={styles.title_container}>
         <Text style={styles.title}>Settings</Text>
       </View>
-      <SettingsCard
+      <SettingsButton
         onPress={null}
         title="Ingenico Settings"
         bgColor="#4b71ec"
       />
-      <SettingsCard onPress={null} title="Import All Sales" bgColor="green" />
-      <SettingsCard
+      <SettingsButton onPress={null} title="Import All Sales" bgColor="green" />
+      <SettingsButton
         onPress={null}
         title="Reinstall the Configuration"
         bgColor="green"
       />
-      <SettingsCard onPress={null} title="Scales Settings" bgColor="#4b71ec" />
-      <SettingsCard onPress={null} title="Other Settings" bgColor="green" />
-      <SettingsCard onPress={null} title="Printer Test" bgColor="#ff8b26" />
-      <SettingsCard onPress={null} title="Operations" bgColor="#4b71ec" />
+      <SettingsButton
+        onPress={null}
+        title="Scales Settings"
+        bgColor="#4b71ec"
+      />
+      <SettingsButton onPress={null} title="Other Settings" bgColor="green" />
+      <SettingsButton onPress={null} title="Printer Test" bgColor="#ff8b26" />
+      <SettingsButton onPress={null} title="Operations" bgColor="#4b71ec" />
     </View>
   );
 };

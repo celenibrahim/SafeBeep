@@ -9,6 +9,9 @@ function Menu({navigation}: any) {
   function goToSellStack() {
     navigation.navigate('SellStack');
   }
+  function goToReports() {
+    navigation.navigate('ReportsPage');
+  }
   return (
     <View style={{flex: 1}}>
       <ScrollView>
@@ -27,7 +30,7 @@ function Menu({navigation}: any) {
         <MMCards
           bgColor="#ea7c29"
           title="Reports"
-          onPress={null}
+          onPress={goToReports}
           iconUrl={require('../../assets/icons/reports.png')}
         />
         <MMCards
