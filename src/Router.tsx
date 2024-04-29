@@ -4,7 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {UserProvider} from './context/GlobalContext';
 import {CartProvider} from './context/CartContext';
 import Login from './pages/Login';
-import Menu from './pages/Menu';
 import AdminPanel from './pages/AdminPanel';
 import Settings from './pages/Settings';
 import SellScreen from './pages/Sell/SellScreen';
@@ -14,8 +13,30 @@ import FavPage from './pages/Sell/FavPage';
 import TotalPage from './pages/Sell/TotalPage';
 import PayPage from './pages/Sell/PayPage';
 import ReportsPage from './pages/Reports';
+import PricesPage from './pages/Menu/PricesPage';
+import MenuScreen from './pages/Menu/MenuScreen';
+
 const Stack = createNativeStackNavigator();
 
+const MenuStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+      }}>
+      <Stack.Screen
+        name="MenuScreen"
+        component={MenuScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PricesPage"
+        component={PricesPage}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+};
 const SellStack = () => {
   return (
     <Stack.Navigator
@@ -70,8 +91,8 @@ function Router() {
               }}
             />
             <Stack.Screen
-              name="Menu"
-              component={Menu}
+              name="MenuStack"
+              component={MenuStack}
               options={{
                 headerShown: false,
               }}
