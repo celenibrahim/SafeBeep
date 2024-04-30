@@ -123,14 +123,6 @@ function PaymentButtons({navigation}: any) {
           <Text style={styles.bt_text}>Cancel</Text>
         </TouchableOpacity>
       </View>
-
-      {selectedMethod && (
-        <View style={styles.selectedMethodContainer}>
-          <Text style={styles.selectedMethodText}>
-            Selected Method: {selectedMethod}
-          </Text>
-        </View>
-      )}
       <View style={styles.container2}>
         <View style={styles.inputContainer}>
           <Text style={styles.input}>{input}</Text>
