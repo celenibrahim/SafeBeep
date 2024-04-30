@@ -11,32 +11,33 @@ function Login({navigation}: {navigation: any}) {
   const [Password, setPassword] = useState('');
 
   async function handleLogin() {
-    async function getUserInfoFromStorage() {
-      try {
-        const userInfo = await AsyncStorage.getItem('userInfo');
-        return userInfo !== null ? JSON.parse(userInfo) : null;
-      } catch (e) {
-        return null;
-      }
+    if (!Usercode || !Password) {
+      Alert.alert('Warning', 'Usercode and Password cannot be empty!');
+      return;
     }
-    if (!Usercode) {
-      Alert.alert('Warning', 'The ID number cannot be left blank!');
-    } else {
-      const userInfo = await getUserInfoFromStorage();
-      if (
-        userInfo &&
-        userInfo.usercode === Usercode &&
-        userInfo.password === Password
-      ) {
-        navigation.navigate('MenuStack');
-      } else {
-        Alert.alert(
-          'Warning',
-          'The user could not be found. Please check your entry information!',
+
+    try {
+      const userInfo = await AsyncStorage.getItem('users');
+      if (userInfo) {
+        const parsedUserInfo = JSON.parse(userInfo);
+        const foundUser = parsedUserInfo.find(
+          (user: {usercode: string; password: string}) =>
+            user.usercode === Usercode && user.password === Password,
         );
+
+        if (foundUser) {
+          navigation.navigate('MenuStack');
+        } else {
+          Alert.alert('Warning', 'Invalid Usercode or Password!');
+        }
+      } else {
+        Alert.alert('Warning', 'User information not found!');
       }
+    } catch (error) {
+      Alert.alert('Error', 'An error occurred while logging in!');
     }
   }
+
   function goToCreateUsers() {
     navigation.navigate('AdminPanel');
   }
@@ -52,13 +53,13 @@ function Login({navigation}: {navigation: any}) {
         <View>
           <Input
             label="Usercode"
-            placetext="Enter your usercode..."
+            placeholder="Enter your usercode..."
             onChangeText={setUser}
             value={Usercode}
           />
           <Input
             label="Password"
-            placetext="Enter your password..."
+            placeholder="Enter your password..."
             onChangeText={setPassword}
             value={Password}
           />

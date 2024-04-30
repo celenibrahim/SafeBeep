@@ -1,10 +1,4 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import styles from './Pay.styles';
 const Pay = () => {

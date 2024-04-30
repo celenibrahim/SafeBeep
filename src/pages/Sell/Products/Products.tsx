@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, FlatList, StyleSheet, Text, Button} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import products_data from '../../../products-data.json';
 import ProductCard from '../../../components/ProductCard';

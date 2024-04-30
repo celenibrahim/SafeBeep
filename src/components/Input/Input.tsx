@@ -5,12 +5,12 @@ import styles from './Input.style';
 
 function Input({
   label,
-  placetext,
+  placeholder,
   onChangeText,
   value,
 }: {
   label: string;
-  placetext: string;
+  placeholder: string;
   onChangeText: any;
   value: any;
 }) {
@@ -19,7 +19,7 @@ function Input({
       <Text style={styles.label}>{label}</Text>
       <View style={styles.input_container}>
         <TextInput
-          placeholder={placetext}
+          placeholder={placeholder}
           onChangeText={onChangeText}
           value={value}
         />
