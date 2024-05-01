@@ -5,7 +5,7 @@ import {UserProvider} from './context/GlobalContext';
 import {CartProvider} from './context/CartContext';
 import Login from './pages/Login';
 import AdminPanel from './pages/AdminPanel';
-import Settings from './pages/Settings';
+import Settings from './pages/Settings/SettingsPage';
 import SellScreen from './pages/Sell/SellScreen';
 import Products from './pages/Sell/Products';
 import CartPage from './pages/Sell/CartPage';
@@ -15,7 +15,7 @@ import PayPage from './pages/Sell/PayPage';
 import ReportsPage from './pages/Reports';
 import PricesPage from './pages/Menu/PricesPage';
 import MenuScreen from './pages/Menu/MenuScreen';
-
+import OtherSettingsPage from './pages/Settings/OtherSettingsPage';
 const Stack = createNativeStackNavigator();
 
 const MenuStack = () => {
@@ -32,6 +32,22 @@ const MenuStack = () => {
       <Stack.Screen
         name="PricesPage"
         component={PricesPage}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+};
+const SettingsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SettingsScreen"
+        component={Settings}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OtherSettingsPage"
+        component={OtherSettingsPage}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -105,8 +121,8 @@ function Router() {
               }}
             />
             <Stack.Screen
-              name="SettingsPage"
-              component={Settings}
+              name="SettingsStack"
+              component={SettingsStack}
               options={{
                 headerShown: false,
               }}

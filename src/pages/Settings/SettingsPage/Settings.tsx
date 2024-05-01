@@ -1,7 +1,10 @@
 import React from 'react';
-import SettingsButton from '../../components/SettingsButtons';
+import SettingsButton from '../../../components/SettingsButtons';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 const Settings = ({navigation}: any) => {
+  function gotoOS() {
+    navigation.navigate('OtherSettingsPage');
+  }
   return (
     <View style={{flex: 1}}>
       <View style={styles.title_container}>
@@ -23,7 +26,7 @@ const Settings = ({navigation}: any) => {
         title="Scales Settings"
         bgColor="#4b71ec"
       />
-      <SettingsButton onPress={null} title="Other Settings" bgColor="green" />
+      <SettingsButton onPress={gotoOS} title="Other Settings" bgColor="green" />
       <SettingsButton onPress={null} title="Printer Test" bgColor="#ff8b26" />
       <SettingsButton onPress={null} title="Operations" bgColor="#4b71ec" />
     </View>

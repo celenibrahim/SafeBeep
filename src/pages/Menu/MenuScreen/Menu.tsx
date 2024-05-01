@@ -4,7 +4,7 @@ import MMCards from '../../../components/MMCards';
 
 function Menu({navigation}: any) {
   function goToSettings() {
-    navigation.navigate('SettingsPage');
+    navigation.navigate('SettingsStack');
   }
   function goToSellStack() {
     navigation.navigate('SellStack');
