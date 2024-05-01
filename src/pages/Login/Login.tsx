@@ -5,14 +5,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Login.styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import {useTranslation} from 'react-i18next';
 
 function Login({navigation}: {navigation: any}) {
   const [Usercode, setUser] = useState('');
   const [Password, setPassword] = useState('');
-
+  const {t}: any = useTranslation();
   async function handleLogin() {
     if (!Usercode || !Password) {
-      Alert.alert('Warning', 'Usercode and Password cannot be empty!');
+      Alert.alert(t('alert.warning'), t('control.CodePasswd'));
       return;
     }
 
@@ -28,13 +29,13 @@ function Login({navigation}: {navigation: any}) {
         if (foundUser) {
           navigation.navigate('MenuStack');
         } else {
-          Alert.alert('Warning', 'Invalid Usercode or Password!');
+          Alert.alert(t('alert.warning'), t('error.invalid'));
         }
       } else {
-        Alert.alert('Warning', 'User information not found!');
+        Alert.alert(t('alert.warning'), t('alert.noUser'));
       }
     } catch (error) {
-      Alert.alert('Error', 'An error occurred while logging in!');
+      Alert.alert(t('error'), t('error.login'));
     }
   }
 
@@ -52,21 +53,21 @@ function Login({navigation}: {navigation: any}) {
         </View>
         <View>
           <Input
-            label="Usercode"
-            placeholder="Enter your usercode..."
+            label={t('usercode')}
+            placeholder={t('usercodeEntry')}
             onChangeText={setUser}
             value={Usercode}
           />
           <Input
-            label="Password"
-            placeholder="Enter your password..."
+            label={t('password')}
+            placeholder={t('passwordEntry')}
             onChangeText={setPassword}
             value={Password}
           />
         </View>
         <View>
-          <Button text="Sign In" onPress={handleLogin} />
-          <Button text="Admin Panel" onPress={goToCreateUsers} />
+          <Button text={t('sign')} onPress={handleLogin} />
+          <Button text={t('adminPnl')} onPress={goToCreateUsers} />
         </View>
       </View>
     </ScrollView>

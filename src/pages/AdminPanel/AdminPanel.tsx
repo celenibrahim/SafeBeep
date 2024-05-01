@@ -13,8 +13,10 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import styles from './AdminPanel.style';
+import {useTranslation} from 'react-i18next';
 
 function AdminPanel() {
+  const {t}: any = useTranslation();
   const [users, setUsers] = useState(
     [] as {
       id: string;
@@ -27,17 +29,13 @@ function AdminPanel() {
   const [password, setPassword] = useState('');
   const [checkoutNo, setCheckoutNo] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-
   const handleSignUp = async () => {
     if (
       usercode.trim() === '' ||
       password.trim() === '' ||
       checkoutNo.trim() === ''
     ) {
-      Alert.alert(
-        'Warning',
-        'Please enter the user code, password, and checkout no.',
-      );
+      Alert.alert(t('alert.warning'), t('alert.handleSignUp'));
       return;
     }
 
@@ -53,9 +51,9 @@ function AdminPanel() {
   async function confirmData() {
     try {
       await AsyncStorage.setItem('users', JSON.stringify(users));
-      Alert.alert('Warning', 'The registration was successful!');
+      Alert.alert(t('alert.warning'), t('registration'));
     } catch (error) {
-      Alert.alert('Warning', 'An error occurred during registration!');
+      Alert.alert(t('alert.warning'), t('error.registration'));
     }
   }
 
@@ -66,10 +64,10 @@ function AdminPanel() {
         setModalVisible(true);
         setUsers(JSON.parse(storedUsers));
       } else {
-        Alert.alert('Warning', 'No users found!');
+        Alert.alert(t('alert.warning'), t('alert.noUser'));
       }
     } catch (error) {
-      Alert.alert('Error', 'An error occurred while retrieving users!');
+      Alert.alert(t('error'), t('alert.retrievingUser'));
     }
   };
   useEffect(() => {
@@ -82,7 +80,7 @@ function AdminPanel() {
           setUsers([]);
         }
       } catch (error) {
-        Alert.alert('Error', 'An error occurred while retrieving users!');
+        Alert.alert(t('error'), t('alert.retrievingUser'));
       }
     };
 
@@ -93,28 +91,28 @@ function AdminPanel() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>User Management Panel</Text>
+      <Text style={styles.text}>{t('managePnl')}</Text>
       <Input
-        label="Create Usercode"
-        placeholder="Usercode..."
+        label={t('createUcode')}
+        placeholder={t('usercode')}
         onChangeText={setUserCode}
         value={usercode}
       />
       <Input
-        label="Create Password"
-        placeholder="Password..."
+        label={t('createPasswd')}
+        placeholder={t('password')}
         onChangeText={setPassword}
         value={password}
       />
       <Input
-        label="Create checkoutNo"
-        placeholder="Cash No..."
+        label={t('createCheckNo')}
+        placeholder={t('checkout')}
         onChangeText={setCheckoutNo}
         value={checkoutNo}
       />
-      <Button text="Save" onPress={handleSignUp} />
-      <Button text="Confirm" onPress={confirmData} />
-      <Button text="See Users" onPress={handleSeeUsers} />
+      <Button text={t('save')} onPress={handleSignUp} />
+      <Button text={t('confirm')} onPress={confirmData} />
+      <Button text={t('seeUser')} onPress={handleSeeUsers} />
       <Modal
         animationType="fade"
         transparent={true}
@@ -123,10 +121,8 @@ function AdminPanel() {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Users</Text>
-              <Text style={styles.modalTitle}>
-                To delete a user permanently, tap on it.
-              </Text>
+              <Text style={styles.modalTitle}>{t('users')}</Text>
+              <Text style={styles.modalTitle}>{t('users.delete')}</Text>
               <FlatList
                 data={users}
                 keyExtractor={item => item.id}
@@ -145,19 +141,25 @@ function AdminPanel() {
                         setUsers(filteredUsers);
                       } catch (error) {
                         console.error('Error removing user:', error);
-                        Alert.alert(
-                          'Error',
-                          'An error occurred while removing user!',
-                        );
+                        Alert.alert(t('error'), t('error.removeUser'));
                       }
                     }}>
-                    <Text>Usercode: {item.usercode}</Text>
-                    <Text>Password: {item.password}</Text>
-                    <Text>Checkout No: {item.checkoutNo}</Text>
+                    <Text>
+                      {t('usercode')}: {item.usercode}
+                    </Text>
+                    <Text>
+                      {t('password')}: {item.password}
+                    </Text>
+                    <Text>
+                      {t('checkout')}: {item.checkoutNo}
+                    </Text>
                   </TouchableOpacity>
                 )}
               />
-              <Button text="Close" onPress={() => setModalVisible(false)} />
+              <Button
+                text={t('close')}
+                onPress={() => setModalVisible(false)}
+              />
             </View>
           </View>
         </View>
