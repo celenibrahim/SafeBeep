@@ -1,6 +1,7 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import products from '../../../products-data.json';
+import {useTranslation} from 'react-i18next';
 const PricesPage = () => {
   return (
     <View>
@@ -41,10 +42,11 @@ const styles = StyleSheet.create({
 });
 
 const PricePrinter = ({productId, price, product_name}: any) => {
+  const {t}: any = useTranslation();
   return (
     <View style={styles.card}>
       <Text style={styles.textStyle}>{`${productId} : ${product_name}`}</Text>
-      <Text style={styles.textStyle}>{`Price: ${price} $`}</Text>
+      <Text style={styles.textStyle}>{t('price') + `: ${price} $`}</Text>
     </View>
   );
 };

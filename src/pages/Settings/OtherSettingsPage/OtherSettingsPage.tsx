@@ -1,10 +1,4 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Button from '../../../components/Button';
@@ -12,7 +6,7 @@ import Button from '../../../components/Button';
 const OtherSettingsPage = () => {
   console.log(typeof Intl !== 'undefined');
 
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
 
   const changeLanguage = () => {
     if (i18n.language === 'en') {

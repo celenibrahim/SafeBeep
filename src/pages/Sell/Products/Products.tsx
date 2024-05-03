@@ -6,8 +6,9 @@ import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
-
+import {useTranslation} from 'react-i18next';
 function Products({navigation}: any) {
+  const {t}: any = useTranslation();
   function goToCart() {
     navigation.navigate('CartPage');
   }
@@ -96,10 +97,7 @@ function Products({navigation}: any) {
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
         <View style={{flex: 1}}>
-          <SearchBar
-            placeholder="write the name of the product you want to search for"
-            onChangeText={handleSearch}
-          />
+          <SearchBar placeholder={t('srch')} onChangeText={handleSearch} />
         </View>
         <View style={{margin: 2, flexDirection: 'row'}}>
           <SortButton

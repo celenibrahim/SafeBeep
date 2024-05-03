@@ -9,6 +9,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import productsData from '../../../products-data.json';
 import styles from './FavPage.style';
+import {useTranslation} from 'react-i18next';
 
 interface Product {
   id: string;
@@ -18,6 +19,7 @@ interface Product {
 }
 
 const CartPage = () => {
+  const {t}: any = useTranslation();
   const [favoriteItems, setFavoriteItems] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -67,23 +69,22 @@ const CartPage = () => {
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <View>
-                <Text style={styles.emptyText}>There is no favorites...</Text>
+                <Text style={styles.emptyText}>{t('fav.no')}</Text>
               </View>
             </View>
           ) : (
             <View style={styles.container}>
               <View style={styles.favoriteItemsContainer}>
-                <Text style={styles.sectionTitle}>Favorite Items:</Text>
-                <Text style={styles.section_info}>
-                  Tap on it to remove favorite products.
-                </Text>
+                <Text style={styles.sectionTitle}>{t('fav.item')}</Text>
+                <Text style={styles.section_info}>{t('fav.remove')}</Text>
                 {Object.entries(countItems(favoriteItems)).map(
                   ([id], index) => (
                     <TouchableOpacity
                       key={'favorite_' + index}
                       onPress={() => removeFavorites(id)}>
                       <Text style={styles.favoriteItem}>
-                        {findProductInfo(id)}
+                        {t(findProductInfo(id))}
+                        {/* Sonradan Ürün Çevirileri Eklenecek */}
                       </Text>
                     </TouchableOpacity>
                   ),

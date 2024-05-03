@@ -1,7 +1,9 @@
 import {Dimensions, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import styles from './Pay.styles';
+import {useTranslation} from 'react-i18next';
 const Pay = () => {
+  const {t}: any = useTranslation();
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
 
@@ -20,21 +22,21 @@ const Pay = () => {
     <View style={styles.container}>
       <View style={styles.optContainer}>
         <TouchableOpacity style={[styles.optButtons, {backgroundColor: 'red'}]}>
-          <Text style={styles.text_button}>Belge İptal</Text>
+          <Text style={styles.text_button}>{t('cancel.doc')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.optButtons, {backgroundColor: '#ffa200'}]}>
-          <Text style={styles.text_button}>Belge Bitir</Text>
+          <Text style={styles.text_button}>{t('finish.doc')}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.optContainer}>
         <TouchableOpacity style={[styles.optButtons, {backgroundColor: 'red'}]}>
-          <Text style={styles.text_button}>Sil</Text>
+          <Text style={styles.text_button}>{t('del')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.optButtons, {backgroundColor: '#0098d9'}]}>
-          <Text style={styles.text_button}>Hadi Cüzdan</Text>
+          <Text style={styles.text_button}>{t('hadi.wallet')}</Text>
         </TouchableOpacity>
       </View>
 
@@ -45,7 +47,7 @@ const Pay = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.optButtons, {backgroundColor: '#15b82e'}]}>
-          <Text style={styles.text_button}>Hediye Çeki</Text>
+          <Text style={styles.text_button}>{t('giftC')}</Text>
         </TouchableOpacity>
       </View>
       <View style={{flex: 1}}>
@@ -172,7 +174,7 @@ const Pay = () => {
                   backgroundColor: 'darkblue',
                 }}
                 onPress={handleDelete}>
-                <Text style={styles.text_button}>Del</Text>
+                <Text style={styles.text_button}>{t('del')}</Text>
               </TouchableOpacity>
             </View>
 
@@ -189,7 +191,7 @@ const Pay = () => {
                 backgroundColor: 'green',
               }}
               onPress={() => null}>
-              <Text style={styles.text_button}>Credit Card</Text>
+              <Text style={styles.text_button}>{t('card.credit')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -205,7 +207,7 @@ const Pay = () => {
                 backgroundColor: 'green',
               }}
               onPress={() => null}>
-              <Text style={styles.text_button}>Cash</Text>
+              <Text style={styles.text_button}>{t('cash')}</Text>
             </TouchableOpacity>
           </View>
         </View>

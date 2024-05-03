@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CartItem from './../../../components/CartCard';
 import productsData from '../../../products-data.json';
 import styles from './CartPage.style';
+import {useTranslation} from 'react-i18next';
 
 interface Product {
   id: string;
@@ -27,6 +28,7 @@ const categoryTaxRates: {[key: string]: number} = {
 };
 
 const CartPage = ({navigation}: any) => {
+  const {t}: any = useTranslation();
   const [cartItems, setCartItems] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -119,7 +121,7 @@ const CartPage = ({navigation}: any) => {
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <View>
-                <Text style={styles.emptyText}>Your Cart is empty...</Text>
+                <Text style={styles.emptyText}>{t('cart.empty')}</Text>
               </View>
             </View>
           ) : (
@@ -155,16 +157,16 @@ const CartPage = ({navigation}: any) => {
       <View style={styles.bottom_container}>
         <View style={styles.bottom_inner}>
           <Text style={styles.bc_text}>
-            Subtotal: {subTotalPrice().toFixed(2)} $
+            {t('total.sub')} : {subTotalPrice().toFixed(2)} $
           </Text>
           <Text style={styles.bc_text}>
-            Total Price: {calculateTotalPrice().toFixed(2)} $
+            {t('total.price')} : {calculateTotalPrice().toFixed(2)} $
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity onPress={goToTotal}>
             <View style={styles.bottom_button}>
-              <Text style={styles.bc_text}>Total/Pay</Text>
+              <Text style={styles.bc_text}>{t('t/p')}</Text>
             </View>
           </TouchableOpacity>
         </View>

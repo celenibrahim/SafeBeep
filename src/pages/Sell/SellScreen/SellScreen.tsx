@@ -5,8 +5,9 @@ import SearchBar from '../../../components/SearchBar';
 import CategoryCard from '../../../components/CategoryCard';
 
 import Button from '../../../components/Button';
-
+import {useTranslation} from 'react-i18next';
 function SellScreen({navigation}: any) {
+  const {t}: any = useTranslation();
   function goToProducts() {
     navigation.navigate('Products');
   }
@@ -15,47 +16,47 @@ function SellScreen({navigation}: any) {
   }
   return (
     <ScrollView style={styles.container}>
-      <SearchBar placeholder="Type Product Code..." />
+      <SearchBar placeholder={t('srch.code')} />
       <View style={{flexDirection: 'row', flex: 1}}>
         <View style={{flex: 1}}>
-          <Button text={'Favorites'} onPress={goToFavorites} />
+          <Button text={t('fav')} onPress={goToFavorites} />
         </View>
         <View style={{flex: 1}}>
-          <Button text={'All Products'} onPress={goToProducts} />
+          <Button text={t('prdct.all')} onPress={goToProducts} />
         </View>
       </View>
       <View style={{flexDirection: 'row', flex: 3}}>
         <CategoryCard
-          Title="Market"
+          Title={t('market')}
           onpress={null}
           imageUrl={require('../../../assets/images/market.png')}
         />
         <CategoryCard
-          Title="Elektronik"
+          Title={t('electronic')}
           onpress={null}
           imageUrl={require('../../../assets/images/electronic.png')}
         />
       </View>
       <View style={{flexDirection: 'row', flex: 3}}>
         <CategoryCard
-          Title="Giyim"
+          Title={t('clothing')}
           onpress={null}
           imageUrl={require('../../../assets/images/clothes.png')}
         />
         <CategoryCard
-          Title="Aksesuar"
+          Title={t('accessories')}
           onpress={null}
           imageUrl={require('../../../assets/images/accessories.png')}
         />
       </View>
       <View style={{flexDirection: 'row', flex: 3}}>
         <CategoryCard
-          Title="Kitap & Kırtasiye"
+          Title={t('book.stationery')}
           onpress={null}
           imageUrl={require('../../../assets/images/books.png')}
         />
         <CategoryCard
-          Title="Temizlik"
+          Title={t('cleaning')}
           onpress={null}
           imageUrl={require('../../../assets/images/cleaning.png')}
         />

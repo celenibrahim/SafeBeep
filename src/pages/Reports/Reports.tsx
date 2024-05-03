@@ -1,38 +1,36 @@
 import React from 'react';
 import ReportsButton from '../../components/ReportsButtons';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {useTranslation} from 'react-i18next';
 const Reports = ({navigation}: any) => {
+  const {t}: any = useTranslation();
   return (
     <View style={{flex: 1}}>
       <View style={styles.title_container}>
-        <Text style={styles.title}>Reports</Text>
+        <Text style={styles.title}>{t('reports')}</Text>
       </View>
-      <ReportsButton onPress={null} title="X Report" bgColor="#fb3131" />
-      <ReportsButton onPress={null} title="Z Report" bgColor="#fb3131" />
-      <ReportsButton onPress={null} title="Bank Reports" bgColor="green" />
+      <ReportsButton onPress={null} title={t('report.x')} bgColor="#fb3131" />
+      <ReportsButton onPress={null} title={t('report.z')} bgColor="#fb3131" />
+      <ReportsButton onPress={null} title={t('report.bank')} bgColor="green" />
+      <ReportsButton onPress={null} title={t('report.IBB')} bgColor="green" />
       <ReportsButton
         onPress={null}
-        title="IBB Card Cash Out Report"
-        bgColor="green"
-      />
-      <ReportsButton
-        onPress={null}
-        title="Hadi Cash Out Reports"
+        title={t('report.hadiCash')}
         bgColor="#ff8b26"
       />
       <ReportsButton
         onPress={null}
-        title="Hadi Store Credit Reports"
+        title={t('report.hadiStore')}
         bgColor="#ff8b26"
       />
       <ReportsButton
         onPress={null}
-        title="Hadi Web Invoice Cash Out Report"
+        title={t('report.hadiWeb')}
         bgColor="#ff8b26"
       />
       <ReportsButton
         onPress={null}
-        title="Hadi Credit Cash Out Report"
+        title={t('report.hadiCredit')}
         bgColor="#ff8b26"
       />
     </View>

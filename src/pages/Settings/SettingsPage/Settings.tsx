@@ -1,34 +1,40 @@
 import React from 'react';
 import SettingsButton from '../../../components/SettingsButtons';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {useTranslation} from 'react-i18next';
 const Settings = ({navigation}: any) => {
+  const {t}: any = useTranslation();
   function gotoOS() {
     navigation.navigate('OtherSettingsPage');
   }
   return (
     <View style={{flex: 1}}>
       <View style={styles.title_container}>
-        <Text style={styles.title}>Settings</Text>
+        <Text style={styles.title}>{t('settings')}</Text>
       </View>
       <SettingsButton
         onPress={null}
-        title="Ingenico Settings"
+        title={t('set.ingenico')}
         bgColor="#4b71ec"
       />
-      <SettingsButton onPress={null} title="Import All Sales" bgColor="green" />
       <SettingsButton
         onPress={null}
-        title="Reinstall the Configuration"
+        title={t('sales.import')}
         bgColor="green"
       />
+      <SettingsButton onPress={null} title={t('reins.conf')} bgColor="green" />
+      <SettingsButton onPress={null} title={t('set.scale')} bgColor="#4b71ec" />
+      <SettingsButton onPress={gotoOS} title={t('set.other')} bgColor="green" />
       <SettingsButton
         onPress={null}
-        title="Scales Settings"
+        title={t('test.printer')}
+        bgColor="#ff8b26"
+      />
+      <SettingsButton
+        onPress={null}
+        title={t('operations')}
         bgColor="#4b71ec"
       />
-      <SettingsButton onPress={gotoOS} title="Other Settings" bgColor="green" />
-      <SettingsButton onPress={null} title="Printer Test" bgColor="#ff8b26" />
-      <SettingsButton onPress={null} title="Operations" bgColor="#4b71ec" />
     </View>
   );
 };
