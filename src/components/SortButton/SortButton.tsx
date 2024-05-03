@@ -9,7 +9,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-
+import {useTranslation} from 'react-i18next';
 const SortButton = ({
   iconUrl,
   onpress,
@@ -18,6 +18,7 @@ const SortButton = ({
   onPressD,
   onPressE,
 }: any) => {
+  const {t}: any = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
@@ -40,25 +41,25 @@ const SortButton = ({
         onRequestClose={closeModal}>
         <View style={styles.container}>
           <View style={styles.inner_container}>
-            <Text style={styles.title}>Sorting Options:</Text>
+            <Text style={styles.title}>{t('opt.sort')}:</Text>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <TouchableOpacity onPress={onpress}>
-                <Text style={styles.text}>Sort Ascending</Text>
+                <Text style={styles.text}>{t('sort.asc')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={onpressB}>
-                <Text style={styles.text}>Sort Descending</Text>
+                <Text style={styles.text}>{t('sort.des')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={onpressC}>
-                <Text style={styles.text}>Sort Alphabetical</Text>
+                <Text style={styles.text}>{t('sort.alp')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={onPressD}>
-                <Text style={styles.text}>See Favorites</Text>
+                <Text style={styles.text}>{t('fav')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={onPressE}>
-                <Text style={styles.text}>Reset</Text>
+                <Text style={styles.text}>{t('reset')}</Text>
               </TouchableOpacity>
             </View>
-            <Button title="Close" onPress={closeModal} />
+            <Button title={t('close')} onPress={closeModal} />
           </View>
         </View>
       </Modal>

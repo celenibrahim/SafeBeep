@@ -64,7 +64,7 @@ function Products({navigation}: any) {
 
   const sortByAlphabeticalOrder = () => {
     const sortedData = [...list].sort((a, b) =>
-      a.product_name.localeCompare(b.product_name),
+      t(a.product_name).localeCompare(t(b.product_name)),
     );
     setList(sortedData);
   };
@@ -87,7 +87,7 @@ function Products({navigation}: any) {
   const handleSearch = (text: string) => {
     const searchedText = text.toLowerCase();
     const filteredList = products_data.filter(product => {
-      const currentTitle = product.product_name.toLowerCase();
+      const currentTitle = t(product.product_name).toLowerCase();
       return currentTitle.startsWith(searchedText);
     });
     setList(filteredList);

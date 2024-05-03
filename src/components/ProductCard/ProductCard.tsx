@@ -4,8 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './ProductCard.style';
 import Button from '../Button';
 import FavButton from '../FavButton';
-
+import {useTranslation} from 'react-i18next';
 const ProductCard = (props: any) => {
+  const {t}: any = useTranslation();
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
@@ -48,13 +49,17 @@ const ProductCard = (props: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>
-        <Text style={styles.title}>{props.item.product_name}</Text>
+        <Text style={styles.title}>{t(props.item.product_name)}</Text>
       </View>
 
       <View style={styles.info_container}>
         <View style={{flex: 1}}>
-          <Text>Product Code : {props.item.id}</Text>
-          <Text style={styles.price}>Price : {props.item.price}</Text>
+          <Text>
+            {t('prdct.code')}: {props.item.id}
+          </Text>
+          <Text style={styles.price}>
+            {t('price')}: {props.item.price}
+          </Text>
         </View>
 
         <View style={{flexDirection: 'row'}}>
@@ -66,7 +71,7 @@ const ProductCard = (props: any) => {
                 : require('../../assets/icons/favorite.png')
             }
           />
-          <Button text={'Add to Cart'} onPress={props.addToCartPress} />
+          <Button text={t('add.cart')} onPress={props.addToCartPress} />
         </View>
       </View>
     </View>
