@@ -30,6 +30,7 @@
   "sell": "Satış",
   "refund": "İade İşlemleri",
   "reports": "Raporlar",
+  "prdct": "Ürünler",
   "prdct.entry": "Ürün Girişi",
   "prdct.all": "Tüm Ürünler",
   "prices": "Fiyat Gör",
@@ -163,5 +164,8 @@
   "sort.asc": "Artan Fiyat",
   "sort.des": "Azalan Fiyat",
   "sort.alp": "Alfabetik",
-  "reset": "Sıfırla"
+  "reset": "Sıfırla",
+  "cart": "Sepetim",
+  "total.pg": "Toplam",
+  "pay.pg": "Ödeme"
 }

@@ -16,6 +16,7 @@ import ReportsPage from './pages/Reports';
 import PricesPage from './pages/Menu/PricesPage';
 import MenuScreen from './pages/Menu/MenuScreen';
 import OtherSettingsPage from './pages/Settings/OtherSettingsPage';
+import {useTranslation} from 'react-i18next';
 const Stack = createNativeStackNavigator();
 
 const MenuStack = () => {
@@ -54,6 +55,7 @@ const SettingsStack = () => {
   );
 };
 const SellStack = () => {
+  const {t}: any = useTranslation();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -67,33 +69,34 @@ const SellStack = () => {
       <Stack.Screen
         name="Products"
         component={Products}
-        options={{title: 'Products'}}
+        options={{title: t('prdct')}}
       />
       <Stack.Screen
         name="CartPage"
         component={CartPage}
-        options={{title: 'My Cart'}}
+        options={{title: t('cart')}}
       />
       <Stack.Screen
         name="FavPage"
         component={FavPage}
-        options={{title: 'Favorites'}}
+        options={{title: t('fav')}}
       />
       <Stack.Screen
         name="TotalPage"
         component={TotalPage}
-        options={{title: 'TotalPage'}}
+        options={{title: t('total.pg')}}
       />
       <Stack.Screen
         name="PayPage"
         component={PayPage}
-        options={{title: 'PayPage'}}
+        options={{title: t('pay.pg')}}
       />
     </Stack.Navigator>
   );
 };
 
 function Router() {
+  const {t}: any = useTranslation();
   return (
     <UserProvider>
       <CartProvider>

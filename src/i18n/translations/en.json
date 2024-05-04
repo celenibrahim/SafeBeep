@@ -30,6 +30,7 @@
   "sell": "Sell",
   "refund": "Refunds",
   "reports": "Reports",
+  "prdct": "Products",
   "prdct.entry": "Product Entry",
   "prdct.all": "All Products",
   "prices": "Prices",
@@ -163,5 +164,8 @@
   "sort.asc": "Sort Ascending",
   "sort.des": "Sort Descending",
   "sort.alp": "Sort Alphabetical",
-  "reset": "Reset"
+  "reset": "Reset",
+  "cart": "My Cart",
+  "total.pg": "Total Page",
+  "pay.pg": "Pay Page"
 }
