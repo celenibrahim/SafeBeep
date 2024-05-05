@@ -167,5 +167,8 @@
   "reset": "Reset",
   "cart": "My Cart",
   "total.pg": "Total Page",
-  "pay.pg": "Pay Page"
+  "pay.pg": "Pay Page",
+  "en": "English",
+  "tr": "Turkish",
+  "slct.lng": "Select Language"
 }

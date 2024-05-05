@@ -167,5 +167,8 @@
   "reset": "Sıfırla",
   "cart": "Sepetim",
   "total.pg": "Toplam",
-  "pay.pg": "Ödeme"
+  "pay.pg": "Ödeme",
+  "en": "İngilizce",
+  "tr": "Türkçe",
+  "slct.lng": "Dili Seçiniz"
 }

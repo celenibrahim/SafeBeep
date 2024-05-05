@@ -1,36 +1,77 @@
-import {Dimensions, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import Button from '../../../components/Button';
 
 const OtherSettingsPage = () => {
-  console.log(typeof Intl !== 'undefined');
-
   const {t, i18n} = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
-  const changeLanguage = () => {
-    if (i18n.language === 'en') {
-      i18n.changeLanguage('tr');
-    } else {
-      i18n.changeLanguage('en');
-    }
+  const changeLanguage = (
+    language: React.SetStateAction<any> | undefined,
+  ): any => {
+    i18n.changeLanguage(language);
+    setSelectedLanguage(language);
   };
+
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>{t('slct.lng')}</Text>
       <View style={styles.languageContainer}>
-        <Button text="Change Language TR / EN" onPress={changeLanguage} />
+        <TouchableOpacity
+          style={[
+            styles.languageButton,
+            selectedLanguage === 'en' && styles.selectedLanguageButton,
+          ]}
+          onPress={() => changeLanguage('en')}>
+          <Text style={styles.languageButtonText}>{t('en')}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.languageButton,
+            selectedLanguage === 'tr' && styles.selectedLanguageButton,
+          ]}
+          onPress={() => changeLanguage('tr')}>
+          <Text style={styles.languageButtonText}>{t('tr')}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default OtherSettingsPage;
-
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, alignItems: 'center'},
   languageContainer: {
-    width: Dimensions.get('screen').width / 1,
-    height: Dimensions.get('screen').height / 15,
+    margin: 10,
+    flexDirection: 'row',
     borderWidth: 1,
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+  languageButton: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    backgroundColor: '#eee',
+  },
+  selectedLanguageButton: {
+    backgroundColor: 'blue',
+  },
+  languageButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  title: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 30,
+    color: 'black',
   },
 });
+
+export default OtherSettingsPage;
