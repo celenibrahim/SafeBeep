@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import products_data from '../../../products-data.json';
@@ -6,14 +6,32 @@ import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
+import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 function Products({navigation}: any) {
+  interface Product {
+    id: number;
+    product_name: string;
+    price: number;
+    category: string;
+  }
+  const [products, setProducts] = useState<Product[]>([]);
+  const [list, setList] = useState(products_data);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://192.168.56.1:3001/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   const {t}: any = useTranslation();
   function goToCart() {
     navigation.navigate('CartPage');
   }
-
-  const [list, setList] = useState(products_data);
 
   const renderProduct = ({item}: any) => (
     <ProductCard
@@ -115,8 +133,8 @@ function Products({navigation}: any) {
         </View>
       </View>
       <FlatList
-        keyExtractor={item => item.id}
-        data={list}
+        keyExtractor={products => products.id.toString()}
+        data={products}
         renderItem={renderProduct}
         ItemSeparatorComponent={renderSeperator} //to make border
       />

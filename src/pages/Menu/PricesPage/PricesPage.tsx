@@ -1,8 +1,27 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import products from '../../../products-data.json';
+import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import axios from 'axios';
 const PricesPage = () => {
+  interface Product {
+    id: number;
+    product_name: string;
+    price: number;
+    category: string;
+  }
+  const [products, setProducts] = useState<Product[]>([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://192.168.56.1:3001/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <View>
       <ScrollView>
