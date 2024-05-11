@@ -1,34 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import products_data from '../../../products-data.json';
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
+
 function Products({navigation}: any) {
   interface Product {
-    id: number;
+    id: string;
     product_name: string;
     price: number;
     category: string;
   }
+
   const [products, setProducts] = useState<Product[]>([]);
-  const [list, setList] = useState(products_data);
+  const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
+  const {t}: any = useTranslation();
+
   const fetchData = async () => {
     try {
       const response = await axios.get('http://192.168.56.1:3001/products');
       setProducts(response.data);
+      setOriginalProducts(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
-  const {t}: any = useTranslation();
+
+  const resetProducts = () => {
+    setProducts(originalProducts);
+  };
+
   function goToCart() {
     navigation.navigate('CartPage');
   }
@@ -71,44 +80,43 @@ function Products({navigation}: any) {
   };
 
   const sortByPriceAscending = () => {
-    const sortedData = [...list].sort((a, b) => a.price - b.price);
-    setList(sortedData);
+    const sortedData = [...products].sort((a, b) => a.price - b.price);
+    setProducts(sortedData);
   };
 
   const sortByPriceDescending = () => {
-    const sortedData = [...list].sort((a, b) => b.price - a.price);
-    setList(sortedData);
+    const sortedData = [...products].sort((a, b) => b.price - a.price);
+    setProducts(sortedData);
   };
 
   const sortByAlphabeticalOrder = () => {
-    const sortedData = [...list].sort((a, b) =>
+    const sortedData = [...products].sort((a, b) =>
       t(a.product_name).localeCompare(t(b.product_name)),
     );
-    setList(sortedData);
+    setProducts(sortedData);
   };
+
   const sortFavoriteProducts = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@favorites');
       const favoriteProductsIds =
         jsonValue != null ? JSON.parse(jsonValue) : [];
-      const favoriteProducts = products_data.filter(product =>
+      const favoriteProducts = products.filter(product =>
         favoriteProductsIds.includes(product.id),
       );
-      setList(favoriteProducts);
+      setProducts(favoriteProducts);
     } catch (error) {
       console.error('Error sorting favorite products:', error);
     }
   };
-  const reset = () => {
-    setList(products_data);
-  };
+
   const handleSearch = (text: string) => {
     const searchedText = text.toLowerCase();
-    const filteredList = products_data.filter(product => {
+    const filteredList = originalProducts.filter(product => {
       const currentTitle = t(product.product_name).toLowerCase();
       return currentTitle.startsWith(searchedText);
     });
-    setList(filteredList);
+    setProducts(filteredList);
   };
 
   return (
@@ -123,7 +131,7 @@ function Products({navigation}: any) {
             onpressB={sortByPriceDescending}
             onpressC={sortByAlphabeticalOrder}
             onPressD={sortFavoriteProducts}
-            onPressE={reset}
+            onPressE={resetProducts}
             iconUrl={require('../../../assets/icons/sort.png')}
           />
           <CartButton
