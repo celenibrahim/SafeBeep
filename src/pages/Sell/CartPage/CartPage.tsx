@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CartItem from './../../../components/CartCard';
-import productsData from '../../../products-data.json';
 import styles from './CartPage.style';
 import {useTranslation} from 'react-i18next';
 
@@ -18,6 +17,7 @@ interface Product {
   price: number;
   category: string;
 }
+
 const categoryTaxRates: {[key: string]: number} = {
   market: 2,
   clothes: 5,
@@ -29,14 +29,15 @@ const categoryTaxRates: {[key: string]: number} = {
 
 const CartPage = ({navigation}: any) => {
   const {t}: any = useTranslation();
-  const [cartItems, setCartItems] = useState<string[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const cartData = await AsyncStorage.getItem('@cart');
         if (cartData !== null) {
-          const parsedCart: string[] = JSON.parse(cartData);
+          const parsedCart: Product[] = JSON.parse(cartData);
           setCartItems(parsedCart);
         }
         setIsLoading(false);
@@ -47,32 +48,31 @@ const CartPage = ({navigation}: any) => {
 
     fetchData();
   }, []);
+
   function goToTotal() {
     navigation.navigate('TotalPage');
   }
 
-  const findProductInfo = (id: string): string => {
-    const product = productsData.find((item: Product) => item.id === id);
-    return product ? `${product.product_name}` : '';
-  };
-
-  const countItems = (items: string[]): Record<string, number> => {
+  const countItems = (items: Product[]): Record<string, number> => {
     const itemCounts: Record<string, number> = {};
-    items.forEach((id: string) => {
-      itemCounts[id] = (itemCounts[id] || 0) + 1;
+    items.forEach((item: Product) => {
+      itemCounts[item.id] = (itemCounts[item.id] || 0) + 1;
     });
     return itemCounts;
   };
 
   const increaseQuantity = async (id: string) => {
-    const updatedCartItems = [...cartItems, id];
+    const updatedCartItems = [
+      ...cartItems,
+      cartItems.find(item => item.id === id)!,
+    ];
     setCartItems(updatedCartItems);
     await AsyncStorage.setItem('@cart', JSON.stringify(updatedCartItems));
   };
 
   const decreaseQuantity = async (id: string) => {
     const updatedCartItems = [...cartItems];
-    const index = updatedCartItems.indexOf(id);
+    const index = updatedCartItems.findIndex(item => item.id === id);
     if (index > -1) {
       updatedCartItems.splice(index, 1);
       setCartItems(updatedCartItems);
@@ -81,30 +81,25 @@ const CartPage = ({navigation}: any) => {
   };
 
   const removeFromCart = async (id: string) => {
-    const updatedCartItems = cartItems.filter(item => item !== id);
+    const updatedCartItems = cartItems.filter(item => item.id !== id);
     setCartItems(updatedCartItems);
     await AsyncStorage.setItem('@cart', JSON.stringify(updatedCartItems));
   };
 
   const calculateTotalPrice = (): number => {
     let totalPrice = 0;
-    cartItems.forEach(id => {
-      const product = productsData.find(item => item.id === id);
-      if (product) {
-        const taxRate = categoryTaxRates[product.category] || 0;
-        const totalProductPrice = product.price * (1 + taxRate / 100);
-        totalPrice += totalProductPrice;
-      }
+    cartItems.forEach(item => {
+      const taxRate = categoryTaxRates[item.category] || 0;
+      const totalProductPrice = item.price * (1 + taxRate / 100);
+      totalPrice += totalProductPrice;
     });
     return totalPrice;
   };
+
   const subTotalPrice = (): number => {
     let totalPrice = 0;
-    cartItems.forEach(id => {
-      const product = productsData.find(item => item.id === id);
-      if (product) {
-        totalPrice += product.price;
-      }
+    cartItems.forEach(item => {
+      totalPrice += item.price;
     });
     return totalPrice;
   };
@@ -131,19 +126,18 @@ const CartPage = ({navigation}: any) => {
                   ([id, count], index) => (
                     <CartItem
                       key={'cart_' + index}
-                      productName={findProductInfo(id)}
-                      price={
-                        productsData.find((item: Product) => item.id === id)
-                          ?.price || 0
+                      productName={
+                        cartItems.find(item => item.id === id)?.product_name ||
+                        ''
                       }
+                      price={cartItems.find(item => item.id === id)?.price || 0}
                       quantity={count}
                       onIncrease={() => increaseQuantity(id)}
                       onDecrease={() => decreaseQuantity(id)}
                       onRemove={() => removeFromCart(id)}
                       taxRate={
                         categoryTaxRates[
-                          productsData.find((item: Product) => item.id === id)
-                            ?.category || ''
+                          cartItems.find(item => item.id === id)?.category || ''
                         ] || 0
                       }
                     />

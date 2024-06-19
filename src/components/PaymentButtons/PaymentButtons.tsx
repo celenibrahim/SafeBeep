@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,14 +6,58 @@ import {
   Dimensions,
   Modal,
   Button,
+  ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTranslation} from 'react-i18next';
 import styles from './PaymentButtons.style';
+
 function PaymentButtons({navigation}: any) {
   const {t}: any = useTranslation();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  interface CartItem {
+    id: string;
+    product_name: string;
+  }
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const storedCartItems = await AsyncStorage.getItem('@cart');
+        if (storedCartItems) {
+          const parsedItems = JSON.parse(storedCartItems);
+          console.log('Stored Cart Items:', storedCartItems); // AsyncStorage'deki ham veriyi yazdırır
+          console.log('Parsed Cart Items:', parsedItems); // Ayrıştırılmış veriyi yazdırır
+          setCartItems(parsedItems);
+        }
+      } catch (error) {
+        console.error('Failed to load cart items from AsyncStorage', error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+  useEffect(() => {
+    const printAsyncStorageContents = async () => {
+      try {
+        const allKeys = await AsyncStorage.getAllKeys();
+        const allData = await AsyncStorage.multiGet(allKeys);
+
+        console.log('AsyncStorage All Keys:', allKeys);
+        console.log('AsyncStorage All Data:', allData);
+      } catch (error) {
+        console.error('Failed to get AsyncStorage contents:', error);
+      }
+    };
+
+    printAsyncStorageContents();
+  }, []);
+
   function gotoPay() {
     navigation.navigate('PayPage');
   }
+
   const [selectedMethod, setSelectedMethod] = useState(null);
   const handleMethodSelect = (method: any) => {
     if (method === 'Cancel') {
@@ -22,6 +66,7 @@ function PaymentButtons({navigation}: any) {
       setSelectedMethod(method);
     }
   };
+
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
 
@@ -36,6 +81,7 @@ function PaymentButtons({navigation}: any) {
     setInput('');
     setResult('');
   };
+
   const [installmentModalVisible, setInstallmentModalVisible] = useState(false);
   const [CampListModalVisible, setCampListModalVisible] = useState(false);
   const openInstallmentModal = () => {
@@ -115,7 +161,7 @@ function PaymentButtons({navigation}: any) {
       <View style={styles.sub_container}>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'red'}]}
-          onPress={() => handleMethodSelect('Cencel Line')}>
+          onPress={() => handleMethodSelect('Cancel Line')}>
           <Text style={styles.bt_text}>{t('cancel.line')}</Text>
         </TouchableOpacity>
 
@@ -126,10 +172,17 @@ function PaymentButtons({navigation}: any) {
         </TouchableOpacity>
       </View>
       <View style={styles.container2}>
-        <View style={styles.inputContainer}>
-          <Text style={styles.input}>{input}</Text>
-          <Text style={styles.result}>{result}</Text>
-        </View>
+        <ScrollView style={styles.prd_cont}>
+          {cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
+              <View key={index}>
+                <Text>{item.product_name}</Text>
+              </View>
+            ))
+          ) : (
+            <Text>Ürünler Burada Gösterilecek!</Text>
+          )}
+        </ScrollView>
         <View style={{flexDirection: 'row'}}>
           <View>
             <View style={styles.buttonContainer}>

@@ -55,13 +55,18 @@ function Products({navigation}: any) {
   const handleAddToCart = async (productId: string) => {
     try {
       const jsonValue = await AsyncStorage.getItem('@cart');
-      let cart = jsonValue != null ? JSON.parse(jsonValue) : [];
-      const newCart = [
-        ...cart.filter((item: any) => typeof item === 'string'),
-        productId,
-      ];
-      await AsyncStorage.setItem('@cart', JSON.stringify(newCart));
-      console.log('Ürün (' + productId + ') sepete eklendi!');
+      let cart: Product[] = jsonValue != null ? JSON.parse(jsonValue) : [];
+      const productToAdd = originalProducts.find(
+        product => product.id === productId,
+      );
+      if (productToAdd) {
+        cart.push(productToAdd);
+        await AsyncStorage.setItem('@cart', JSON.stringify(cart));
+        console.log('Ürün (' + productToAdd.product_name + ') sepete eklendi!');
+        console.log('Updated Cart:', cart);
+      } else {
+        console.error('Ürün bulunamadı: ' + productId);
+      }
     } catch (e) {
       console.error('Error adding product to cart:', e);
     }

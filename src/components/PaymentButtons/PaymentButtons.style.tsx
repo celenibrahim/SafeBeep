@@ -112,4 +112,10 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  prd_cont: {
+    flex: 1,
+    margin: 5,
+    borderColor: 'black',
+    borderWidth: 1,
+  },
 });
