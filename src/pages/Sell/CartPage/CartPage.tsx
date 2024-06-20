@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CartItem from './../../../components/CartCard';
 import styles from './CartPage.style';
 import {useTranslation} from 'react-i18next';
+import {useFocusEffect} from '@react-navigation/native';
 
 interface Product {
   id: string;
@@ -31,23 +32,32 @@ const CartPage = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
+  const fetchData = async () => {
+    try {
+      const cartData = await AsyncStorage.getItem('@cart');
+      if (cartData !== null) {
+        const parsedCart: Product[] = JSON.parse(cartData);
+        setCartItems(parsedCart);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const cartData = await AsyncStorage.getItem('@cart');
-        if (cartData !== null) {
-          const parsedCart: Product[] = JSON.parse(cartData);
-          setCartItems(parsedCart);
-        }
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+      setIsFocused(true);
+      return () => setIsFocused(false);
+    }, []),
+  );
 
   function goToTotal() {
     navigation.navigate('TotalPage');

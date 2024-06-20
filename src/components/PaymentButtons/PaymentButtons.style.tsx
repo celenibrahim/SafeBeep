@@ -118,4 +118,14 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
   },
+  total_text: {
+    color: 'black',
+  },
+  cart_container: {
+    flex: 1,
+    margin: 5,
+  },
+  selected_item: {
+    backgroundColor: '#e0e0e0',
+  },
 });

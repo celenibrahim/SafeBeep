@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
+  Alert,
   TouchableOpacity,
   Dimensions,
   Modal,
@@ -15,6 +16,9 @@ import styles from './PaymentButtons.style';
 function PaymentButtons({navigation}: any) {
   const {t}: any = useTranslation();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
+    null,
+  );
 
   interface CartItem {
     id: string;
@@ -38,6 +42,7 @@ function PaymentButtons({navigation}: any) {
 
     fetchCartItems();
   }, []);
+
   useEffect(() => {
     const printAsyncStorageContents = async () => {
       try {
@@ -59,11 +64,41 @@ function PaymentButtons({navigation}: any) {
   }
 
   const [selectedMethod, setSelectedMethod] = useState(null);
-  const handleMethodSelect = (method: any) => {
+
+  const handleMethodSelect = async (
+    method: 'Cancel' | 'Cancel Line' | 'Cancel Document',
+  ) => {
     if (method === 'Cancel') {
-      setSelectedMethod(null);
+      setSelectedItemIndex(null);
+    } else if (method === 'Cancel Line') {
+      if (selectedItemIndex !== null) {
+        const newCartItems = [...cartItems];
+        newCartItems.splice(selectedItemIndex, 1);
+        await AsyncStorage.setItem('@cart', JSON.stringify(newCartItems));
+        setCartItems(newCartItems);
+        setSelectedItemIndex(null);
+      }
+    } else if (method === 'Cancel Document') {
+      cancelDocument();
     } else {
       setSelectedMethod(method);
+    }
+  };
+  const cancelDocument = async () => {
+    try {
+      const storedCartItems = await AsyncStorage.getItem('@cart');
+      if (!storedCartItems || JSON.parse(storedCartItems).length === 0) {
+        // Sepet boş ise uyarı ver
+        Alert.alert(t('empty.cart.alert'));
+        return;
+      }
+      await AsyncStorage.removeItem('@cart');
+      setCartItems([]);
+      navigation.navigate('Products');
+      Alert.alert(t('cancel.doc.alert'));
+    } catch (error) {
+      console.error(t('cancel.doc.error'), error);
+      Alert.alert(t('cancel.doc.error'));
     }
   };
 
@@ -104,12 +139,12 @@ function PaymentButtons({navigation}: any) {
       <View style={styles.sub_container}>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'green'}]}
-          onPress={() => handleMethodSelect('Seller')}>
+          onPress={() => null}>
           <Text style={styles.bt_text}>{t('seller')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.methodButton, {backgroundColor: 'green'}]}
-          onPress={() => handleMethodSelect('A101 Hadi')}>
+          onPress={() => null}>
           <Text style={styles.bt_text}>{t('a101')}</Text>
         </TouchableOpacity>
       </View>
@@ -175,12 +210,22 @@ function PaymentButtons({navigation}: any) {
         <ScrollView style={styles.prd_cont}>
           {cartItems.length > 0 ? (
             cartItems.map((item, index) => (
-              <View key={index}>
-                <Text>{item.product_name}</Text>
-              </View>
+              <TouchableOpacity
+                key={index}
+                onPress={() => setSelectedItemIndex(index)}>
+                <View
+                  style={[
+                    styles.cart_container,
+                    selectedItemIndex === index && styles.selected_item,
+                  ]}>
+                  <Text style={styles.total_text} selectable={true}>
+                    {t(item.product_name)}
+                  </Text>
+                </View>
+              </TouchableOpacity>
             ))
           ) : (
-            <Text>Ürünler Burada Gösterilecek!</Text>
+            <Text>{t('empty.cart')}</Text>
           )}
         </ScrollView>
         <View style={{flexDirection: 'row'}}>

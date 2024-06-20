@@ -170,5 +170,9 @@
   "pay.pg": "Ödeme",
   "en": "İngilizce",
   "tr": "Türkçe",
-  "slct.lng": "Dili Seçiniz"
+  "slct.lng": "Dili Seçiniz",
+  "empty.cart": "Sepet Boş!",
+  "cancel.doc.alert": "Doküman başarıyla iptal edildi!",
+  "cancel.doc.error": "Dokümanı iptal ederken bir hata oluştu!",
+  "empty.cart.alert": "Sepet Boş!"
 }

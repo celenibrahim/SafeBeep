@@ -170,5 +170,9 @@
   "pay.pg": "Pay Page",
   "en": "English",
   "tr": "Turkish",
-  "slct.lng": "Select Language"
+  "slct.lng": "Select Language",
+  "empty.cart": "The cart is empty!",
+  "cancel.doc.alert": "The document was successfully canceled!",
+  "cancel.doc.error": "An error occurred while canceling the document!",
+  "empty.cart.alert": "The Cart is empty!"
 }
