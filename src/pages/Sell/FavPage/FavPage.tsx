@@ -84,7 +84,6 @@ const CartPage = () => {
                       onPress={() => removeFavorites(id)}>
                       <Text style={styles.favoriteItem}>
                         {t(findProductInfo(id))}
-                        {/* Sonradan Ürün Çevirileri Eklenecek */}
                       </Text>
                     </TouchableOpacity>
                   ),

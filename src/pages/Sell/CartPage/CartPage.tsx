@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import CartItem from './../../../components/CartCard';
 import styles from './CartPage.style';
 import {useTranslation} from 'react-i18next';
 import {useFocusEffect} from '@react-navigation/native';
-
+import {useCart} from '../../../context/CartContext'; // Context hook
 interface Product {
   id: string;
   product_name: string;
@@ -33,7 +33,7 @@ const CartPage = ({navigation}: any) => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFocused, setIsFocused] = useState<boolean>(false);
-
+  const {subtotal, setSubtotal, totalPrice, setTotalPrice} = useCart();
   const fetchData = async () => {
     try {
       const cartData = await AsyncStorage.getItem('@cart');
@@ -48,8 +48,12 @@ const CartPage = ({navigation}: any) => {
   };
 
   useEffect(() => {
+    const subtotal = subTotalPrice();
+    const total = calculateTotalPrice();
+    setSubtotal(subtotal);
+    setTotalPrice(total);
     fetchData();
-  }, []);
+  }, [cartItems]);
 
   useFocusEffect(
     useCallback(() => {

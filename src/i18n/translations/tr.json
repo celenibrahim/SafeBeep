@@ -174,5 +174,6 @@
   "empty.cart": "Sepet Boş!",
   "cancel.doc.alert": "Doküman başarıyla iptal edildi!",
   "cancel.doc.error": "Dokümanı iptal ederken bir hata oluştu!",
-  "empty.cart.alert": "Sepet Boş!"
+  "empty.cart.alert": "Sepet Boş!",
+  "delete.quantity": "Üründen kaç adet silmek istiyorsunuz?"
 }

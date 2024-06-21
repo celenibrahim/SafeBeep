@@ -8,10 +8,12 @@ import {
   Modal,
   Button,
   ScrollView,
+  TextInput,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTranslation} from 'react-i18next';
 import styles from './PaymentButtons.style';
+import ButtonComp from '../Button';
 
 function PaymentButtons({navigation}: any) {
   const {t}: any = useTranslation();
@@ -19,9 +21,20 @@ function PaymentButtons({navigation}: any) {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
     null,
   );
+  const [groupedCartItems, setGroupedCartItems] = useState<GroupedCartItem[]>(
+    [],
+  );
+  const [deleteQuantity, setDeleteQuantity] = useState<number>(1); // Silinecek adet miktarı
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false); // Silme modal görünürlüğü
 
+  interface GroupedCartItem {
+    product_name: string;
+    price: number;
+    quantity: number;
+  }
   interface CartItem {
     id: string;
+    price: number;
     product_name: string;
   }
 
@@ -31,9 +44,10 @@ function PaymentButtons({navigation}: any) {
         const storedCartItems = await AsyncStorage.getItem('@cart');
         if (storedCartItems) {
           const parsedItems = JSON.parse(storedCartItems);
-          console.log('Stored Cart Items:', storedCartItems); // AsyncStorage'deki ham veriyi yazdırır
-          console.log('Parsed Cart Items:', parsedItems); // Ayrıştırılmış veriyi yazdırır
+          console.log('Stored Cart Items:', storedCartItems);
+          console.log('Parsed Cart Items:', parsedItems);
           setCartItems(parsedItems);
+          groupCartItems(parsedItems);
         }
       } catch (error) {
         console.error('Failed to load cart items from AsyncStorage', error);
@@ -42,6 +56,24 @@ function PaymentButtons({navigation}: any) {
 
     fetchCartItems();
   }, []);
+
+  const groupCartItems = (items: CartItem[]) => {
+    const groupedItems: {[key: string]: GroupedCartItem} = {};
+
+    items.forEach(item => {
+      if (groupedItems[item.product_name]) {
+        groupedItems[item.product_name].quantity += 1;
+      } else {
+        groupedItems[item.product_name] = {
+          product_name: item.product_name,
+          price: item.price,
+          quantity: 1,
+        };
+      }
+    });
+
+    setGroupedCartItems(Object.values(groupedItems));
+  };
 
   useEffect(() => {
     const printAsyncStorageContents = async () => {
@@ -72,11 +104,12 @@ function PaymentButtons({navigation}: any) {
       setSelectedItemIndex(null);
     } else if (method === 'Cancel Line') {
       if (selectedItemIndex !== null) {
-        const newCartItems = [...cartItems];
-        newCartItems.splice(selectedItemIndex, 1);
-        await AsyncStorage.setItem('@cart', JSON.stringify(newCartItems));
-        setCartItems(newCartItems);
-        setSelectedItemIndex(null);
+        const selectedItem = groupedCartItems[selectedItemIndex];
+        if (selectedItem.quantity > 1) {
+          setDeleteModalVisible(true);
+        } else {
+          await removeItemsFromCart(1);
+        }
       }
     } else if (method === 'Cancel Document') {
       cancelDocument();
@@ -84,16 +117,43 @@ function PaymentButtons({navigation}: any) {
       setSelectedMethod(method);
     }
   };
+
+  const removeItemsFromCart = async (quantity: number) => {
+    if (selectedItemIndex !== null) {
+      const selectedItem = groupedCartItems[selectedItemIndex];
+      const newCartItems = [...cartItems];
+      let itemsRemoved = 0;
+
+      for (
+        let i = newCartItems.length - 1;
+        i >= 0 && itemsRemoved < quantity;
+        i--
+      ) {
+        if (newCartItems[i].product_name === selectedItem.product_name) {
+          newCartItems.splice(i, 1);
+          itemsRemoved++;
+        }
+      }
+
+      await AsyncStorage.setItem('@cart', JSON.stringify(newCartItems));
+      setCartItems(newCartItems);
+      groupCartItems(newCartItems);
+      setSelectedItemIndex(null);
+      setDeleteModalVisible(false);
+      setDeleteQuantity(1);
+    }
+  };
+
   const cancelDocument = async () => {
     try {
       const storedCartItems = await AsyncStorage.getItem('@cart');
       if (!storedCartItems || JSON.parse(storedCartItems).length === 0) {
-        // Sepet boş ise uyarı ver
         Alert.alert(t('empty.cart.alert'));
         return;
       }
       await AsyncStorage.removeItem('@cart');
       setCartItems([]);
+      setGroupedCartItems([]); // Clear the grouped items
       navigation.navigate('Products');
       Alert.alert(t('cancel.doc.alert'));
     } catch (error) {
@@ -208,8 +268,8 @@ function PaymentButtons({navigation}: any) {
       </View>
       <View style={styles.container2}>
         <ScrollView style={styles.prd_cont}>
-          {cartItems.length > 0 ? (
-            cartItems.map((item, index) => (
+          {groupedCartItems.length > 0 ? (
+            groupedCartItems.map((item, index) => (
               <TouchableOpacity
                 key={index}
                 onPress={() => setSelectedItemIndex(index)}>
@@ -219,7 +279,8 @@ function PaymentButtons({navigation}: any) {
                     selectedItemIndex === index && styles.selected_item,
                   ]}>
                   <Text style={styles.total_text} selectable={true}>
-                    {t(item.product_name)}
+                    {t(item.product_name)} ({item.quantity}) -{' '}
+                    {item.price * item.quantity} $
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -402,6 +463,33 @@ function PaymentButtons({navigation}: any) {
           </View>
         </View>
       </View>
+
+      {/* Silme Modalı */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={deleteModalVisible}
+        onRequestClose={() => setDeleteModalVisible(false)}>
+        <View style={styles.modal_container}>
+          <View style={styles.modal_inner_container}>
+            <Text style={styles.modal_title}>{t('delete.quantity')}</Text>
+            <TextInput
+              style={styles.input}
+              value={String(deleteQuantity)}
+              onChangeText={text => setDeleteQuantity(Number(text))}
+              keyboardType="numeric"
+            />
+            <ButtonComp
+              text={t('confirm')}
+              onPress={() => removeItemsFromCart(deleteQuantity)}
+            />
+            <ButtonComp
+              text={t('cancel')}
+              onPress={() => setDeleteModalVisible(false)}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }

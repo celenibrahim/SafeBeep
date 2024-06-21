@@ -1,27 +1,109 @@
-import {Dimensions, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import {
+  Dimensions,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Alert,
+} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
 import styles from './Pay.styles';
 import {useTranslation} from 'react-i18next';
-const Pay = () => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useCart} from '../../../context/CartContext'; //useCart hook
+
+const Pay = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const [input, setInput] = useState('');
-  const [result, setResult] = useState('');
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const {subtotal, totalPrice} = useCart();
+  const [groupedCartItems, setGroupedCartItems] = useState<GroupedCartItem[]>(
+    [],
+  );
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
+    null,
+  );
+
+  interface CartItem {
+    id: string;
+    price: number;
+    product_name: string;
+  }
+
+  interface GroupedCartItem {
+    product_name: string;
+    price: number;
+    quantity: number;
+  }
 
   const handleInput = (value: any) => {
     setInput(input + value);
   };
+
   const handleDelete = () => {
     setInput(input.slice(0, -1));
   };
 
-  const clearInput = () => {
-    setInput('');
-    setResult('');
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const storedCartItems = await AsyncStorage.getItem('@cart');
+        if (storedCartItems) {
+          const parsedItems = JSON.parse(storedCartItems);
+          console.log('Stored Cart Items:', storedCartItems);
+          console.log('Parsed Cart Items:', parsedItems);
+          setCartItems(parsedItems);
+          groupCartItems(parsedItems);
+        }
+      } catch (error) {
+        console.error('Failed to load cart items from AsyncStorage', error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  const groupCartItems = (items: CartItem[]) => {
+    const groupedItems: {[key: string]: GroupedCartItem} = {};
+
+    items.forEach(item => {
+      if (groupedItems[item.product_name]) {
+        groupedItems[item.product_name].quantity += 1;
+      } else {
+        groupedItems[item.product_name] = {
+          product_name: item.product_name,
+          price: item.price,
+          quantity: 1,
+        };
+      }
+    });
+
+    setGroupedCartItems(Object.values(groupedItems));
   };
+
+  const cancelDocument = async () => {
+    try {
+      const storedCartItems = await AsyncStorage.getItem('@cart');
+      if (!storedCartItems || JSON.parse(storedCartItems).length === 0) {
+        Alert.alert(t('empty.cart.alert'));
+        return;
+      }
+      await AsyncStorage.removeItem('@cart');
+      setCartItems([]);
+      setGroupedCartItems([]);
+      Alert.alert(t('cancel.doc.alert'));
+    } catch (error) {
+      console.error(t('cancel.doc.error'), error);
+      Alert.alert(t('cancel.doc.error'));
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.optContainer}>
-        <TouchableOpacity style={[styles.optButtons, {backgroundColor: 'red'}]}>
+        <TouchableOpacity
+          style={[styles.optButtons, {backgroundColor: 'red'}]}
+          onPress={cancelDocument}>
           <Text style={styles.text_button}>{t('cancel.doc')}</Text>
         </TouchableOpacity>
 
@@ -51,23 +133,34 @@ const Pay = () => {
         </TouchableOpacity>
       </View>
       <View style={{flex: 1}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.input}>{input}</Text>
-            <Text style={styles.result}>{result}</Text>
-          </View>
-          <View>
-            <TouchableOpacity style={styles.del_button} onPress={clearInput}>
-              <Text style={styles.del_button_text}>X</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.inputContainer}>
+          <ScrollView>
+            {groupedCartItems.length > 0 ? (
+              groupedCartItems.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => setSelectedItemIndex(index)}>
+                  <View
+                    style={[
+                      styles.cart_container,
+                      selectedItemIndex === index && styles.selected_item,
+                    ]}>
+                    <Text style={styles.total_text} selectable={true}>
+                      {t(item.product_name)} ({item.quantity}) -{' '}
+                      {item.price * item.quantity} $
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))
+            ) : (
+              <Text>{t('empty.cart')}</Text>
+            )}
+            <View style={styles.cart_container}>
+              <Text style={styles.total_text}>{subtotal.toFixed(2)} $</Text>
+              <Text style={styles.total_text}>{totalPrice.toFixed(2)} $</Text>
+            </View>
+          </ScrollView>
         </View>
-
         <View style={{flexDirection: 'row', flex: 1, margin: 5}}>
           <View style={styles.buttonContainer}>
             <View style={styles.row}>

@@ -60,17 +60,9 @@ export default StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
-    borderRadius: 10,
-    marginBottom: 20,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  input: {
-    width: Dimensions.get('window').width / 1.5,
+    flex: 0.37,
     borderWidth: 1,
-    fontSize: 24,
     margin: 10,
-    borderRadius: 10,
   },
   result: {
     textAlign: 'center',
@@ -80,5 +72,21 @@ export default StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     width: Dimensions.get('window').width / 1.5,
+  },
+  prd_cont: {
+    flex: 1,
+    margin: 5,
+    borderColor: 'black',
+    borderWidth: 1,
+  },
+  total_text: {
+    color: 'black',
+  },
+  cart_container: {
+    flex: 1,
+    margin: 5,
+  },
+  selected_item: {
+    backgroundColor: '#e0e0e0',
   },
 });

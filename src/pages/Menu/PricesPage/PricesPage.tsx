@@ -10,6 +10,7 @@ const PricesPage = () => {
     category: string;
   }
   const [products, setProducts] = useState<Product[]>([]);
+  const {t}: any = useTranslation();
   const fetchData = async () => {
     try {
       const response = await axios.get('http://192.168.56.1:3001/products');
@@ -29,7 +30,7 @@ const PricesPage = () => {
           <View key={products.id}>
             <PricePrinter
               productId={products.id}
-              product_name={products.product_name}
+              product_name={t(products.product_name)}
               price={products.price}
             />
           </View>

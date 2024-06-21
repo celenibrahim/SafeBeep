@@ -174,5 +174,6 @@
   "empty.cart": "The cart is empty!",
   "cancel.doc.alert": "The document was successfully canceled!",
   "cancel.doc.error": "An error occurred while canceling the document!",
-  "empty.cart.alert": "The Cart is empty!"
+  "empty.cart.alert": "The Cart is empty!",
+  "delete.quantity": "How many pieces of the product do you want to delete?"
 }
