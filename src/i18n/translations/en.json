@@ -175,5 +175,12 @@
   "cancel.doc.alert": "The document was successfully canceled!",
   "cancel.doc.error": "An error occurred while canceling the document!",
   "empty.cart.alert": "The Cart is empty!",
-  "delete.quantity": "How many pieces of the product do you want to delete?"
+  "delete.quantity": "How many pieces of the product do you want to delete?",
+  "enter.amount": "Enter Amount:",
+  "pay": "Pay",
+  "invalid.amount": "Invalid Amount!",
+  "change": "Change",
+  "totalPaid": "Total Paid",
+  "receipt": "Receipt",
+  "pieces": "pieces"
 }

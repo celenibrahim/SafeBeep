@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   View,
   Alert,
+  Modal,
+  TextInput,
 } from 'react-native';
 import React, {useState, useEffect, useContext} from 'react';
 import styles from './Pay.styles';
@@ -16,13 +18,17 @@ const Pay = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const [input, setInput] = useState('');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const {subtotal, totalPrice} = useCart();
+  const {subtotal, totalPrice, setTotalPrice, change, setChange} = useCart();
   const [groupedCartItems, setGroupedCartItems] = useState<GroupedCartItem[]>(
     [],
   );
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
     null,
   );
+  const [creditModalVisible, setCreditModalVisible] = useState(false);
+  const [cashModalVisible, setCashModalVisible] = useState(false);
+  const [paymentAmount, setPaymentAmount] = useState('');
+  const [remainingAmount, setRemainingAmount] = useState(totalPrice);
 
   interface CartItem {
     id: string;
@@ -80,6 +86,30 @@ const Pay = ({navigation}: any) => {
 
     setGroupedCartItems(Object.values(groupedItems));
   };
+  const handleFinishPayment = () => {
+    navigation.navigate('ReceiptScreen');
+  };
+  const handlePayment = (method: string) => {
+    const amount = parseFloat(paymentAmount);
+
+    if (isNaN(amount) || amount <= 0) {
+      Alert.alert(t('invalid.amount.alert'));
+      return;
+    }
+
+    if (amount > remainingAmount) {
+      const changeAmount = amount - remainingAmount;
+      setChange(changeAmount); // Change amount set to global state
+      setRemainingAmount(0);
+    } else {
+      setRemainingAmount((prev: number) => prev - amount);
+    }
+
+    setPaymentAmount('');
+    method === 'credit'
+      ? setCreditModalVisible(false)
+      : setCashModalVisible(false);
+  };
 
   const cancelDocument = async () => {
     try {
@@ -91,6 +121,8 @@ const Pay = ({navigation}: any) => {
       await AsyncStorage.removeItem('@cart');
       setCartItems([]);
       setGroupedCartItems([]);
+      setRemainingAmount(0);
+      setChange(0); // Reset change amount in global state
       Alert.alert(t('cancel.doc.alert'));
     } catch (error) {
       console.error(t('cancel.doc.error'), error);
@@ -108,7 +140,8 @@ const Pay = ({navigation}: any) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.optButtons, {backgroundColor: '#ffa200'}]}>
+          style={[styles.optButtons, {backgroundColor: '#ffa200'}]}
+          onPress={handleFinishPayment}>
           <Text style={styles.text_button}>{t('finish.doc')}</Text>
         </TouchableOpacity>
       </View>
@@ -157,7 +190,10 @@ const Pay = ({navigation}: any) => {
             )}
             <View style={styles.cart_container}>
               <Text style={styles.total_text}>{subtotal.toFixed(2)} $</Text>
-              <Text style={styles.total_text}>{totalPrice.toFixed(2)} $</Text>
+              <Text style={styles.total_text}>
+                {remainingAmount.toFixed(2)} $
+              </Text>
+              <Text style={styles.total_text}>{change.toFixed(2)} $</Text>
             </View>
           </ScrollView>
         </View>
@@ -283,7 +319,7 @@ const Pay = ({navigation}: any) => {
                 alignItems: 'center',
                 backgroundColor: 'green',
               }}
-              onPress={() => null}>
+              onPress={() => setCreditModalVisible(true)}>
               <Text style={styles.text_button}>{t('card.credit')}</Text>
             </TouchableOpacity>
 
@@ -299,12 +335,68 @@ const Pay = ({navigation}: any) => {
                 alignItems: 'center',
                 backgroundColor: 'green',
               }}
-              onPress={() => null}>
+              onPress={() => setCashModalVisible(true)}>
               <Text style={styles.text_button}>{t('cash')}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={creditModalVisible}
+        onRequestClose={() => setCreditModalVisible(false)}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{t('enter.amount')}</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType="numeric"
+              value={paymentAmount}
+              onChangeText={setPaymentAmount}
+            />
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor: '#0098d9'}]}
+              onPress={() => handlePayment('credit')}>
+              <Text style={styles.text_button}>{t('pay')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor: 'red'}]}
+              onPress={() => setCreditModalVisible(false)}>
+              <Text style={styles.text_button}>{t('cancel')}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={cashModalVisible}
+        onRequestClose={() => setCashModalVisible(false)}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{t('enter.amount')}</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType="numeric"
+              value={paymentAmount}
+              onChangeText={setPaymentAmount}
+            />
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor: '#0098d9'}]}
+              onPress={() => handlePayment('cash')}>
+              <Text style={styles.text_button}>{t('pay')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, {backgroundColor: 'red'}]}
+              onPress={() => setCashModalVisible(false)}>
+              <Text style={styles.text_button}>{t('cancel')}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

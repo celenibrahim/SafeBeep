@@ -175,5 +175,12 @@
   "cancel.doc.alert": "Doküman başarıyla iptal edildi!",
   "cancel.doc.error": "Dokümanı iptal ederken bir hata oluştu!",
   "empty.cart.alert": "Sepet Boş!",
-  "delete.quantity": "Üründen kaç adet silmek istiyorsunuz?"
+  "delete.quantity": "Üründen kaç adet silmek istiyorsunuz?",
+  "enter.amount": "Ödeme Miktarı Giriniz:",
+  "pay": "Öde",
+  "invalid.amount": "Geçersiz Miktar!",
+  "change": "Para Üstü",
+  "totalPaid": "Toplam Ödeme",
+  "receipt": "Fiş",
+  "pieces": "adet"
 }
