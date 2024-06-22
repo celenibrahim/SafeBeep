@@ -194,5 +194,6 @@
   "finish": "Bitir",
   "no.connect": "Internet bağlantısı yok!",
   "error.con": "Bağlantı Hatası!",
-  "check.eth": "İnternet bağlantınızı kontrol edin!"
+  "check.eth": "İnternet bağlantınızı kontrol edin!",
+  "version": "Sürüm"
 }

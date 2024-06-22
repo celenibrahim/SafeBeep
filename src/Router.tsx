@@ -18,6 +18,7 @@ import MenuScreen from './pages/Menu/MenuScreen';
 import OtherSettingsPage from './pages/Settings/OtherSettingsPage';
 import {useTranslation} from 'react-i18next';
 import Receipt from './pages/Receipt';
+import {NetInfoProvider} from './context/NetInfo';
 const Stack = createNativeStackNavigator();
 
 const MenuStack = () => {
@@ -99,61 +100,63 @@ const SellStack = () => {
 function Router() {
   const {t}: any = useTranslation();
   return (
-    <UserProvider>
-      <CartProvider>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="LoginScreen"
-              component={Login}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="MenuStack"
-              component={MenuStack}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="AdminPanel"
-              component={AdminPanel}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="ReceiptScreen"
-              component={Receipt}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="SettingsStack"
-              component={SettingsStack}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="ReportsPage"
-              component={ReportsPage}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="SellStack"
-              component={SellStack}
-              options={{
-                headerShown: false,
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </CartProvider>
-    </UserProvider>
+    <NetInfoProvider>
+      <UserProvider>
+        <CartProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="LoginScreen"
+                component={Login}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="MenuStack"
+                component={MenuStack}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="AdminPanel"
+                component={AdminPanel}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="ReceiptScreen"
+                component={Receipt}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="SettingsStack"
+                component={SettingsStack}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="ReportsPage"
+                component={ReportsPage}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="SellStack"
+                component={SellStack}
+                options={{
+                  headerShown: false,
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </CartProvider>
+      </UserProvider>
+    </NetInfoProvider>
   );
 }
 export default Router;

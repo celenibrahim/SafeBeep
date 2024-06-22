@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, StyleSheet, Text, Alert} from 'react-native';
+import {View, FlatList, StyleSheet, Text} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
-import axios from 'axios';
+
+import productsData from '../../../products-data.json';
 import {useTranslation} from 'react-i18next';
-import NetInfo from '@react-native-community/netinfo';
 
 function Products({navigation}: any) {
   interface Product {
@@ -20,17 +20,6 @@ function Products({navigation}: any) {
   const [products, setProducts] = useState<Product[]>([]);
   const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
   const {t}: any = useTranslation();
-  const [isConnected, setIsConnected] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
-      setIsConnected(state.isConnected);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   useEffect(() => {
     fetchData();
@@ -38,12 +27,10 @@ function Products({navigation}: any) {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.56.1:3001/products');
-      setProducts(response.data);
-      setOriginalProducts(response.data);
+      setProducts(productsData);
+      setOriginalProducts(productsData);
     } catch (error) {
       console.error('Error fetching data:', error);
-      Alert.alert(t('error.con'), t('check.eth'));
     }
   };
 
@@ -137,22 +124,6 @@ function Products({navigation}: any) {
     setProducts(filteredList);
   };
 
-  if (isConnected === null) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-
-  if (!isConnected) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.connectionText}>{t('no.connect')}</Text>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
@@ -194,12 +165,5 @@ const styles = StyleSheet.create({
   separator: {
     borderWidth: 1,
     borderColor: '#e0e0e0',
-  },
-  connectionText: {
-    textAlign: 'center',
-    marginTop: 20,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'red',
   },
 });

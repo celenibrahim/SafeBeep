@@ -1,16 +1,41 @@
-import React, {useState} from 'react';
-import {View, ScrollView, Image, Alert} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, ScrollView, Image, Text, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './Login.styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {useTranslation} from 'react-i18next';
+import axios from 'axios';
+import {useNetInfo} from '../../context/NetInfo';
+
+interface VersionInfo {
+  version: string;
+}
 
 function Login({navigation}: {navigation: any}) {
   const [Usercode, setUser] = useState('');
   const [Password, setPassword] = useState('');
+  const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null);
   const {t}: any = useTranslation();
+  const {isConnected}: any = useNetInfo();
+
+  useEffect(() => {
+    fetchVersionInfo();
+  }, []);
+
+  const fetchVersionInfo = async () => {
+    try {
+      const response = await axios.get<VersionInfo>(
+        'http://192.168.56.1:3001/version',
+      );
+      setVersionInfo(response.data);
+    } catch (error) {
+      console.error('Error fetching version info:', error);
+      setVersionInfo(null);
+    }
+  };
+
   async function handleLogin() {
     if (!Usercode || !Password) {
       Alert.alert(t('alert.warning'), t('control.CodePasswd'));
@@ -42,6 +67,7 @@ function Login({navigation}: {navigation: any}) {
   function goToCreateUsers() {
     navigation.navigate('AdminPanel');
   }
+
   return (
     <ScrollView style={styles.container}>
       <View>
@@ -50,7 +76,17 @@ function Login({navigation}: {navigation: any}) {
             style={styles.image}
             source={require('../../assets/logo/safebeeplogo.png')}
           />
+          {isConnected === false ? (
+            <Text style={styles.text}>{t('no.connect')}</Text>
+          ) : (
+            versionInfo && (
+              <Text style={styles.text}>
+                {t('version')} : {versionInfo.version}
+              </Text>
+            )
+          )}
         </View>
+
         <View>
           <Input
             label={t('usercode')}
@@ -75,4 +111,5 @@ function Login({navigation}: {navigation: any}) {
     </ScrollView>
   );
 }
+
 export default Login;
