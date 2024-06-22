@@ -219,30 +219,31 @@ function PaymentButtons({navigation}: any) {
           transparent={true}
           visible={installmentModalVisible}
           onRequestClose={() => setInstallmentModalVisible(false)}>
-          <View style={styles.modal_container}>
-            <View style={styles.modal_inner_container}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalView}>
               <Text style={styles.modal_title}>{t('opt.inst')}</Text>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <TouchableOpacity>
-                  <Text style={styles.modal_text}>5 x {t('installment')}</Text>
+                  <Text style={styles.modalText}>5 x {t('installment')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.modal_text}>4 x {t('installment')}</Text>
+                  <Text style={styles.modalText}>4 x {t('installment')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.modal_text}>3 x {t('installment')}</Text>
+                  <Text style={styles.modalText}>3 x {t('installment')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.modal_text}>2 x {t('installment')}</Text>
+                  <Text style={styles.modalText}>2 x {t('installment')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.modal_text}>{t('cancel')}</Text>
+                  <Text style={styles.modalText}>{t('cancel')}</Text>
                 </TouchableOpacity>
               </View>
-              <Button
-                title={t('close')}
-                onPress={() => setInstallmentModalVisible(false)}
-              />
+              <TouchableOpacity
+                style={[styles.modalButton, {backgroundColor: 'red'}]}
+                onPress={() => setInstallmentModalVisible(false)}>
+                <Text style={styles.text_button}>{t('close')}</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
@@ -389,28 +390,29 @@ function PaymentButtons({navigation}: any) {
                 transparent={true}
                 visible={CampListModalVisible}
                 onRequestClose={() => setCampListModalVisible(false)}>
-                <View style={styles.modal_container}>
-                  <View style={styles.modal_inner_container}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalView}>
                     <Text style={styles.modal_title}>{t('camps')}:</Text>
                     <View
                       style={{justifyContent: 'center', alignItems: 'center'}}>
                       <TouchableOpacity>
-                        <Text style={styles.modal_text}>{t('camp')} 1</Text>
+                        <Text style={styles.modalText}>{t('camp')} 1</Text>
                       </TouchableOpacity>
                       <TouchableOpacity>
-                        <Text style={styles.modal_text}>{t('camp')} 2</Text>
+                        <Text style={styles.modalText}>{t('camp')} 2</Text>
                       </TouchableOpacity>
                       <TouchableOpacity>
-                        <Text style={styles.modal_text}>{t('camp')} 3</Text>
+                        <Text style={styles.modalText}>{t('camp')} 3</Text>
                       </TouchableOpacity>
                       <TouchableOpacity>
-                        <Text style={styles.modal_text}>{t('cancel')}</Text>
+                        <Text style={styles.modalText}>{t('cancel')}</Text>
                       </TouchableOpacity>
                     </View>
-                    <Button
-                      title={t('close')}
-                      onPress={() => setCampListModalVisible(false)}
-                    />
+                    <TouchableOpacity
+                      style={[styles.modalButton, {backgroundColor: 'red'}]}
+                      onPress={() => setCampListModalVisible(false)}>
+                      <Text style={styles.text_button}>{t('close')}</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </Modal>
@@ -468,8 +470,8 @@ function PaymentButtons({navigation}: any) {
         transparent={true}
         visible={deleteModalVisible}
         onRequestClose={() => setDeleteModalVisible(false)}>
-        <View style={styles.modal_container}>
-          <View style={styles.modal_inner_container}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
             <Text style={styles.modal_title}>{t('delete.quantity')}</Text>
             <TextInput
               style={styles.input}
@@ -477,14 +479,16 @@ function PaymentButtons({navigation}: any) {
               onChangeText={text => setDeleteQuantity(Number(text))}
               keyboardType="numeric"
             />
-            <ButtonComp
-              text={t('confirm')}
-              onPress={() => removeItemsFromCart(deleteQuantity)}
-            />
-            <ButtonComp
-              text={t('cancel')}
-              onPress={() => setDeleteModalVisible(false)}
-            />
+            <TouchableOpacity
+              style={[styles.modalButton, {backgroundColor: '#0bb1fa'}]}
+              onPress={() => removeItemsFromCart(deleteQuantity)}>
+              <Text style={styles.text_button}>{t('confirm')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.modalButton, {backgroundColor: 'red'}]}
+              onPress={() => setDeleteModalVisible(false)}>
+              <Text style={styles.text_button}>{t('cancel')}</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>

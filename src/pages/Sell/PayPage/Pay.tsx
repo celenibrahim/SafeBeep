@@ -13,7 +13,6 @@ import styles from './Pay.styles';
 import {useTranslation} from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useCart} from '../../../context/CartContext'; //useCart hook
-
 const Pay = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const [input, setInput] = useState('');
@@ -26,9 +25,11 @@ const Pay = ({navigation}: any) => {
     null,
   );
   const [creditModalVisible, setCreditModalVisible] = useState(false);
+  const [giftCardModalVisible, setGiftCardModalVisible] = useState(false);
   const [cashModalVisible, setCashModalVisible] = useState(false);
   const [paymentAmount, setPaymentAmount] = useState('');
   const [remainingAmount, setRemainingAmount] = useState(totalPrice);
+  const [giftCardCode, setGiftCardCode] = useState('');
 
   interface CartItem {
     id: string;
@@ -41,6 +42,12 @@ const Pay = ({navigation}: any) => {
     price: number;
     quantity: number;
   }
+  const giftCardDiscounts: {[key: string]: number} = {
+    GIFT10: 10,
+    GIFT20: 20,
+    GIFT50: 50,
+    GIFT100: 100,
+  };
 
   const handleInput = (value: any) => {
     setInput(input + value);
@@ -116,6 +123,16 @@ const Pay = ({navigation}: any) => {
       ? setCreditModalVisible(false)
       : setCashModalVisible(false);
   };
+  const handleGiftCard = () => {
+    if (giftCardDiscounts[giftCardCode]) {
+      const discount = giftCardDiscounts[giftCardCode];
+      setRemainingAmount((prev: number) => Math.max(0, prev - discount));
+      setGiftCardCode('');
+      setGiftCardModalVisible(false);
+    } else {
+      Alert.alert(t('invalid.gift.card.alert'));
+    }
+  };
 
   const cancelDocument = async () => {
     try {
@@ -177,7 +194,8 @@ const Pay = ({navigation}: any) => {
           <Text style={styles.text_button}>TomBank</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.optButtons, {backgroundColor: '#15b82e'}]}>
+          style={[styles.optButtons, {backgroundColor: '#15b82e'}]}
+          onPress={() => setGiftCardModalVisible(true)}>
           <Text style={styles.text_button}>{t('giftC')}</Text>
         </TouchableOpacity>
       </View>
@@ -373,12 +391,12 @@ const Pay = ({navigation}: any) => {
               onChangeText={setPaymentAmount}
             />
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: '#0098d9'}]}
+              style={[styles.modalButton, {backgroundColor: '#0098d9'}]}
               onPress={() => handlePayment('credit')}>
               <Text style={styles.text_button}>{t('pay')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: 'red'}]}
+              style={[styles.modalButton, {backgroundColor: 'red'}]}
               onPress={() => setCreditModalVisible(false)}>
               <Text style={styles.text_button}>{t('cancel')}</Text>
             </TouchableOpacity>
@@ -401,13 +419,39 @@ const Pay = ({navigation}: any) => {
               onChangeText={setPaymentAmount}
             />
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: '#0098d9'}]}
+              style={[styles.modalButton, {backgroundColor: '#0098d9'}]}
               onPress={() => handlePayment('cash')}>
               <Text style={styles.text_button}>{t('pay')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: 'red'}]}
+              style={[styles.modalButton, {backgroundColor: 'red'}]}
               onPress={() => setCashModalVisible(false)}>
+              <Text style={styles.text_button}>{t('cancel')}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={giftCardModalVisible}
+        onRequestClose={() => setGiftCardModalVisible(false)}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{t('enter.gcode')}</Text>
+            <TextInput
+              style={styles.input}
+              value={giftCardCode}
+              onChangeText={setGiftCardCode}
+            />
+            <TouchableOpacity
+              style={[styles.modalButton, {backgroundColor: '#0098d9'}]}
+              onPress={handleGiftCard}>
+              <Text style={styles.text_button}>{t('apply')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.modalButton, {backgroundColor: 'red'}]}
+              onPress={() => setGiftCardModalVisible(false)}>
               <Text style={styles.text_button}>{t('cancel')}</Text>
             </TouchableOpacity>
           </View>

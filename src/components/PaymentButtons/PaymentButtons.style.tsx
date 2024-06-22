@@ -47,13 +47,6 @@ export default StyleSheet.create({
     marginTop: 20,
     alignItems: 'center',
   },
-  input: {
-    width: Dimensions.get('window').width / 1.5,
-    borderWidth: 1,
-    fontSize: 24,
-    margin: 10,
-    borderRadius: 10,
-  },
   result: {
     textAlign: 'center',
     borderRadius: 10,
@@ -90,27 +83,11 @@ export default StyleSheet.create({
     backgroundColor: 'darkblue',
     width: Dimensions.get('window').width / 2.45,
   },
-  modal_container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modal_inner_container: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 10,
-  },
-  modal_text: {
-    color: 'black',
-    fontSize: 20,
-    fontStyle: 'italic',
-  },
   modal_title: {
     color: 'black',
     fontSize: 20,
     fontWeight: 'bold',
+    margin: 10,
   },
   prd_cont: {
     flex: 1,
@@ -119,6 +96,7 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   total_text: {
+    fontSize: 18,
     color: 'black',
   },
   cart_container: {
@@ -127,5 +105,55 @@ export default StyleSheet.create({
   },
   selected_item: {
     backgroundColor: '#e0e0e0',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#333',
+  },
+  input: {
+    height: 40,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingLeft: 10,
+    marginBottom: 20,
+    width: '100%',
+  },
+  modalButton: {
+    borderRadius: 50,
+    padding: 10,
+    elevation: 2,
+    width: '100%',
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  text_button: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

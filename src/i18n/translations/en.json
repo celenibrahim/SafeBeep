@@ -187,5 +187,9 @@
   "invalid.amount.alert": "Invalid Paying Amount!",
   "send.mail.receipt": "send the receipt to the mail.",
   "send.mail": "Send Mail",
-  "enter.mail": "Enter the Mail!"
+  "send": "Send",
+  "enter.mail": "Enter the Mail!",
+  "enter.gcode": "Enter Gift Card Code!",
+  "apply": "Apply",
+  "finish": "Finish"
 }

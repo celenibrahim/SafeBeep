@@ -14,7 +14,8 @@ import {useTranslation} from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {encode} from 'base-64';
 import Button from '../../components/Button';
-const Receipt = () => {
+import styles from './Receipt.syles';
+const Receipt = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const {totalPrice, change} = useCart();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -28,6 +29,9 @@ const Receipt = () => {
   }
   const setEmailing = () => {
     setEmailModalVisible(true);
+  };
+  const goToMenu = () => {
+    navigation.navigate('MenuStack');
   };
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -115,21 +119,21 @@ const Receipt = () => {
         visible={emailModalVisible}
         onRequestClose={() => setEmailModalVisible(false)}>
         <View style={styles.modalContainer}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{t('enter.mail')}</Text>
+          <View style={styles.emailModalView}>
+            <Text style={styles.emailModalText}>{t('enter.mail')}</Text>
             <TextInput
-              style={styles.input}
+              style={styles.emailInput}
               keyboardType="email-address"
               value={email}
               onChangeText={setEmail}
             />
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: '#0098d9'}]}
+              style={[styles.emailModalButton, {backgroundColor: '#007AFF'}]}
               onPress={handleSendEmail}>
-              <Text style={styles.text_button}>{t('send.mail')}</Text>
+              <Text style={styles.text_button}>{t('send')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: 'red'}]}
+              style={[styles.emailModalButton, {backgroundColor: '#FF3B30'}]}
               onPress={() => setEmailModalVisible(false)}>
               <Text style={styles.text_button}>{t('cancel')}</Text>
             </TouchableOpacity>
@@ -161,90 +165,11 @@ const Receipt = () => {
         <Text style={styles.summaryText}>
           {t('change')}: {change !== undefined ? change.toFixed(2) : '0.00'} $
         </Text>
-        <Button text={t('send.mail')} onPress={setEmailing} />
       </View>
+      <Button text={t('send.mail')} onPress={setEmailing} />
+      <Button text={t('finish')} onPress={goToMenu} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'white',
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
-  },
-  date: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-  itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  itemText: {
-    fontSize: 16,
-  },
-  summaryContainer: {
-    paddingVertical: 20,
-  },
-  summaryText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalView: {
-    width: '80%',
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  modalText: {
-    fontSize: 18,
-    marginBottom: 15,
-    fontWeight: 'bold',
-  },
-  input: {
-    width: '100%',
-    padding: 10,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 15,
-  },
-  text_button: {
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  button: {
-    margin: 2,
-    borderWidth: 1,
-    borderRadius: 10,
-    width: Dimensions.get('window').width / 5,
-    height: Dimensions.get('window').height / 11.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'darkblue',
-  },
-});
 
 export default Receipt;
