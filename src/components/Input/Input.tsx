@@ -8,11 +8,13 @@ function Input({
   placeholder,
   onChangeText,
   value,
+  secureTextEntry,
 }: {
   label: string;
   placeholder: string;
   onChangeText: any;
   value: any;
+  secureTextEntry: boolean;
 }) {
   return (
     <View style={styles.container}>
@@ -22,6 +24,7 @@ function Input({
           placeholder={placeholder}
           onChangeText={onChangeText}
           value={value}
+          secureTextEntry={secureTextEntry}
         />
       </View>
     </View>

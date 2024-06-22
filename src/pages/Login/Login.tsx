@@ -57,12 +57,14 @@ function Login({navigation}: {navigation: any}) {
             placeholder={t('usercodeEntry')}
             onChangeText={setUser}
             value={Usercode}
+            secureTextEntry={false}
           />
           <Input
             label={t('password')}
             placeholder={t('passwordEntry')}
             onChangeText={setPassword}
             value={Password}
+            secureTextEntry
           />
         </View>
         <View>

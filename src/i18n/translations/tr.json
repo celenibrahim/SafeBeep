@@ -191,5 +191,8 @@
   "enter.mail": "Mail adresini girin!",
   "enter.gcode": "Hediye Kartı Kodunuzu Giriniz!",
   "apply": "Uygula",
-  "finish": "Bitir"
+  "finish": "Bitir",
+  "no.connect": "Internet bağlantısı yok!",
+  "error.con": "Bağlantı Hatası!",
+  "check.eth": "İnternet bağlantınızı kontrol edin!"
 }

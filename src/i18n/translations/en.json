@@ -191,5 +191,8 @@
   "enter.mail": "Enter the Mail!",
   "enter.gcode": "Enter Gift Card Code!",
   "apply": "Apply",
-  "finish": "Finish"
+  "finish": "Finish",
+  "no.connect": "There is no Ethernet Connection!",
+  "error.con": "Connection Error",
+  "check.eth": "Please check your internet connection!"
 }

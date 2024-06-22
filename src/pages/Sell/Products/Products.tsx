@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet, Text, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
@@ -7,6 +7,7 @@ import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
+import NetInfo from '@react-native-community/netinfo';
 
 function Products({navigation}: any) {
   interface Product {
@@ -19,6 +20,21 @@ function Products({navigation}: any) {
   const [products, setProducts] = useState<Product[]>([]);
   const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
   const {t}: any = useTranslation();
+  const [isConnected, setIsConnected] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -27,12 +43,9 @@ function Products({navigation}: any) {
       setOriginalProducts(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
+      Alert.alert(t('error.con'), t('check.eth'));
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const resetProducts = () => {
     setProducts(originalProducts);
@@ -50,7 +63,7 @@ function Products({navigation}: any) {
     />
   );
 
-  const renderSeperator = () => <View style={styles.seperator} />;
+  const renderSeparator = () => <View style={styles.separator} />;
 
   const handleAddToCart = async (productId: string) => {
     try {
@@ -124,6 +137,22 @@ function Products({navigation}: any) {
     setProducts(filteredList);
   };
 
+  if (isConnected === null) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (!isConnected) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.connectionText}>{t('no.connect')}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
@@ -146,10 +175,10 @@ function Products({navigation}: any) {
         </View>
       </View>
       <FlatList
-        keyExtractor={products => products.id.toString()}
+        keyExtractor={product => product.id.toString()}
         data={products}
         renderItem={renderProduct}
-        ItemSeparatorComponent={renderSeperator} //to make border
+        ItemSeparatorComponent={renderSeparator}
       />
     </View>
   );
@@ -162,8 +191,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  seperator: {
+  separator: {
     borderWidth: 1,
-    color: '#e0e0e0',
+    borderColor: '#e0e0e0',
+  },
+  connectionText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'red',
   },
 });

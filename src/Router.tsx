@@ -16,7 +16,6 @@ import ReportsPage from './pages/Reports';
 import PricesPage from './pages/Menu/PricesPage';
 import MenuScreen from './pages/Menu/MenuScreen';
 import OtherSettingsPage from './pages/Settings/OtherSettingsPage';
-import ReceiptScreen from './pages/Receipt';
 import {useTranslation} from 'react-i18next';
 import Receipt from './pages/Receipt';
 const Stack = createNativeStackNavigator();
