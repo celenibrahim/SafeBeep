@@ -182,5 +182,10 @@
   "change": "Para Üstü",
   "totalPaid": "Toplam Ödeme",
   "receipt": "Fiş",
-  "pieces": "adet"
+  "pieces": "adet",
+  "amount.remaining.alert": "Ödeme Tutarı Yetersiz!",
+  "invalid.amount.alert": " Geçersiz Ödeme Miktarı!",
+  "send.mail.receipt": "E-Fatura Mail!",
+  "send.mail": "Mail Gönder",
+  "enter.mail": "Mail adresini girin!"
 }

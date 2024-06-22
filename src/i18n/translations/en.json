@@ -182,5 +182,10 @@
   "change": "Change",
   "totalPaid": "Total Paid",
   "receipt": "Receipt",
-  "pieces": "pieces"
+  "pieces": "pieces",
+  "amount.remaining.alert": "The pay amount is insufficient!",
+  "invalid.amount.alert": "Invalid Paying Amount!",
+  "send.mail.receipt": "send the receipt to the mail.",
+  "send.mail": "Send Mail",
+  "enter.mail": "Enter the Mail!"
 }

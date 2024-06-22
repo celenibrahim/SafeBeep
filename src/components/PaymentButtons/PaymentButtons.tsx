@@ -463,8 +463,6 @@ function PaymentButtons({navigation}: any) {
           </View>
         </View>
       </View>
-
-      {/* Silme Modalı */}
       <Modal
         animationType="slide"
         transparent={true}

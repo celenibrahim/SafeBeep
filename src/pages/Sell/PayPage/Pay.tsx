@@ -86,9 +86,15 @@ const Pay = ({navigation}: any) => {
 
     setGroupedCartItems(Object.values(groupedItems));
   };
+
   const handleFinishPayment = () => {
+    if (remainingAmount > 0) {
+      Alert.alert(t('amount.remaining.alert'));
+      return;
+    }
     navigation.navigate('ReceiptScreen');
   };
+
   const handlePayment = (method: string) => {
     const amount = parseFloat(paymentAmount);
 
@@ -140,9 +146,19 @@ const Pay = ({navigation}: any) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.optButtons, {backgroundColor: '#ffa200'}]}
-          onPress={handleFinishPayment}>
-          <Text style={styles.text_button}>{t('finish.doc')}</Text>
+          style={[
+            styles.optButtons,
+            {backgroundColor: remainingAmount > 0 ? '#d3d3d3' : '#ffa200'},
+          ]}
+          onPress={handleFinishPayment}
+          disabled={remainingAmount > 0}>
+          <Text
+            style={[
+              styles.text_button,
+              {color: remainingAmount > 0 ? 'black' : 'white'},
+            ]}>
+            {t('finish.doc')}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.optContainer}>
@@ -189,11 +205,11 @@ const Pay = ({navigation}: any) => {
               <Text>{t('empty.cart')}</Text>
             )}
             <View style={styles.cart_container}>
-              <Text style={styles.total_text}>{subtotal.toFixed(2)} $</Text>
-              <Text style={styles.total_text}>
-                {remainingAmount.toFixed(2)} $
-              </Text>
-              <Text style={styles.total_text}>{change.toFixed(2)} $</Text>
+              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={styles.total_price_text}>
+                  {t('total.price')} : {remainingAmount.toFixed(2)} $
+                </Text>
+              </View>
             </View>
           </ScrollView>
         </View>

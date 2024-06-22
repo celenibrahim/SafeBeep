@@ -80,7 +80,13 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   total_text: {
+    fontSize: 18,
     color: 'black',
+  },
+  total_price_text: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   cart_container: {
     flex: 1,
