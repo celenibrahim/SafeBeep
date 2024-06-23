@@ -15,21 +15,44 @@ import Input from '../../components/Input';
 import styles from './AdminPanel.style';
 import {useTranslation} from 'react-i18next';
 
-function AdminPanel() {
+const AdminPanel = () => {
   const {t}: any = useTranslation();
-  const [users, setUsers] = useState(
-    [] as {
+
+  const [users, setUsers] = useState<
+    {
       id: string;
       usercode: string;
       password: string;
       checkoutNo: string;
-    }[],
-  );
+    }[]
+  >([]);
+
   const [usercode, setUserCode] = useState('');
   const [password, setPassword] = useState('');
   const [checkoutNo, setCheckoutNo] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const handleSignUp = async () => {
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const storedUsers = await AsyncStorage.getItem('users');
+        if (storedUsers) {
+          setUsers(JSON.parse(storedUsers));
+        } else {
+          setUsers([]);
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+        Alert.alert(t('error'), t('alert.retrievingUser'));
+      }
+    };
+
+    if (modalVisible) {
+      fetchUsers();
+    }
+  }, [modalVisible]);
+
+  const handleSignUp = () => {
     if (
       usercode.trim() === '' ||
       password.trim() === '' ||
@@ -45,17 +68,20 @@ function AdminPanel() {
       password,
       checkoutNo,
     };
+
     setUsers([...users, newUser]);
+    Alert.alert(t('alert.warning'), t('registration'));
   };
 
-  async function confirmData() {
+  const confirmData = async () => {
     try {
       await AsyncStorage.setItem('users', JSON.stringify(users));
       Alert.alert(t('alert.warning'), t('registration'));
     } catch (error) {
+      console.error('Error saving users:', error);
       Alert.alert(t('alert.warning'), t('error.registration'));
     }
-  }
+  };
 
   const handleSeeUsers = async () => {
     try {
@@ -67,27 +93,22 @@ function AdminPanel() {
         Alert.alert(t('alert.warning'), t('alert.noUser'));
       }
     } catch (error) {
+      console.error('Error fetching users:', error);
       Alert.alert(t('error'), t('alert.retrievingUser'));
     }
   };
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const storedUsers = await AsyncStorage.getItem('users');
-        if (storedUsers) {
-          setUsers(JSON.parse(storedUsers));
-        } else {
-          setUsers([]);
-        }
-      } catch (error) {
-        Alert.alert(t('error'), t('alert.retrievingUser'));
-      }
-    };
 
-    if (modalVisible) {
-      fetchUsers();
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      const filteredUsers = users.filter(u => u.id !== userId);
+      await AsyncStorage.setItem('users', JSON.stringify(filteredUsers));
+      setUsers(filteredUsers);
+      Alert.alert(t('alert.warning'), t('user.deleted'));
+    } catch (error) {
+      console.error('Error removing user:', error);
+      Alert.alert(t('error'), t('error.removeUser'));
     }
-  }, [modalVisible]);
+  };
 
   return (
     <View style={styles.container}>
@@ -97,18 +118,21 @@ function AdminPanel() {
         placeholder={t('usercode')}
         onChangeText={setUserCode}
         value={usercode}
+        secureTextEntry={false}
       />
       <Input
         label={t('createPasswd')}
         placeholder={t('password')}
         onChangeText={setPassword}
         value={password}
+        secureTextEntry={false}
       />
       <Input
         label={t('createCheckNo')}
         placeholder={t('checkout')}
         onChangeText={setCheckoutNo}
         value={checkoutNo}
+        secureTextEntry={false}
       />
       <Button text={t('save')} onPress={handleSignUp} />
       <Button text={t('confirm')} onPress={confirmData} />
@@ -122,28 +146,13 @@ function AdminPanel() {
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
               <Text style={styles.modalTitle}>{t('users')}</Text>
-              <Text style={styles.modalTitle}>{t('users.delete')}</Text>
               <FlatList
                 data={users}
                 keyExtractor={item => item.id}
                 renderItem={({item}) => (
                   <TouchableOpacity
                     style={styles.userItem}
-                    onPress={async () => {
-                      try {
-                        const filteredUsers = users.filter(
-                          u => u.id !== item.id,
-                        );
-                        await AsyncStorage.setItem(
-                          'users',
-                          JSON.stringify(filteredUsers),
-                        );
-                        setUsers(filteredUsers);
-                      } catch (error) {
-                        console.error('Error removing user:', error);
-                        Alert.alert(t('error'), t('error.removeUser'));
-                      }
-                    }}>
+                    onPress={() => handleDeleteUser(item.id)}>
                     <Text>
                       {t('usercode')}: {item.usercode}
                     </Text>
@@ -166,6 +175,6 @@ function AdminPanel() {
       </Modal>
     </View>
   );
-}
+};
 
 export default AdminPanel;

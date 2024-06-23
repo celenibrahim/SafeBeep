@@ -118,4 +118,10 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  userInfoText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
 });

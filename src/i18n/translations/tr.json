@@ -23,6 +23,7 @@
   "seeUser": "Kullanıcıları Gör",
   "users": "Kullanıcılar",
   "users.delete": "Kalıcı olarak silmek istediğiniz kullanıcının üzerine tıklayınız",
+  "user.deleted": "Kullanıcı Silindi!",
   "close": "Çıkış",
   "control.CodePasswd": "Kullanıcı adı ve şifre boş olamaz!",
   "sign": "Giriş Yap",
@@ -195,5 +196,7 @@
   "no.connect": "Internet bağlantısı yok!",
   "error.con": "Bağlantı Hatası!",
   "check.eth": "İnternet bağlantınızı kontrol edin!",
-  "version": "Sürüm"
+  "version": "Sürüm",
+  "id.cashier": "Kasiyer ID",
+  "checkout.no": "Kasa No"
 }

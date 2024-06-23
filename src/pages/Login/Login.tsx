@@ -7,18 +7,19 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {useTranslation} from 'react-i18next';
 import axios from 'axios';
+import {useUser} from '../../context/UserContext';
 import {useNetInfo} from '../../context/NetInfo';
 
 interface VersionInfo {
   version: string;
 }
-
 function Login({navigation}: {navigation: any}) {
   const [Usercode, setUser] = useState('');
   const [Password, setPassword] = useState('');
   const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null);
   const {t}: any = useTranslation();
   const {isConnected}: any = useNetInfo();
+  const {setUserInfo}: any = useUser();
 
   useEffect(() => {
     fetchVersionInfo();
@@ -52,6 +53,7 @@ function Login({navigation}: {navigation: any}) {
         );
 
         if (foundUser) {
+          setUserInfo(foundUser);
           navigation.navigate('MenuStack');
         } else {
           Alert.alert(t('alert.warning'), t('error.invalid'));

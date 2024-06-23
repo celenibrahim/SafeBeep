@@ -23,6 +23,7 @@
   "seeUser": "See Users",
   "users": "Users",
   "users.delete": "To delete a user permanently, tap on it.",
+  "user.deleted": "User Deleted!",
   "close": "Close",
   "control.CodePasswd": "Usercode and Password cannot be empty!",
   "sign": "Sign In",
@@ -195,5 +196,7 @@
   "no.connect": "No Connection!",
   "error.con": "Connection Error",
   "check.eth": "Please check your internet connection!",
-  "version": "Version"
+  "version": "Version",
+  "id.cashier": "Cashier ID",
+  "checkout.no": "Checkout No"
 }

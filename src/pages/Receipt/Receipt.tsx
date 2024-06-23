@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Dimensions,
@@ -15,24 +15,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {encode} from 'base-64';
 import Button from '../../components/Button';
 import styles from './Receipt.syles';
+import {useUser} from '../../context/UserContext'; // UserContext'den useUser hook'u eklendi
+
 const Receipt = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const {totalPrice, change} = useCart();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [emailModalVisible, setEmailModalVisible] = useState(false);
   const [email, setEmail] = useState('');
+  const {userInfo}: any = useUser(); // userInfo global state'ten alındı
+
   interface CartItem {
     id: string;
     price: number;
     product_name: string;
     quantity: number;
   }
+
   const setEmailing = () => {
     setEmailModalVisible(true);
   };
+
   const goToMenu = () => {
     navigation.navigate('MenuStack');
   };
+
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -109,10 +116,17 @@ const Receipt = ({navigation}: any) => {
       console.error('Error sending email:', error);
     }
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{t('receipt')}</Text>
       <Text style={styles.date}>{formattedDate}</Text>
+      <Text style={styles.userInfoText}>
+        {userInfo ? `${t('id.cashier')}: ${userInfo.id}` : ''}
+      </Text>
+      <Text style={styles.userInfoText}>
+        {userInfo ? `${t('checkout.no')}: ${userInfo.checkoutNo}` : ''}
+      </Text>
       <Modal
         animationType="slide"
         transparent={true}
