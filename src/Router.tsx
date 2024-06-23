@@ -19,6 +19,7 @@ import OtherSettingsPage from './pages/Settings/OtherSettingsPage';
 import {useTranslation} from 'react-i18next';
 import Receipt from './pages/Receipt';
 import {NetInfoProvider} from './context/NetInfo';
+import Sales from './pages/Reports/Sales';
 const Stack = createNativeStackNavigator();
 
 const MenuStack = () => {
@@ -141,6 +142,13 @@ function Router() {
               <Stack.Screen
                 name="ReportsPage"
                 component={ReportsPage}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="Sales"
+                component={Sales}
                 options={{
                   headerShown: false,
                 }}

@@ -6,14 +6,20 @@ import OffOnline from '../../components/OffOnLine';
 
 const Reports = ({navigation}: any) => {
   const {t}: any = useTranslation();
-
+  const gotoSales = () => {
+    navigation.navigate('Sales');
+  };
   return (
     <View style={{flex: 1}}>
       <View style={styles.title_container}>
         <Text style={styles.title}>{t('reports')}</Text>
       </View>
       <ReportsButton onPress={null} title={t('report.x')} bgColor="#fb3131" />
-      <ReportsButton onPress={null} title={t('report.z')} bgColor="#fb3131" />
+      <ReportsButton
+        onPress={gotoSales}
+        title={t('report.z')}
+        bgColor="#fb3131"
+      />
       <ReportsButton onPress={null} title={t('report.bank')} bgColor="green" />
       <ReportsButton onPress={null} title={t('report.IBB')} bgColor="green" />
       <ReportsButton

@@ -133,5 +133,17 @@
   "id.cashier": "Kasiyer ID",
   "checkout.no": "Kasa No",
   "status.online": " Mağaza Çevrimiçi",
-  "status.offline": "Mağaza Çevrimdışı"
+  "status.offline": "Mağaza Çevrimdışı",
+  "sale.saved": "Satış kaydedildi!",
+  "sync": "Senkronizasyon",
+  "clr.sls": "Satışları Sil!",
+  "sync.success": "Senkronizasyon başarılı!",
+  "sync.failure": "Senkronizasyon başarısız!",
+  "error.saleSave": "Kayıt esnasında hata oluştu!",
+  "sales.cleared": "Tüm Satışlar Silindi!",
+  "date": "Tarih",
+  "offline.sales": "Offline Sales",
+  "no.offline.sales": "There is no offline sales",
+  "online.sales": "Online Sales",
+  "no.online.sales": "There is no online sales"
 }

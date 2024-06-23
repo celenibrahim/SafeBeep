@@ -133,5 +133,17 @@
   "id.cashier": "Cashier ID",
   "checkout.no": "Checkout No",
   "status.online": " Status is Online",
-  "status.offline": "Status is Offline"
+  "status.offline": "Status is Offline",
+  "sale.saved": "The sale is saved!",
+  "sync": "Synchronize",
+  "clr.sls": "Clear Sales!",
+  "sync.success": "Synchronize is success!",
+  "sync.failure": "Synchronize is failure!",
+  "error.saleSave": "Error while saving!",
+  "sales.cleared": "All Sales Deleted!",
+  "date": "Date",
+  "offline.sales": "Offline Sales",
+  "no.offline.sales": "There is no offline sales",
+  "online.sales": "Online Sales",
+  "no.online.sales": "There is no online sales"
 }

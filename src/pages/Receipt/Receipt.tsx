@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {
   View,
-  Dimensions,
   Text,
   ScrollView,
-  StyleSheet,
   TextInput,
   Modal,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {useCart} from '../../context/CartContext';
 import {useTranslation} from 'react-i18next';
@@ -15,7 +14,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {encode} from 'base-64';
 import Button from '../../components/Button';
 import styles from './Receipt.syles';
-import {useUser} from '../../context/UserContext'; // UserContext'den useUser hook'u eklendi
+import {useUser} from '../../context/UserContext';
+import NetInfo from '@react-native-community/netinfo'; //
 
 const Receipt = ({navigation}: any) => {
   const {t}: any = useTranslation();
@@ -23,7 +23,8 @@ const Receipt = ({navigation}: any) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [emailModalVisible, setEmailModalVisible] = useState(false);
   const [email, setEmail] = useState('');
-  const {userInfo}: any = useUser(); // userInfo global state'ten alındı
+  const {userInfo}: any = useUser();
+  const [isOnline, setIsOnline] = useState(true);
 
   interface CartItem {
     id: string;
@@ -70,6 +71,16 @@ const Receipt = ({navigation}: any) => {
     fetchCartItems();
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      if (state.isConnected !== null) {
+        setIsOnline(state.isConnected);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const formattedDate = new Date().toLocaleString();
   const handleSendEmail = async () => {
     const MAILJET_API_KEY = 'f8d1003d0c4762100cc0c9e380602c75';
@@ -114,6 +125,31 @@ const Receipt = ({navigation}: any) => {
       }
     } catch (error) {
       console.error('Error sending email:', error);
+    }
+  };
+
+  const handleFinish = async () => {
+    const sale = {
+      userId: userInfo.id,
+      checkoutNo: userInfo.checkoutNo,
+      date: formattedDate,
+      items: cartItems,
+      totalPrice: totalPrice ? totalPrice.toFixed(2) : '0.00',
+      change: change ? change.toFixed(2) : '0.00',
+    };
+
+    const storageKey = isOnline ? 'onsales' : 'offsales';
+
+    try {
+      const storedSales = await AsyncStorage.getItem(storageKey);
+      const sales = storedSales ? JSON.parse(storedSales) : [];
+      sales.push(sale);
+      await AsyncStorage.setItem(storageKey, JSON.stringify(sales));
+      Alert.alert(t('alert.warning'), t('sale.saved'));
+      goToMenu();
+    } catch (error) {
+      console.error('Error saving sale:', error);
+      Alert.alert(t('alert.warning'), t('error.saleSave'));
     }
   };
 
@@ -181,7 +217,7 @@ const Receipt = ({navigation}: any) => {
         </Text>
       </View>
       <Button text={t('send.mail')} onPress={setEmailing} />
-      <Button text={t('finish')} onPress={goToMenu} />
+      <Button text={t('finish')} onPress={handleFinish} />
     </View>
   );
 };
