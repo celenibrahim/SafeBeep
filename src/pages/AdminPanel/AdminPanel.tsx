@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import OffOnLine from '../../components/OffOnLine';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
@@ -48,12 +47,10 @@ const AdminPanel = () => {
       }
     };
 
-    if (modalVisible) {
-      fetchUsers();
-    }
-  }, [modalVisible]);
+    fetchUsers();
+  }, []);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (
       usercode.trim() === '' ||
       password.trim() === '' ||
@@ -63,21 +60,26 @@ const AdminPanel = () => {
       return;
     }
 
+    const generateRandomId = () => {
+      return Math.floor(10000 + Math.random() * 90000).toString();
+    };
+
     const newUser = {
-      id: Date.now().toString(),
+      id: generateRandomId(),
       usercode,
       password,
       checkoutNo,
     };
 
-    setUsers([...users, newUser]);
-    Alert.alert(t('alert.warning'), t('registration'));
-  };
+    const updatedUsers = [...users, newUser];
+    setUsers(updatedUsers);
 
-  const confirmData = async () => {
     try {
-      await AsyncStorage.setItem('users', JSON.stringify(users));
-      Alert.alert(t('alert.warning'), t('registration'));
+      await AsyncStorage.setItem('users', JSON.stringify(updatedUsers));
+      Alert.alert(t('alert.success'), t('registration'));
+      setUserCode('');
+      setPassword('');
+      setCheckoutNo('');
     } catch (error) {
       console.error('Error saving users:', error);
       Alert.alert(t('alert.warning'), t('error.registration'));
@@ -137,7 +139,6 @@ const AdminPanel = () => {
           secureTextEntry={false}
         />
         <Button text={t('save')} onPress={handleSignUp} />
-        <Button text={t('confirm')} onPress={confirmData} />
         <Button text={t('seeUser')} onPress={handleSeeUsers} />
       </View>
       <View>
