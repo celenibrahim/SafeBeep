@@ -49,7 +49,7 @@ const ProductCard = (props: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>
-        <Text style={styles.title}>{t(props.item.product_name)}</Text>
+        <Text style={styles.title}>{props.item.product_name}</Text>
       </View>
 
       <View style={styles.info_container}>

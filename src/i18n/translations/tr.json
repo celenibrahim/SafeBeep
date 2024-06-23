@@ -198,5 +198,7 @@
   "check.eth": "İnternet bağlantınızı kontrol edin!",
   "version": "Sürüm",
   "id.cashier": "Kasiyer ID",
-  "checkout.no": "Kasa No"
+  "checkout.no": "Kasa No",
+  "status.online": " Mağaza Çevrimiçi",
+  "status.offline": "Mağaza Çevrimdışı"
 }

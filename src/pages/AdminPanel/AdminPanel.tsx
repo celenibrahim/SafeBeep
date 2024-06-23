@@ -8,12 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import OffOnLine from '../../components/OffOnLine';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import styles from './AdminPanel.style';
 import {useTranslation} from 'react-i18next';
+import OffOnline from '../../components/OffOnLine/offonline';
 
 const AdminPanel = () => {
   const {t}: any = useTranslation();
@@ -112,31 +113,36 @@ const AdminPanel = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{t('managePnl')}</Text>
-      <Input
-        label={t('createUcode')}
-        placeholder={t('usercode')}
-        onChangeText={setUserCode}
-        value={usercode}
-        secureTextEntry={false}
-      />
-      <Input
-        label={t('createPasswd')}
-        placeholder={t('password')}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry={false}
-      />
-      <Input
-        label={t('createCheckNo')}
-        placeholder={t('checkout')}
-        onChangeText={setCheckoutNo}
-        value={checkoutNo}
-        secureTextEntry={false}
-      />
-      <Button text={t('save')} onPress={handleSignUp} />
-      <Button text={t('confirm')} onPress={confirmData} />
-      <Button text={t('seeUser')} onPress={handleSeeUsers} />
+      <View style={{flex: 1}}>
+        <Text style={styles.text}>{t('managePnl')}</Text>
+        <Input
+          label={t('createUcode')}
+          placeholder={t('usercode')}
+          onChangeText={setUserCode}
+          value={usercode}
+          secureTextEntry={false}
+        />
+        <Input
+          label={t('createPasswd')}
+          placeholder={t('password')}
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry={false}
+        />
+        <Input
+          label={t('createCheckNo')}
+          placeholder={t('checkout')}
+          onChangeText={setCheckoutNo}
+          value={checkoutNo}
+          secureTextEntry={false}
+        />
+        <Button text={t('save')} onPress={handleSignUp} />
+        <Button text={t('confirm')} onPress={confirmData} />
+        <Button text={t('seeUser')} onPress={handleSeeUsers} />
+      </View>
+      <View>
+        <OffOnline />
+      </View>
       <Modal
         animationType="fade"
         transparent={true}

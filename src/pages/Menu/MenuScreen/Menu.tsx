@@ -1,25 +1,31 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View, StyleSheet} from 'react-native';
 import MMCards from '../../../components/MMCards';
 import {useTranslation} from 'react-i18next';
+import OffOnLine from '../../../components/OffOnLine';
 
 function Menu({navigation}: any) {
   const {t}: any = useTranslation();
+
   function goToSettings() {
     navigation.navigate('SettingsStack');
   }
+
   function goToSellStack() {
     navigation.navigate('SellStack');
   }
+
   function goToReports() {
     navigation.navigate('ReportsPage');
   }
+
   function goToPrices() {
     navigation.navigate('PricesPage');
   }
+
   return (
     <View style={{flex: 1}}>
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         <MMCards
           bgColor="#ea5570"
           title={t('sell')}
@@ -75,7 +81,26 @@ function Menu({navigation}: any) {
           iconUrl={require('../../../assets/icons/settings.png')}
         />
       </ScrollView>
+
+      <View style={styles.offOnlineContainer}>
+        <OffOnLine />
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    marginBottom: 40,
+  },
+  offOnlineContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+});
+
 export default Menu;

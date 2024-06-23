@@ -6,6 +6,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   logo_container: {
+    flex: 1,
     alignItems: 'center',
   },
   image: {

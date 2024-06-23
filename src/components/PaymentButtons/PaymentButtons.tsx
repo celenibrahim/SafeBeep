@@ -280,7 +280,7 @@ function PaymentButtons({navigation}: any) {
                     selectedItemIndex === index && styles.selected_item,
                   ]}>
                   <Text style={styles.total_text} selectable={true}>
-                    {t(item.product_name)} ({item.quantity}) -{' '}
+                    {item.product_name} ({item.quantity}) -{' '}
                     {item.price * item.quantity} $
                   </Text>
                 </View>

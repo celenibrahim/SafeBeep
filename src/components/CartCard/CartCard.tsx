@@ -16,7 +16,7 @@ const CartCard = ({
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>
-        <Text style={styles.title}>{t(productName)}</Text>
+        <Text style={styles.title}>{productName}</Text>
       </View>
 
       <View style={styles.info_container}>

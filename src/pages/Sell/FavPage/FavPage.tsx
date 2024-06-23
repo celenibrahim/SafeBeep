@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import productsData from '../../../products-data.json';
 import styles from './FavPage.style';
 import {useTranslation} from 'react-i18next';
+import OffOnline from '../../../components/OffOnLine';
 
 interface Product {
   id: string;
@@ -83,7 +84,7 @@ const CartPage = () => {
                       key={'favorite_' + index}
                       onPress={() => removeFavorites(id)}>
                       <Text style={styles.favoriteItem}>
-                        {t(findProductInfo(id))}
+                        {findProductInfo(id)}
                       </Text>
                     </TouchableOpacity>
                   ),
@@ -93,6 +94,9 @@ const CartPage = () => {
           )}
         </ScrollView>
       )}
+      <View style={styles.offOnlineContainer}>
+        <OffOnline />
+      </View>
     </View>
   );
 };

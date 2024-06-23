@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import OffOnline from '../../../components/OffOnLine';
 
 const OtherSettingsPage = () => {
   const {t, i18n} = useTranslation();
@@ -40,6 +35,9 @@ const OtherSettingsPage = () => {
           <Text style={styles.languageButtonText}>{t('tr')}</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.offOnlineContainer}>
+        <OffOnline />
+      </View>
     </View>
   );
 };
@@ -71,6 +69,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 30,
     color: 'black',
+  },
+  offOnlineContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
   },
 });
 

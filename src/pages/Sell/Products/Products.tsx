@@ -5,7 +5,6 @@ import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
 import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
-
 import productsData from '../../../products-data.json';
 import {useTranslation} from 'react-i18next';
 
@@ -96,7 +95,7 @@ function Products({navigation}: any) {
 
   const sortByAlphabeticalOrder = () => {
     const sortedData = [...products].sort((a, b) =>
-      t(a.product_name).localeCompare(t(b.product_name)),
+      a.product_name.localeCompare(b.product_name),
     );
     setProducts(sortedData);
   };
@@ -118,7 +117,7 @@ function Products({navigation}: any) {
   const handleSearch = (text: string) => {
     const searchedText = text.toLowerCase();
     const filteredList = originalProducts.filter(product => {
-      const currentTitle = t(product.product_name).toLowerCase();
+      const currentTitle = product.product_name.toLowerCase();
       return currentTitle.startsWith(searchedText);
     });
     setProducts(filteredList);
@@ -150,6 +149,15 @@ function Products({navigation}: any) {
         data={products}
         renderItem={renderProduct}
         ItemSeparatorComponent={renderSeparator}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={5}
+        removeClippedSubviews={true}
+        getItemLayout={(data, index) => ({
+          length: 100,
+          offset: 100 * index,
+          index,
+        })}
       />
     </View>
   );

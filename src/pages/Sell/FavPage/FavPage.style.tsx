@@ -28,4 +28,11 @@ export default StyleSheet.create({
     color: 'green',
     marginBottom: 5,
   },
+  offOnlineContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
 });

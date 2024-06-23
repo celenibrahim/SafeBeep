@@ -158,7 +158,7 @@ const Receipt = ({navigation}: any) => {
         {cartItems.map((item, index) => (
           <View key={index} style={styles.itemContainer}>
             <Text style={styles.itemText}>
-              {t(item.product_name)} - {item.quantity} {t('pieces')} -{' '}
+              {item.product_name} - {item.quantity} {t('pieces')} -{' '}
               {item.price * item.quantity} $
             </Text>
           </View>

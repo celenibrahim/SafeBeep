@@ -2,6 +2,7 @@ import React from 'react';
 import SettingsButton from '../../../components/SettingsButtons';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import OffOnline from '../../../components/OffOnLine';
 const Settings = ({navigation}: any) => {
   const {t}: any = useTranslation();
   function gotoOS() {
@@ -35,6 +36,9 @@ const Settings = ({navigation}: any) => {
         title={t('operations')}
         bgColor="#4b71ec"
       />
+      <View style={styles.offOnlineContainer}>
+        <OffOnline />
+      </View>
     </View>
   );
 };
@@ -50,5 +54,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     fontSize: 30,
+  },
+  offOnlineContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
   },
 });

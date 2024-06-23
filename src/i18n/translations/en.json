@@ -198,5 +198,7 @@
   "check.eth": "Please check your internet connection!",
   "version": "Version",
   "id.cashier": "Cashier ID",
-  "checkout.no": "Checkout No"
+  "checkout.no": "Checkout No",
+  "status.online": " Status is Online",
+  "status.offline": "Status is Offline"
 }
