@@ -134,6 +134,7 @@ const Receipt = ({navigation}: any) => {
       checkoutNo: userInfo.checkoutNo,
       date: formattedDate,
       items: cartItems,
+      totalPaid: totalPrice + change,
       totalPrice: totalPrice ? totalPrice.toFixed(2) : '0.00',
       change: change ? change.toFixed(2) : '0.00',
     };

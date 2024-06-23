@@ -16,6 +16,7 @@ interface SaleItem {
   checkoutNo: string;
   date: string;
   totalPrice: number;
+  totalPaid: number;
   change: number;
   items: {
     id: string;
@@ -119,10 +120,10 @@ const SalesScreen = () => {
         {t('total.price')}: {item.totalPrice} $
       </Text>
       <Text>
-        {t('change')}: {item.change} $
+        {t('totalPaid')}: {item.totalPaid} $
       </Text>
       <Text>
-        {t('item.count')}: {item.items.length} {t('pieces')}
+        {t('change')}: {item.change} $
       </Text>
       <FlatList
         data={item.items}
