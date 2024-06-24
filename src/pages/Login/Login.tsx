@@ -9,7 +9,6 @@ import {useTranslation} from 'react-i18next';
 import axios from 'axios';
 import {useUser} from '../../context/UserContext';
 import {useNetInfo} from '../../context/NetInfo';
-import OffOnLine from '../../components/OffOnLine';
 import OffOnline from '../../components/OffOnLine/offonline';
 interface VersionInfo {
   version: string;

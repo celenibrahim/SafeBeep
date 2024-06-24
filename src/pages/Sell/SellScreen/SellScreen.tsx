@@ -35,12 +35,12 @@ function SellScreen({navigation}: any) {
         <CategoryCard
           Title={t('market')}
           onpress={null}
-          imageUrl={require('../../../assets/images/market.png')}
+          imageUrl={require('../../../assets/images/market.jpg')}
         />
         <CategoryCard
           Title={t('electronic')}
           onpress={null}
-          imageUrl={require('../../../assets/images/electronic.png')}
+          imageUrl={require('../../../assets/images/electronic.jpg')}
         />
       </View>
 
@@ -48,12 +48,12 @@ function SellScreen({navigation}: any) {
         <CategoryCard
           Title={t('clothing')}
           onpress={null}
-          imageUrl={require('../../../assets/images/clothes.png')}
+          imageUrl={require('../../../assets/images/clothes.jpg')}
         />
         <CategoryCard
           Title={t('accessories')}
           onpress={null}
-          imageUrl={require('../../../assets/images/accessories.png')}
+          imageUrl={require('../../../assets/images/accessories.jpg')}
         />
       </View>
 
@@ -61,12 +61,12 @@ function SellScreen({navigation}: any) {
         <CategoryCard
           Title={t('book.stationery')}
           onpress={null}
-          imageUrl={require('../../../assets/images/books.png')}
+          imageUrl={require('../../../assets/images/books.jpg')}
         />
         <CategoryCard
           Title={t('cleaning')}
           onpress={null}
-          imageUrl={require('../../../assets/images/cleaning.png')}
+          imageUrl={require('../../../assets/images/cleaning.jpg')}
         />
       </View>
       <View style={styles.offOnlineContainer}>
