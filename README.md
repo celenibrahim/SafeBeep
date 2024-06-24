@@ -1,3 +1,6 @@
+<h1 align="center">SAFEBEEP</h1>
+SafeBeep is an easy-to-use mobile cash register application developed using React Native. With its rich features, it helps you easily perform and track processes such as sales transactions, product and sales management. It offers advanced features such as end-of-day and sales reports, personnel management, and offline mode support.
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
