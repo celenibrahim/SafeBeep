@@ -197,21 +197,29 @@ To learn more about React Native, take a look at the following resources:
 
 # Screenshots
 
-![Screenshot](src/assets/screenshots/admin.png)
-![Screenshot](src/assets/screenshots/login.png)
-![Screenshot](src/assets/screenshots/menu.png)
-![Screenshot](src/assets/screenshots/reports.png)
-![Screenshot](src/assets/screenshots/settings.png)
-![Screenshot](src/assets/screenshots/prices.png)
-![Screenshot](src/assets/screenshots/category.png)
-![Screenshot](src/assets/screenshots/favs.png)
-![Screenshot](src/assets/screenshots/products.png)
-![Screenshot](src/assets/screenshots/sort.png)
-![Screenshot](src/assets/screenshots/cart.png)
-![Screenshot](src/assets/screenshots/total.png)
-![Screenshot](src/assets/screenshots/pay.png)
-![Screenshot](src/assets/screenshots/receipt.png)
-![Screenshot](src/assets/screenshots/sales.png)
+<p align="center">
+  <img src="src/assets/screenshots/admin.png" alt="admin" width="200"/>
+  <img src="src/assets/screenshots/login.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/menu.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/reports.png" alt="login" width="200"/>
+</p>
+<p align="center">
+  <img src="src/assets/screenshots/settings.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/prices.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/category.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/favs.png" alt="login" width="200"/>
+</p>
+<p align="center">
+  <img src="src/assets/screenshots/products.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/sort.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/cart.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/total.png" alt="login" width="200"/>
+</p>
+<p align="center">
+  <img src="src/assets/screenshots/pay.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/receipt.png" alt="login" width="200"/>
+  <img src="src/assets/screenshots/sales.png" alt="login" width="200"/>
+</p>
 
 # MIT License
 
