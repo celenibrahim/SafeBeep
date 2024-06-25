@@ -1,15 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import {useTranslation} from 'react-i18next';
+import axios from 'axios';
+import styles from './Sales.styles';
 
 interface SaleItem {
   userId: string;
@@ -68,6 +63,12 @@ const SalesScreen = () => {
     try {
       const offSalesData = await AsyncStorage.getItem('offsales');
       const offlineSales = offSalesData ? JSON.parse(offSalesData) : [];
+
+      if (offlineSales.length > 0) {
+        for (const sale of offlineSales) {
+          await axios.post('http://192.168.56.1:3001/sales', sale);
+        }
+      }
 
       const onSalesData = await AsyncStorage.getItem('onsales');
       const onlineSales = onSalesData ? JSON.parse(onSalesData) : [];
@@ -167,46 +168,5 @@ const SalesScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  saleItem: {
-    marginBottom: 10,
-    padding: 10,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 5,
-  },
-  syncButton: {
-    backgroundColor: '#007AFF',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  syncButtonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  clearButton: {
-    backgroundColor: '#FF3B30',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  clearButtonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-});
 
 export default SalesScreen;

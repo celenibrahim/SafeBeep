@@ -150,6 +150,22 @@ const Receipt = ({navigation}: any) => {
       sales.push(sale);
       await AsyncStorage.setItem(storageKey, JSON.stringify(sales));
 
+      if (isOnline) {
+        const response = await fetch('http://192.168.56.1:3001/sales', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sale),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to save sale to the server');
+        } else {
+          const responseData = await response.json();
+          console.log('Response message:', responseData.message);
+        }
+      }
       await AsyncStorage.removeItem('@cart');
 
       Alert.alert(t('alert.warning'), t('sale.saved'));
