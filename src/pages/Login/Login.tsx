@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Image, Text, Alert} from 'react-native';
+import {View, ScrollView, Image, Text, Alert, Vibration} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './Login.styles';
@@ -20,6 +20,7 @@ function Login({navigation}: {navigation: any}) {
   const {t}: any = useTranslation();
   const {isConnected}: any = useNetInfo();
   const {setUserInfo}: any = useUser();
+  const ONE_SECOND_IN_MS = 1000;
 
   useEffect(() => {
     fetchVersionInfo();
@@ -39,6 +40,7 @@ function Login({navigation}: {navigation: any}) {
 
   async function handleLogin() {
     if (!Usercode || !Password) {
+      Vibration.vibrate(1 * ONE_SECOND_IN_MS);
       Alert.alert(t('alert.warning'), t('control.CodePasswd'));
       return;
     }
@@ -71,49 +73,51 @@ function Login({navigation}: {navigation: any}) {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
-        <View style={styles.logo_container}>
-          <Image
-            style={styles.image}
-            source={require('../../assets/logo/safebeeplogo.png')}
-          />
-          {isConnected === false ? (
-            <Text style={styles.text}>{t('no.connect')}</Text>
-          ) : (
-            versionInfo && (
-              <Text style={styles.text}>
-                {t('version')} : {versionInfo.version}
-              </Text>
-            )
-          )}
-        </View>
+    <View style={styles.container}>
+      <ScrollView>
+        <View>
+          <View style={styles.logo_container}>
+            <Image
+              style={styles.image}
+              source={require('../../assets/logo/safebeeplogo.png')}
+            />
+            {isConnected === false ? (
+              <Text style={styles.text}>{t('no.connect')}</Text>
+            ) : (
+              versionInfo && (
+                <Text style={styles.text}>
+                  {t('version')} : {versionInfo.version}
+                </Text>
+              )
+            )}
+          </View>
 
-        <View>
-          <Input
-            label={t('usercode')}
-            placeholder={t('usercodeEntry')}
-            onChangeText={setUser}
-            value={Usercode}
-            secureTextEntry={false}
-          />
-          <Input
-            label={t('password')}
-            placeholder={t('passwordEntry')}
-            onChangeText={setPassword}
-            value={Password}
-            secureTextEntry
-          />
-        </View>
-        <View>
-          <Button text={t('sign')} onPress={handleLogin} />
-          <Button text={t('adminPnl')} onPress={goToCreateUsers} />
-          <View style={{marginTop: 70}}>
-            <OffOnline />
+          <View>
+            <Input
+              label={t('usercode')}
+              placeholder={t('usercodeEntry')}
+              onChangeText={setUser}
+              value={Usercode}
+              secureTextEntry={false}
+            />
+            <Input
+              label={t('password')}
+              placeholder={t('passwordEntry')}
+              onChangeText={setPassword}
+              value={Password}
+              secureTextEntry
+            />
+          </View>
+          <View>
+            <Button text={t('sign')} onPress={handleLogin} />
+            <Button text={t('adminPnl')} onPress={goToCreateUsers} />
           </View>
         </View>
+      </ScrollView>
+      <View style={styles.offOnlineContainer}>
+        <OffOnline />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

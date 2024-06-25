@@ -7,6 +7,7 @@ import {
   Modal,
   TouchableOpacity,
   Alert,
+  Vibration,
 } from 'react-native';
 import {useCart} from '../../context/CartContext';
 import {useTranslation} from 'react-i18next';
@@ -18,6 +19,7 @@ import {useUser} from '../../context/UserContext';
 import NetInfo from '@react-native-community/netinfo'; //
 
 const Receipt = ({navigation}: any) => {
+  const ONE_SECOND_IN_MS = 1000;
   const {t}: any = useTranslation();
   const {totalPrice, change} = useCart();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -38,6 +40,7 @@ const Receipt = ({navigation}: any) => {
   };
 
   const goToMenu = () => {
+    Vibration.vibrate(1 * ONE_SECOND_IN_MS);
     navigation.navigate('MenuStack');
   };
 
