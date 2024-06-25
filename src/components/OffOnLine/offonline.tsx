@@ -27,7 +27,7 @@ const OffOnline = () => {
           {userInfo ? `${t('id.cashier')}: ${userInfo.id.substring(0, 5)}` : ''}
         </Text>
         <Text style={styles.userInfoText}>
-          {userInfo ? `${t('checkout.no')}: ${userInfo.checkoutNo}` : ''}
+          {userInfo ? `${t('checkout')}: ${userInfo.checkoutNo}` : ''}
         </Text>
       </View>
     </View>

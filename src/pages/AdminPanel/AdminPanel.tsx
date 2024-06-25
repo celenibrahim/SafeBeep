@@ -10,13 +10,14 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import {Picker} from '@react-native-picker/picker';
 
 import styles from './AdminPanel.style';
 import {useTranslation} from 'react-i18next';
 import OffOnline from '../../components/OffOnLine/offonline';
 
 const AdminPanel = () => {
-  const {t}: any = useTranslation();
+  const {t} = useTranslation();
 
   const [users, setUsers] = useState<
     {
@@ -31,6 +32,14 @@ const AdminPanel = () => {
   const [password, setPassword] = useState('');
   const [checkoutNo, setCheckoutNo] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+
+  const checkoutOptions = [
+    'Hallway - 7',
+    'Hallway - 5',
+    'Entry - 4',
+    'Entry - 2',
+    'Exit - 1',
+  ];
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -76,7 +85,7 @@ const AdminPanel = () => {
 
     try {
       await AsyncStorage.setItem('users', JSON.stringify(updatedUsers));
-      Alert.alert(t('alert.success'), t('registration'));
+      Alert.alert(t('alert.warning'), t('registration'));
       setUserCode('');
       setPassword('');
       setCheckoutNo('');
@@ -131,13 +140,16 @@ const AdminPanel = () => {
           value={password}
           secureTextEntry={false}
         />
-        <Input
-          label={t('createCheckNo')}
-          placeholder={t('checkout')}
-          onChangeText={setCheckoutNo}
-          value={checkoutNo}
-          secureTextEntry={false}
-        />
+        <Text style={styles.label}>{t('checkout')}</Text>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={checkoutNo}
+            onValueChange={itemValue => setCheckoutNo(itemValue)}>
+            {checkoutOptions.map(option => (
+              <Picker.Item key={option} label={option} value={option} />
+            ))}
+          </Picker>
+        </View>
         <Button text={t('save')} onPress={handleSignUp} />
         <Button text={t('seeUser')} onPress={handleSeeUsers} />
       </View>
@@ -160,13 +172,13 @@ const AdminPanel = () => {
                   <TouchableOpacity
                     style={styles.userItem}
                     onPress={() => handleDeleteUser(item.id)}>
-                    <Text>
+                    <Text style={styles.modalText}>
                       {t('usercode')}: {item.usercode}
                     </Text>
-                    <Text>
+                    <Text style={styles.modalText}>
                       {t('password')}: {item.password}
                     </Text>
-                    <Text>
+                    <Text style={styles.modalText}>
                       {t('checkout')}: {item.checkoutNo}
                     </Text>
                   </TouchableOpacity>

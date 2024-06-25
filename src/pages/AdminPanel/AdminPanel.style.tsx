@@ -24,12 +24,28 @@ export default StyleSheet.create({
   modalContent: {
     alignItems: 'center',
   },
-  modalTitle: {
+  modalText: {
+    color: 'black',
     fontSize: 18,
+    margin: 2,
+  },
+  modalTitle: {
+    fontSize: 23,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'black',
   },
   userItem: {
     marginVertical: 5,
+  },
+  label: {
+    marginLeft: 15,
+    fontWeight: 'bold',
+  },
+  pickerContainer: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    margin: 10,
   },
 });

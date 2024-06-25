@@ -165,7 +165,7 @@ const Receipt = ({navigation}: any) => {
         {userInfo ? `${t('id.cashier')}: ${userInfo.id}` : ''}
       </Text>
       <Text style={styles.userInfoText}>
-        {userInfo ? `${t('checkout.no')}: ${userInfo.checkoutNo}` : ''}
+        {userInfo ? `${t('checkout')}: ${userInfo.checkoutNo}` : ''}
       </Text>
       <Modal
         animationType="slide"

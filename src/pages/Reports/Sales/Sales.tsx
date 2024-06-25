@@ -111,7 +111,7 @@ const SalesScreen = () => {
         {t('id.cashier')}: {item.userId}
       </Text>
       <Text>
-        {t('checkout.no')}: {item.checkoutNo}
+        {t('checkout')}: {item.checkoutNo}
       </Text>
       <Text>
         {t('date')}: {item.date}
