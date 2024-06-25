@@ -3838,5 +3838,1703 @@
     "category": "clothes",
     "product_name": "Pleated Skirt",
     "price": 44.99
+  },
+  {
+    "id": "0641",
+    "category": "electronics",
+    "product_name": "Smartphone",
+    "price": 299.99
+  },
+  {
+    "id": "0642",
+    "category": "clothes",
+    "product_name": "Jeans",
+    "price": 39.99
+  },
+  {
+    "id": "0643",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 19.99
+  },
+  {
+    "id": "0644",
+    "category": "books",
+    "product_name": "Novel",
+    "price": 12.99
+  },
+  {
+    "id": "0645",
+    "category": "cleaning",
+    "product_name": "Detergent",
+    "price": 5.99
+  },
+  {
+    "id": "0646",
+    "category": "market",
+    "product_name": "Milk",
+    "price": 0.99
+  },
+  {
+    "id": "0647",
+    "category": "electronics",
+    "product_name": "Laptop",
+    "price": 799.99
+  },
+  {
+    "id": "0648",
+    "category": "clothes",
+    "product_name": "Jacket",
+    "price": 59.99
+  },
+  {
+    "id": "0649",
+    "category": "accessories",
+    "product_name": "Backpack",
+    "price": 24.99
+  },
+  {
+    "id": "0650",
+    "category": "books",
+    "product_name": "Dictionary",
+    "price": 9.99
+  },
+  {
+    "id": "0651",
+    "category": "cleaning",
+    "product_name": "Bleach",
+    "price": 2.99
+  },
+  {
+    "id": "0652",
+    "category": "market",
+    "product_name": "Eggs",
+    "price": 2.99
+  },
+  {
+    "id": "0653",
+    "category": "electronics",
+    "product_name": "Tablet",
+    "price": 199.99
+  },
+  {
+    "id": "0654",
+    "category": "clothes",
+    "product_name": "Hat",
+    "price": 14.99
+  },
+  {
+    "id": "0655",
+    "category": "accessories",
+    "product_name": "Wallet",
+    "price": 29.99
+  },
+  {
+    "id": "0656",
+    "category": "books",
+    "product_name": "Comic Book",
+    "price": 6.99
+  },
+  {
+    "id": "0657",
+    "category": "cleaning",
+    "product_name": "Window Cleaner",
+    "price": 3.99
+  },
+  {
+    "id": "0658",
+    "category": "market",
+    "product_name": "Cheese",
+    "price": 4.99
+  },
+  {
+    "id": "0659",
+    "category": "electronics",
+    "product_name": "Camera",
+    "price": 499.99
+  },
+  {
+    "id": "0660",
+    "category": "clothes",
+    "product_name": "Socks",
+    "price": 7.99
+  },
+  {
+    "id": "0661",
+    "category": "accessories",
+    "product_name": "Scarf",
+    "price": 12.99
+  },
+  {
+    "id": "0662",
+    "category": "books",
+    "product_name": "Cookbook",
+    "price": 15.99
+  },
+  {
+    "id": "0663",
+    "category": "cleaning",
+    "product_name": "Mop",
+    "price": 8.99
+  },
+  {
+    "id": "0664",
+    "category": "market",
+    "product_name": "Apple",
+    "price": 0.69
+  },
+  {
+    "id": "0665",
+    "category": "electronics",
+    "product_name": "TV",
+    "price": 999.99
+  },
+  {
+    "id": "0666",
+    "category": "clothes",
+    "product_name": "Gloves",
+    "price": 11.99
+  },
+  {
+    "id": "0667",
+    "category": "accessories",
+    "product_name": "Belt",
+    "price": 18.99
+  },
+  {
+    "id": "0668",
+    "category": "books",
+    "product_name": "Travel Guide",
+    "price": 17.99
+  },
+  {
+    "id": "0669",
+    "category": "cleaning",
+    "product_name": "Dish Soap",
+    "price": 2.49
+  },
+  {
+    "id": "0670",
+    "category": "market",
+    "product_name": "Orange Juice",
+    "price": 3.99
+  },
+  {
+    "id": "0671",
+    "category": "electronics",
+    "product_name": "Smartwatch",
+    "price": 149.99
+  },
+  {
+    "id": "0672",
+    "category": "clothes",
+    "product_name": "Dress",
+    "price": 39.99
+  },
+  {
+    "id": "0673",
+    "category": "accessories",
+    "product_name": "Handbag",
+    "price": 59.99
+  },
+  {
+    "id": "0674",
+    "category": "books",
+    "product_name": "Biography",
+    "price": 21.99
+  },
+  {
+    "id": "0675",
+    "category": "cleaning",
+    "product_name": "Vacuum Cleaner",
+    "price": 89.99
+  },
+  {
+    "id": "0676",
+    "category": "market",
+    "product_name": "Cereal",
+    "price": 4.49
+  },
+  {
+    "id": "0677",
+    "category": "electronics",
+    "product_name": "Game Console",
+    "price": 299.99
+  },
+  {
+    "id": "0678",
+    "category": "clothes",
+    "product_name": "Sweater",
+    "price": 29.99
+  },
+  {
+    "id": "0679",
+    "category": "accessories",
+    "product_name": "Necklace",
+    "price": 34.99
+  },
+  {
+    "id": "0680",
+    "category": "books",
+    "product_name": "Science Fiction Novel",
+    "price": 16.99
+  },
+  {
+    "id": "0681",
+    "category": "cleaning",
+    "product_name": "Laundry Detergent",
+    "price": 6.99
+  },
+  {
+    "id": "0682",
+    "category": "market",
+    "product_name": "Yogurt",
+    "price": 1.49
+  },
+  {
+    "id": "0683",
+    "category": "electronics",
+    "product_name": "Bluetooth Speaker",
+    "price": 49.99
+  },
+  {
+    "id": "0684",
+    "category": "clothes",
+    "product_name": "Pants",
+    "price": 34.99
+  },
+  {
+    "id": "0685",
+    "category": "accessories",
+    "product_name": "Earrings",
+    "price": 24.99
+  },
+  {
+    "id": "0686",
+    "category": "books",
+    "product_name": "Mystery Novel",
+    "price": 14.99
+  },
+  {
+    "id": "0687",
+    "category": "cleaning",
+    "product_name": "Broom",
+    "price": 4.99
+  },
+  {
+    "id": "0688",
+    "category": "market",
+    "product_name": "Banana",
+    "price": 0.49
+  },
+  {
+    "id": "0689",
+    "category": "electronics",
+    "product_name": "Charger",
+    "price": 19.99
+  },
+  {
+    "id": "0690",
+    "category": "clothes",
+    "product_name": "Shoes",
+    "price": 49.99
+  },
+  {
+    "id": "0691",
+    "category": "accessories",
+    "product_name": "Bracelet",
+    "price": 14.99
+  },
+  {
+    "id": "0692",
+    "category": "books",
+    "product_name": "Thriller Novel",
+    "price": 13.99
+  },
+  {
+    "id": "0693",
+    "category": "cleaning",
+    "product_name": "Sponge",
+    "price": 1.99
+  },
+  {
+    "id": "0694",
+    "category": "market",
+    "product_name": "Butter",
+    "price": 2.99
+  },
+  {
+    "id": "0695",
+    "category": "electronics",
+    "product_name": "Headphones",
+    "price": 59.99
+  },
+  {
+    "id": "0696",
+    "category": "clothes",
+    "product_name": "Skirt",
+    "price": 29.99
+  },
+  {
+    "id": "0697",
+    "category": "accessories",
+    "product_name": "Ring",
+    "price": 19.99
+  },
+  {
+    "id": "0698",
+    "category": "books",
+    "product_name": "Poetry Book",
+    "price": 11.99
+  },
+  {
+    "id": "0699",
+    "category": "cleaning",
+    "product_name": "Floor Cleaner",
+    "price": 7.99
+  },
+  {
+    "id": "0700",
+    "category": "market",
+    "product_name": "Jam",
+    "price": 3.49
+  },
+  {
+    "id": "0701",
+    "category": "electronics",
+    "product_name": "Monitor",
+    "price": 129.99
+  },
+  {
+    "id": "0702",
+    "category": "clothes",
+    "product_name": "Blouse",
+    "price": 24.99
+  },
+  {
+    "id": "0703",
+    "category": "accessories",
+    "product_name": "Watch",
+    "price": 79.99
+  },
+  {
+    "id": "0704",
+    "category": "books",
+    "product_name": "Graphic Novel",
+    "price": 18.99
+  },
+  {
+    "id": "0705",
+    "category": "cleaning",
+    "product_name": "Glass Cleaner",
+    "price": 3.49
+  },
+  {
+    "id": "0706",
+    "category": "market",
+    "product_name": "Pasta",
+    "price": 1.99
+  },
+  {
+    "id": "0707",
+    "category": "electronics",
+    "product_name": "Router",
+    "price": 79.99
+  },
+  {
+    "id": "0708",
+    "category": "clothes",
+    "product_name": "Blazer",
+    "price": 89.99
+  },
+  {
+    "id": "0709",
+    "category": "accessories",
+    "product_name": "Keychain",
+    "price": 4.99
+  },
+  {
+    "id": "0710",
+    "category": "books",
+    "product_name": "History Book",
+    "price": 22.99
+  },
+  {
+    "id": "0711",
+    "category": "cleaning",
+    "product_name": "Air Freshener",
+    "price": 3.99
+  },
+  {
+    "id": "0712",
+    "category": "market",
+    "product_name": "Rice",
+    "price": 2.49
+  },
+  {
+    "id": "0713",
+    "category": "electronics",
+    "product_name": "Mouse",
+    "price": 25.99
+  },
+  {
+    "id": "0714",
+    "category": "clothes",
+    "product_name": "Tie",
+    "price": 12.99
+  },
+  {
+    "id": "0715",
+    "category": "accessories",
+    "product_name": "Hat",
+    "price": 14.99
+  },
+  {
+    "id": "0716",
+    "category": "books",
+    "product_name": "Self-Help Book",
+    "price": 19.99
+  },
+  {
+    "id": "0717",
+    "category": "cleaning",
+    "product_name": "Multi-Purpose Cleaner",
+    "price": 5.99
+  },
+  {
+    "id": "0718",
+    "category": "market",
+    "product_name": "Sugar",
+    "price": 2.79
+  },
+  {
+    "id": "0719",
+    "category": "electronics",
+    "product_name": "Keyboard",
+    "price": 45.99
+  },
+  {
+    "id": "0720",
+    "category": "clothes",
+    "product_name": "Shorts",
+    "price": 22.99
+  },
+  {
+    "id": "0721",
+    "category": "accessories",
+    "product_name": "Gloves",
+    "price": 11.99
+  },
+  {
+    "id": "0722",
+    "category": "books",
+    "product_name": "Anthology",
+    "price": 23.99
+  },
+  {
+    "id": "0723",
+    "category": "cleaning",
+    "product_name": "Tile Cleaner",
+    "price": 6.49
+  },
+  {
+    "id": "0724",
+    "category": "market",
+    "product_name": "Chicken",
+    "price": 6.99
+  },
+  {
+    "id": "0725",
+    "category": "electronics",
+    "product_name": "Printer",
+    "price": 149.99
+  },
+  {
+    "id": "0726",
+    "category": "clothes",
+    "product_name": "Suit",
+    "price": 149.99
+  },
+  {
+    "id": "0727",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 19.99
+  },
+  {
+    "id": "0728",
+    "category": "books",
+    "product_name": "Fantasy Novel",
+    "price": 17.99
+  },
+  {
+    "id": "0729",
+    "category": "cleaning",
+    "product_name": "Toilet Cleaner",
+    "price": 4.49
+  },
+  {
+    "id": "0730",
+    "category": "market",
+    "product_name": "Coffee",
+    "price": 5.49
+  },
+  {
+    "id": "0731",
+    "category": "electronics",
+    "product_name": "External Hard Drive",
+    "price": 89.99
+  },
+  {
+    "id": "0732",
+    "category": "clothes",
+    "product_name": "Tank Top",
+    "price": 14.99
+  },
+  {
+    "id": "0733",
+    "category": "accessories",
+    "product_name": "Brooch",
+    "price": 9.99
+  },
+  {
+    "id": "0734",
+    "category": "books",
+    "product_name": "Horror Novel",
+    "price": 15.99
+  },
+  {
+    "id": "0735",
+    "category": "cleaning",
+    "product_name": "Laundry Softener",
+    "price": 3.99
+  },
+  {
+    "id": "0736",
+    "category": "market",
+    "product_name": "Lettuce",
+    "price": 0.99
+  },
+  {
+    "id": "0737",
+    "category": "electronics",
+    "product_name": "Projector",
+    "price": 299.99
+  },
+  {
+    "id": "0738",
+    "category": "clothes",
+    "product_name": "Vest",
+    "price": 19.99
+  },
+  {
+    "id": "0739",
+    "category": "accessories",
+    "product_name": "Hair Clip",
+    "price": 3.99
+  },
+  {
+    "id": "0740",
+    "category": "books",
+    "product_name": "Memoir",
+    "price": 24.99
+  },
+  {
+    "id": "0741",
+    "category": "cleaning",
+    "product_name": "Carpet Cleaner",
+    "price": 7.99
+  },
+  {
+    "id": "0742",
+    "category": "market",
+    "product_name": "Tomato",
+    "price": 0.79
+  },
+  {
+    "id": "0743",
+    "category": "electronics",
+    "product_name": "Smart Light Bulb",
+    "price": 19.99
+  },
+  {
+    "id": "0744",
+    "category": "clothes",
+    "product_name": "Swimwear",
+    "price": 29.99
+  },
+  {
+    "id": "0745",
+    "category": "accessories",
+    "product_name": "Tie Clip",
+    "price": 6.99
+  },
+  {
+    "id": "0746",
+    "category": "books",
+    "product_name": "Science Book",
+    "price": 29.99
+  },
+  {
+    "id": "0747",
+    "category": "cleaning",
+    "product_name": "Disinfectant",
+    "price": 4.99
+  },
+  {
+    "id": "0748",
+    "category": "market",
+    "product_name": "Carrot",
+    "price": 0.59
+  },
+  {
+    "id": "0749",
+    "category": "electronics",
+    "product_name": "Earbuds",
+    "price": 29.99
+  },
+  {
+    "id": "0750",
+    "category": "clothes",
+    "product_name": "Coat",
+    "price": 99.99
+  },
+  {
+    "id": "0751",
+    "category": "accessories",
+    "product_name": "Cufflinks",
+    "price": 14.99
+  },
+  {
+    "id": "0752",
+    "category": "books",
+    "product_name": "Romance Novel",
+    "price": 12.99
+  },
+  {
+    "id": "0753",
+    "category": "cleaning",
+    "product_name": "Stain Remover",
+    "price": 3.49
+  },
+  {
+    "id": "0754",
+    "category": "market",
+    "product_name": "Broccoli",
+    "price": 1.99
+  },
+  {
+    "id": "0755",
+    "category": "electronics",
+    "product_name": "Wireless Charger",
+    "price": 39.99
+  },
+  {
+    "id": "0756",
+    "category": "clothes",
+    "product_name": "Underwear",
+    "price": 12.99
+  },
+  {
+    "id": "0757",
+    "category": "accessories",
+    "product_name": "Wallet",
+    "price": 29.99
+  },
+  {
+    "id": "0758",
+    "category": "books",
+    "product_name": "Cookbook",
+    "price": 25.99
+  },
+  {
+    "id": "0759",
+    "category": "cleaning",
+    "product_name": "Polish",
+    "price": 4.99
+  },
+  {
+    "id": "0760",
+    "category": "market",
+    "product_name": "Milk",
+    "price": 1.49
+  },
+  {
+    "id": "0761",
+    "category": "electronics",
+    "product_name": "Fitness Tracker",
+    "price": 59.99
+  },
+  {
+    "id": "0762",
+    "category": "clothes",
+    "product_name": "Jeans",
+    "price": 49.99
+  },
+  {
+    "id": "0763",
+    "category": "accessories",
+    "product_name": "Socks",
+    "price": 8.99
+  },
+  {
+    "id": "0764",
+    "category": "books",
+    "product_name": "Travel Guide",
+    "price": 18.99
+  },
+  {
+    "id": "0765",
+    "category": "cleaning",
+    "product_name": "Floor Wax",
+    "price": 6.99
+  },
+  {
+    "id": "0766",
+    "category": "market",
+    "product_name": "Bread",
+    "price": 2.49
+  },
+  {
+    "id": "0767",
+    "category": "electronics",
+    "product_name": "Webcam",
+    "price": 49.99
+  },
+  {
+    "id": "0768",
+    "category": "clothes",
+    "product_name": "Scarf",
+    "price": 12.99
+  },
+  {
+    "id": "0769",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 19.99
+  },
+  {
+    "id": "0770",
+    "category": "books",
+    "product_name": "Dictionary",
+    "price": 14.99
+  },
+  {
+    "id": "0771",
+    "category": "cleaning",
+    "product_name": "Window Cleaner",
+    "price": 2.99
+  },
+  {
+    "id": "0772",
+    "category": "market",
+    "product_name": "Fish",
+    "price": 7.99
+  },
+  {
+    "id": "0773",
+    "category": "electronics",
+    "product_name": "Laptop",
+    "price": 699.99
+  },
+  {
+    "id": "0774",
+    "category": "clothes",
+    "product_name": "Jacket",
+    "price": 79.99
+  },
+  {
+    "id": "0775",
+    "category": "accessories",
+    "product_name": "Belt",
+    "price": 15.99
+  },
+  {
+    "id": "0776",
+    "category": "books",
+    "product_name": "Textbook",
+    "price": 79.99
+  },
+  {
+    "id": "0777",
+    "category": "cleaning",
+    "product_name": "Bleach",
+    "price": 2.49
+  },
+  {
+    "id": "0778",
+    "category": "market",
+    "product_name": "Peanut Butter",
+    "price": 4.99
+  },
+  {
+    "id": "0779",
+    "category": "electronics",
+    "product_name": "TV Remote",
+    "price": 24.99
+  },
+  {
+    "id": "0780",
+    "category": "clothes",
+    "product_name": "T-shirt",
+    "price": 19.99
+  },
+  {
+    "id": "0781",
+    "category": "accessories",
+    "product_name": "Ring",
+    "price": 22.99
+  },
+  {
+    "id": "0782",
+    "category": "books",
+    "product_name": "Novella",
+    "price": 8.99
+  },
+  {
+    "id": "0783",
+    "category": "cleaning",
+    "product_name": "Furniture Polish",
+    "price": 4.99
+  },
+  {
+    "id": "0784",
+    "category": "market",
+    "product_name": "Grapes",
+    "price": 2.99
+  },
+  {
+    "id": "0785",
+    "category": "electronics",
+    "product_name": "VR Headset",
+    "price": 199.99
+  },
+  {
+    "id": "0786",
+    "category": "clothes",
+    "product_name": "Trousers",
+    "price": 39.99
+  },
+  {
+    "id": "0787",
+    "category": "accessories",
+    "product_name": "Watch",
+    "price": 69.99
+  },
+  {
+    "id": "0788",
+    "category": "books",
+    "product_name": "Children's Book",
+    "price": 10.99
+  },
+  {
+    "id": "0789",
+    "category": "cleaning",
+    "product_name": "Kitchen Cleaner",
+    "price": 3.99
+  },
+  {
+    "id": "0790",
+    "category": "market",
+    "product_name": "Beef",
+    "price": 8.99
+  },
+  {
+    "id": "0791",
+    "category": "electronics",
+    "product_name": "Drone",
+    "price": 399.99
+  },
+  {
+    "id": "0792",
+    "category": "clothes",
+    "product_name": "Blouse",
+    "price": 25.99
+  },
+  {
+    "id": "0793",
+    "category": "accessories",
+    "product_name": "Necklace",
+    "price": 27.99
+  },
+  {
+    "id": "0794",
+    "category": "books",
+    "product_name": "Adventure Novel",
+    "price": 18.99
+  },
+  {
+    "id": "0795",
+    "category": "cleaning",
+    "product_name": "Grill Cleaner",
+    "price": 5.99
+  },
+  {
+    "id": "0796",
+    "category": "market",
+    "product_name": "Pizza",
+    "price": 7.99
+  },
+  {
+    "id": "0797",
+    "category": "electronics",
+    "product_name": "Digital Camera",
+    "price": 129.99
+  },
+  {
+    "id": "0798",
+    "category": "clothes",
+    "product_name": "Hoodie",
+    "price": 39.99
+  },
+  {
+    "id": "0799",
+    "category": "accessories",
+    "product_name": "Earrings",
+    "price": 19.99
+  },
+  {
+    "id": "0800",
+    "category": "books",
+    "product_name": "Crime Novel",
+    "price": 16.99
+  },
+  {
+    "id": "0801",
+    "category": "cleaning",
+    "product_name": "Oven Cleaner",
+    "price": 4.49
+  },
+  {
+    "id": "0802",
+    "category": "market",
+    "product_name": "Juice",
+    "price": 2.49
+  },
+  {
+    "id": "0803",
+    "category": "electronics",
+    "product_name": "Soundbar",
+    "price": 89.99
+  },
+  {
+    "id": "0804",
+    "category": "clothes",
+    "product_name": "Jumpsuit",
+    "price": 44.99
+  },
+  {
+    "id": "0805",
+    "category": "accessories",
+    "product_name": "Pendant",
+    "price": 24.99
+  },
+  {
+    "id": "0806",
+    "category": "books",
+    "product_name": "Anthology",
+    "price": 22.99
+  },
+  {
+    "id": "0807",
+    "category": "cleaning",
+    "product_name": "Rug Cleaner",
+    "price": 5.99
+  },
+  {
+    "id": "0808",
+    "category": "market",
+    "product_name": "Peas",
+    "price": 1.79
+  },
+  {
+    "id": "0809",
+    "category": "electronics",
+    "product_name": "Smart Thermostat",
+    "price": 139.99
+  },
+  {
+    "id": "0810",
+    "category": "clothes",
+    "product_name": "Tank Top",
+    "price": 12.99
+  },
+  {
+    "id": "0811",
+    "category": "accessories",
+    "product_name": "Bow Tie",
+    "price": 9.99
+  },
+  {
+    "id": "0812",
+    "category": "books",
+    "product_name": "Fantasy Novel",
+    "price": 20.99
+  },
+  {
+    "id": "0813",
+    "category": "cleaning",
+    "product_name": "Stove Cleaner",
+    "price": 4.99
+  },
+  {
+    "id": "0814",
+    "category": "market",
+    "product_name": "Honey",
+    "price": 5.49
+  },
+  {
+    "id": "0815",
+    "category": "electronics",
+    "product_name": "Smart Plug",
+    "price": 14.99
+  },
+  {
+    "id": "0816",
+    "category": "clothes",
+    "product_name": "Socks",
+    "price": 8.99
+  },
+  {
+    "id": "0817",
+    "category": "accessories",
+    "product_name": "Bracelet",
+    "price": 12.99
+  },
+  {
+    "id": "0818",
+    "category": "books",
+    "product_name": "History Book",
+    "price": 25.99
+  },
+  {
+    "id": "0819",
+    "category": "cleaning",
+    "product_name": "Wood Cleaner",
+    "price": 6.49
+  },
+  {
+    "id": "0820",
+    "category": "market",
+    "product_name": "Flour",
+    "price": 2.49
+  },
+  {
+    "id": "0821",
+    "category": "electronics",
+    "product_name": "Bluetooth Speaker",
+    "price": 59.99
+  },
+  {
+    "id": "0822",
+    "category": "clothes",
+    "product_name": "Cardigan",
+    "price": 29.99
+  },
+  {
+    "id": "0823",
+    "category": "accessories",
+    "product_name": "Hat",
+    "price": 14.99
+  },
+  {
+    "id": "0824",
+    "category": "books",
+    "product_name": "Science Book",
+    "price": 28.99
+  },
+  {
+    "id": "0825",
+    "category": "cleaning",
+    "product_name": "Dish Soap",
+    "price": 2.99
+  },
+  {
+    "id": "0826",
+    "category": "market",
+    "product_name": "Yogurt",
+    "price": 3.49
+  },
+  {
+    "id": "0827",
+    "category": "electronics",
+    "product_name": "Digital Frame",
+    "price": 79.99
+  },
+  {
+    "id": "0828",
+    "category": "clothes",
+    "product_name": "Sweater",
+    "price": 34.99
+  },
+  {
+    "id": "0829",
+    "category": "accessories",
+    "product_name": "Hair Tie",
+    "price": 4.99
+  },
+  {
+    "id": "0830",
+    "category": "books",
+    "product_name": "Thriller Novel",
+    "price": 17.99
+  },
+  {
+    "id": "0831",
+    "category": "cleaning",
+    "product_name": "Bathroom Cleaner",
+    "price": 3.49
+  },
+  {
+    "id": "0832",
+    "category": "market",
+    "product_name": "Butter",
+    "price": 2.99
+  },
+  {
+    "id": "0833",
+    "category": "electronics",
+    "product_name": "Tablet",
+    "price": 199.99
+  },
+  {
+    "id": "0834",
+    "category": "clothes",
+    "product_name": "Raincoat",
+    "price": 59.99
+  },
+  {
+    "id": "0835",
+    "category": "accessories",
+    "product_name": "Scarf",
+    "price": 12.99
+  },
+  {
+    "id": "0836",
+    "category": "books",
+    "product_name": "Drama Novel",
+    "price": 16.99
+  },
+  {
+    "id": "0837",
+    "category": "cleaning",
+    "product_name": "Sink Cleaner",
+    "price": 3.99
+  },
+  {
+    "id": "0838",
+    "category": "market",
+    "product_name": "Cheese",
+    "price": 3.99
+  },
+  {
+    "id": "0839",
+    "category": "electronics",
+    "product_name": "Electric Kettle",
+    "price": 29.99
+  },
+  {
+    "id": "0840",
+    "category": "clothes",
+    "product_name": "Sweatshirt",
+    "price": 34.99
+  },
+  {
+    "id": "0841",
+    "category": "accessories",
+    "product_name": "Hairpin",
+    "price": 6.99
+  },
+  {
+    "id": "0842",
+    "category": "books",
+    "product_name": "Poetry Book",
+    "price": 14.99
+  },
+  {
+    "id": "0843",
+    "category": "cleaning",
+    "product_name": "Degreaser",
+    "price": 4.99
+  },
+  {
+    "id": "0844",
+    "category": "market",
+    "product_name": "Ham",
+    "price": 4.49
+  },
+  {
+    "id": "0845",
+    "category": "electronics",
+    "product_name": "Microwave Oven",
+    "price": 119.99
+  },
+  {
+    "id": "0846",
+    "category": "clothes",
+    "product_name": "Shoes",
+    "price": 59.99
+  },
+  {
+    "id": "0847",
+    "category": "accessories",
+    "product_name": "Watch",
+    "price": 69.99
+  },
+  {
+    "id": "0848",
+    "category": "books",
+    "product_name": "Biography",
+    "price": 21.99
+  },
+  {
+    "id": "0849",
+    "category": "cleaning",
+    "product_name": "Drain Cleaner",
+    "price": 3.99
+  },
+  {
+    "id": "0850",
+    "category": "market",
+    "product_name": "Bacon",
+    "price": 5.49
+  },
+  {
+    "id": "0851",
+    "category": "electronics",
+    "product_name": "Laptop Stand",
+    "price": 49.99
+  },
+  {
+    "id": "0852",
+    "category": "clothes",
+    "product_name": "Sneakers",
+    "price": 69.99
+  },
+  {
+    "id": "0853",
+    "category": "accessories",
+    "product_name": "Handbag",
+    "price": 49.99
+  },
+  {
+    "id": "0854",
+    "category": "books",
+    "product_name": "Historical Fiction",
+    "price": 23.99
+  },
+  {
+    "id": "0855",
+    "category": "cleaning",
+    "product_name": "Laundry Detergent",
+    "price": 5.99
+  },
+  {
+    "id": "0856",
+    "category": "market",
+    "product_name": "Chips",
+    "price": 3.49
+  },
+  {
+    "id": "0857",
+    "category": "electronics",
+    "product_name": "Action Camera",
+    "price": 149.99
+  },
+  {
+    "id": "0858",
+    "category": "clothes",
+    "product_name": "Boots",
+    "price": 79.99
+  },
+  {
+    "id": "0859",
+    "category": "accessories",
+    "product_name": "Bracelet",
+    "price": 12.99
+  },
+  {
+    "id": "0860",
+    "category": "books",
+    "product_name": "Thriller Novel",
+    "price": 16.99
+  },
+  {
+    "id": "0861",
+    "category": "cleaning",
+    "product_name": "Bathroom Cleaner",
+    "price": 3.99
+  },
+  {
+    "id": "0862",
+    "category": "market",
+    "product_name": "Oats",
+    "price": 2.49
+  },
+  {
+    "id": "0863",
+    "category": "electronics",
+    "product_name": "Noise-Cancelling Headphones",
+    "price": 199.99
+  },
+  {
+    "id": "0864",
+    "category": "clothes",
+    "product_name": "Tracksuit",
+    "price": 49.99
+  },
+  {
+    "id": "0865",
+    "category": "accessories",
+    "product_name": "Earrings",
+    "price": 14.99
+  },
+  {
+    "id": "0866",
+    "category": "books",
+    "product_name": "Science Fiction Novel",
+    "price": 18.99
+  },
+  {
+    "id": "0867",
+    "category": "cleaning",
+    "product_name": "Bathroom Cleaner",
+    "price": 3.99
+  },
+  {
+    "id": "0868",
+    "category": "market",
+    "product_name": "Butter",
+    "price": 3.99
+  },
+  {
+    "id": "0869",
+    "category": "electronics",
+    "product_name": "Bluetooth Headphones",
+    "price": 79.99
+  },
+  {
+    "id": "0870",
+    "category": "clothes",
+    "product_name": "Suit",
+    "price": 199.99
+  },
+  {
+    "id": "0871",
+    "category": "accessories",
+    "product_name": "Gloves",
+    "price": 9.99
+  },
+  {
+    "id": "0872",
+    "category": "books",
+    "product_name": "Graphic Novel",
+    "price": 24.99
+  },
+  {
+    "id": "0873",
+    "category": "cleaning",
+    "product_name": "Dishwasher Detergent",
+    "price": 4.99
+  },
+  {
+    "id": "0874",
+    "category": "market",
+    "product_name": "Milk",
+    "price": 1.49
+  },
+  {
+    "id": "0875",
+    "category": "electronics",
+    "product_name": "Gaming Mouse",
+    "price": 39.99
+  },
+  {
+    "id": "0876",
+    "category": "clothes",
+    "product_name": "Shirt",
+    "price": 29.99
+  },
+  {
+    "id": "0877",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 19.99
+  },
+  {
+    "id": "0878",
+    "category": "books",
+    "product_name": "Romance Novel",
+    "price": 17.99
+  },
+  {
+    "id": "0879",
+    "category": "cleaning",
+    "product_name": "Dish Soap",
+    "price": 2.99
+  },
+  {
+    "id": "0880",
+    "category": "market",
+    "product_name": "Pasta",
+    "price": 1.99
+  },
+  {
+    "id": "0881",
+    "category": "electronics",
+    "product_name": "Portable Speaker",
+    "price": 49.99
+  },
+  {
+    "id": "0882",
+    "category": "clothes",
+    "product_name": "Shorts",
+    "price": 24.99
+  },
+  {
+    "id": "0883",
+    "category": "accessories",
+    "product_name": "Hat",
+    "price": 14.99
+  },
+  {
+    "id": "0884",
+    "category": "books",
+    "product_name": "Cookbook",
+    "price": 26.99
+  },
+  {
+    "id": "0885",
+    "category": "cleaning",
+    "product_name": "Glass Cleaner",
+    "price": 2.49
+  },
+  {
+    "id": "0886",
+    "category": "market",
+    "product_name": "Chicken",
+    "price": 6.99
+  },
+  {
+    "id": "0887",
+    "category": "electronics",
+    "product_name": "Smart Watch",
+    "price": 149.99
+  },
+  {
+    "id": "0888",
+    "category": "clothes",
+    "product_name": "Dress",
+    "price": 49.99
+  },
+  {
+    "id": "0889",
+    "category": "accessories",
+    "product_name": "Earrings",
+    "price": 14.99
+  },
+  {
+    "id": "0890",
+    "category": "books",
+    "product_name": "Memoir",
+    "price": 22.99
+  },
+  {
+    "id": "0891",
+    "category": "cleaning",
+    "product_name": "Mop",
+    "price": 9.99
+  },
+  {
+    "id": "0892",
+    "category": "market",
+    "product_name": "Ice Cream",
+    "price": 4.99
+  },
+  {
+    "id": "0893",
+    "category": "electronics",
+    "product_name": "Smartphone",
+    "price": 499.99
+  },
+  {
+    "id": "0894",
+    "category": "clothes",
+    "product_name": "Swimsuit",
+    "price": 29.99
+  },
+  {
+    "id": "0895",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 19.99
+  },
+  {
+    "id": "0896",
+    "category": "books",
+    "product_name": "Classic Literature",
+    "price": 15.99
+  },
+  {
+    "id": "0897",
+    "category": "cleaning",
+    "product_name": "Disinfectant",
+    "price": 3.99
+  },
+  {
+    "id": "0898",
+    "category": "market",
+    "product_name": "Orange Juice",
+    "price": 3.49
+  },
+  {
+    "id": "0899",
+    "category": "electronics",
+    "product_name": "Smart Home Hub",
+    "price": 129.99
+  },
+  {
+    "id": "0900",
+    "category": "clothes",
+    "product_name": "Suit",
+    "price": 199.99
+  },
+  {
+    "id": "0901",
+    "category": "accessories",
+    "product_name": "Cufflinks",
+    "price": 29.99
+  },
+  {
+    "id": "0902",
+    "category": "books",
+    "product_name": "Self-Help Book",
+    "price": 18.99
+  },
+  {
+    "id": "0903",
+    "category": "cleaning",
+    "product_name": "Glass Cleaner",
+    "price": 2.49
+  },
+  {
+    "id": "0904",
+    "category": "market",
+    "product_name": "Apple",
+    "price": 0.99
+  },
+  {
+    "id": "0905",
+    "category": "electronics",
+    "product_name": "Fitness Tracker",
+    "price": 59.99
+  },
+  {
+    "id": "0906",
+    "category": "clothes",
+    "product_name": "Coat",
+    "price": 79.99
+  },
+  {
+    "id": "0907",
+    "category": "accessories",
+    "product_name": "Belt",
+    "price": 15.99
+  },
+  {
+    "id": "0908",
+    "category": "books",
+    "product_name": "Travel Guide",
+    "price": 18.99
+  },
+  {
+    "id": "0909",
+    "category": "cleaning",
+    "product_name": "Window Cleaner",
+    "price": 2.99
+  },
+  {
+    "id": "0910",
+    "category": "market",
+    "product_name": "Bread",
+    "price": 2.49
+  },
+  {
+    "id": "0911",
+    "category": "electronics",
+    "product_name": "Webcam",
+    "price": 49.99
+  },
+  {
+    "id": "0912",
+    "category": "clothes",
+    "product_name": "Scarf",
+    "price": 12.99
+  },
+  {
+    "id": "0913",
+    "category": "accessories",
+    "product_name": "Sunglasses",
+    "price": 19.99
+  },
+  {
+    "id": "0914",
+    "category": "books",
+    "product_name": "Dictionary",
+    "price": 14.99
+  },
+  {
+    "id": "0915",
+    "category": "cleaning",
+    "product_name": "Bleach",
+    "price": 2.49
+  },
+  {
+    "id": "0916",
+    "category": "market",
+    "product_name": "Fish",
+    "price": 7.99
+  },
+  {
+    "id": "0917",
+    "category": "electronics",
+    "product_name": "Laptop",
+    "price": 699.99
+  },
+  {
+    "id": "0918",
+    "category": "clothes",
+    "product_name": "Jacket",
+    "price": 79.99
+  },
+  {
+    "id": "0919",
+    "category": "accessories",
+    "product_name": "Belt",
+    "price": 15.99
+  },
+  {
+    "id": "0920",
+    "category": "books",
+    "product_name": "Textbook",
+    "price": 79.99
+  },
+  {
+    "id": "0921",
+    "category": "cleaning",
+    "product_name": "Floor Wax",
+    "price": 6.99
+  },
+  {
+    "id": "0922",
+    "category": "market",
+    "product_name": "Peanut Butter",
+    "price": 4.99
+  },
+  {
+    "id": "0923",
+    "category": "electronics",
+    "product_name": "TV Remote",
+    "price": 24.99
   }
 ]

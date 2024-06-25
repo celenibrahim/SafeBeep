@@ -118,7 +118,11 @@ function Products({navigation}: any) {
     const searchedText = text.toLowerCase();
     const filteredList = originalProducts.filter(product => {
       const currentTitle = product.product_name.toLowerCase();
-      return currentTitle.startsWith(searchedText);
+      const currentId = product.id.toLowerCase();
+      return (
+        currentTitle.startsWith(searchedText) ||
+        currentId.startsWith(searchedText)
+      );
     });
     setProducts(filteredList);
   };

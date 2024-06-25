@@ -149,6 +149,9 @@ const Receipt = ({navigation}: any) => {
       const sales = storedSales ? JSON.parse(storedSales) : [];
       sales.push(sale);
       await AsyncStorage.setItem(storageKey, JSON.stringify(sales));
+
+      await AsyncStorage.removeItem('@cart');
+
       Alert.alert(t('alert.warning'), t('sale.saved'));
       goToMenu();
     } catch (error) {
