@@ -13,10 +13,9 @@ import {useCart} from '../../context/CartContext';
 import {useTranslation} from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {encode} from 'base-64';
-import Button from '../../components/Button';
 import styles from './Receipt.syles';
 import {useUser} from '../../context/UserContext';
-import NetInfo from '@react-native-community/netinfo'; //
+import NetInfo from '@react-native-community/netinfo';
 
 const Receipt = ({navigation}: any) => {
   const ONE_SECOND_IN_MS = 1000;
@@ -27,6 +26,7 @@ const Receipt = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const {userInfo}: any = useUser();
   const [isOnline, setIsOnline] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   interface CartItem {
     id: string;
@@ -85,6 +85,29 @@ const Receipt = ({navigation}: any) => {
   }, []);
 
   const formattedDate = new Date().toLocaleString();
+
+  const fetchWithTimeout = (
+    url: string,
+    options: RequestInit,
+    timeout = 3000,
+  ): Promise<Response> => {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error('Request timed out'));
+      }, timeout);
+
+      fetch(url, options)
+        .then(response => {
+          clearTimeout(timer);
+          resolve(response);
+        })
+        .catch(err => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
+  };
+
   const handleSendEmail = async () => {
     const MAILJET_API_KEY = 'f8d1003d0c4762100cc0c9e380602c75';
     const MAILJET_SECRET_KEY = '384cf9729a3d9cb4e2e357246c427205';
@@ -142,37 +165,56 @@ const Receipt = ({navigation}: any) => {
       change: change ? change.toFixed(2) : '0.00',
     };
 
-    const storageKey = isOnline ? 'onsales' : 'offsales';
+    let storageKey = 'offsales';
+    let isOnlineSuccess = false;
+
+    setButtonDisabled(true);
 
     try {
+      if (isOnline) {
+        try {
+          const response = await fetchWithTimeout(
+            'http://192.168.56.1:3001/sales',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(sale),
+            },
+          );
+
+          if (response.ok) {
+            const responseData = await response.json();
+            console.log('Response message:', responseData.message);
+            storageKey = 'onsales';
+            isOnlineSuccess = true;
+          } else {
+            throw new Error('Failed to save sale to the server');
+          }
+        } catch (error) {
+          console.error('Error posting sale:', error);
+        }
+      }
+
       const storedSales = await AsyncStorage.getItem(storageKey);
       const sales = storedSales ? JSON.parse(storedSales) : [];
       sales.push(sale);
       await AsyncStorage.setItem(storageKey, JSON.stringify(sales));
-
-      if (isOnline) {
-        const response = await fetch('http://192.168.56.1:3001/sales', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(sale),
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to save sale to the server');
-        } else {
-          const responseData = await response.json();
-          console.log('Response message:', responseData.message);
-        }
-      }
       await AsyncStorage.removeItem('@cart');
 
-      Alert.alert(t('alert.warning'), t('sale.saved'));
+      if (!isOnlineSuccess && isOnline) {
+        Alert.alert(t('alert.warning'), t('err.server'));
+      } else {
+        Alert.alert(t('alert.warning'), t('sale.saved'));
+      }
+
       goToMenu();
     } catch (error) {
       console.error('Error saving sale:', error);
       Alert.alert(t('alert.warning'), t('error.saleSave'));
+    } finally {
+      setButtonDisabled(false);
     }
   };
 
@@ -203,12 +245,12 @@ const Receipt = ({navigation}: any) => {
             <TouchableOpacity
               style={[styles.emailModalButton, {backgroundColor: '#007AFF'}]}
               onPress={handleSendEmail}>
-              <Text style={styles.text_button}>{t('send')}</Text>
+              <Text style={styles.buttonText}>{t('send')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.emailModalButton, {backgroundColor: '#FF3B30'}]}
               onPress={() => setEmailModalVisible(false)}>
-              <Text style={styles.text_button}>{t('cancel')}</Text>
+              <Text style={styles.buttonText}>{t('cancel')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -226,21 +268,26 @@ const Receipt = ({navigation}: any) => {
 
       <View style={styles.summaryContainer}>
         <Text style={styles.summaryText}>
-          {t('total.price')}: {totalPrice ? totalPrice.toFixed(2) : '0.00'} $
+          {t('total.price')}: {totalPrice.toFixed(2)} $
         </Text>
         <Text style={styles.summaryText}>
-          {t('totalPaid')}:{' '}
-          {totalPrice && change !== undefined
-            ? (totalPrice + change).toFixed(2)
-            : '0.00'}{' '}
-          $
+          {t('totalPaid')}: {(totalPrice + change).toFixed(2)} $
         </Text>
         <Text style={styles.summaryText}>
-          {t('change')}: {change !== undefined ? change.toFixed(2) : '0.00'} $
+          {t('change')}: {change.toFixed(2)} $
         </Text>
       </View>
-      <Button text={t('send.mail')} onPress={setEmailing} />
-      <Button text={t('finish')} onPress={handleFinish} />
+
+      <TouchableOpacity style={styles.emailButton} onPress={setEmailing}>
+        <Text style={styles.buttonText}>{t('send.mail')}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={buttonDisabled ? styles.disabledButton : styles.finishButton}
+        onPress={!buttonDisabled ? handleFinish : undefined}
+        activeOpacity={buttonDisabled ? 1 : 0.7}
+        disabled={buttonDisabled}>
+        <Text style={styles.buttonText}>{t('finish')}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

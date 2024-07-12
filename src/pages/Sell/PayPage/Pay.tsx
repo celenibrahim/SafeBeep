@@ -112,7 +112,7 @@ const Pay = ({navigation}: any) => {
 
     if (amount > remainingAmount) {
       const changeAmount = amount - remainingAmount;
-      setChange(changeAmount); // Change amount set to global state
+      setChange(changeAmount);
       setRemainingAmount(0);
     } else {
       setRemainingAmount((prev: number) => prev - amount);
@@ -145,7 +145,7 @@ const Pay = ({navigation}: any) => {
       setCartItems([]);
       setGroupedCartItems([]);
       setRemainingAmount(0);
-      setChange(0); // Reset change amount in global state
+      setChange(0);
       Alert.alert(t('cancel.doc.alert'));
     } catch (error) {
       console.error(t('cancel.doc.error'), error);
@@ -225,7 +225,10 @@ const Pay = ({navigation}: any) => {
             <View style={styles.cart_container}>
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={styles.total_price_text}>
-                  {t('total.price')} : {remainingAmount.toFixed(2)} $
+                  {t('total.price')} : {totalPrice.toFixed(2)} $
+                </Text>
+                <Text style={styles.total_price_text}>
+                  {t('rem.price')} : {remainingAmount.toFixed(2)} $
                 </Text>
               </View>
             </View>

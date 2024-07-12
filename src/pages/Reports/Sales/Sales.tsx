@@ -3,7 +3,6 @@ import {View, Text, FlatList, TouchableOpacity, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import {useTranslation} from 'react-i18next';
-import axios from 'axios';
 import styles from './Sales.styles';
 
 interface SaleItem {
@@ -26,6 +25,7 @@ const SalesScreen = () => {
   const [offlineSales, setOfflineSales] = useState<SaleItem[]>([]);
   const [onlineSales, setOnlineSales] = useState<SaleItem[]>([]);
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
+  const [syncButtonDisabled, setSyncButtonDisabled] = useState(false);
 
   useEffect(() => {
     const fetchSales = async () => {
@@ -54,6 +54,28 @@ const SalesScreen = () => {
     return () => unsubscribe();
   }, []);
 
+  const fetchWithTimeout = (
+    url: string,
+    options: RequestInit,
+    timeout = 2000,
+  ): Promise<Response> => {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error('Request timed out'));
+      }, timeout);
+
+      fetch(url, options)
+        .then(response => {
+          clearTimeout(timer);
+          resolve(response);
+        })
+        .catch(err => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
+  };
+
   const synchronizeSales = async () => {
     if (!isConnected) {
       Alert.alert(t('error'), t('no.connect'));
@@ -61,13 +83,25 @@ const SalesScreen = () => {
     }
 
     try {
+      setSyncButtonDisabled(true);
+
       const offSalesData = await AsyncStorage.getItem('offsales');
       const offlineSales = offSalesData ? JSON.parse(offSalesData) : [];
 
-      if (offlineSales.length > 0) {
-        for (const sale of offlineSales) {
-          await axios.post('http://192.168.56.1:3001/sales', sale);
-        }
+      if (offlineSales.length === 0) {
+        Alert.alert(t('alert.warning'), t('no.unsynced.sales'));
+        setSyncButtonDisabled(false);
+        return;
+      }
+
+      for (const sale of offlineSales) {
+        await fetchWithTimeout('http://192.168.56.1:3001/sales', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sale),
+        });
       }
 
       const onSalesData = await AsyncStorage.getItem('onsales');
@@ -81,9 +115,17 @@ const SalesScreen = () => {
       setOnlineSales(combinedSales);
       setOfflineSales([]);
       Alert.alert(t('alert.warning'), t('sync.success'));
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error synchronizing sales:', error);
-      Alert.alert(t('error'), t('sync.failure'));
+      if (error instanceof Error && error.message === 'Request timed out') {
+        Alert.alert(t('error'), t('sync.failure'));
+      } else {
+        Alert.alert(t('error'), t('sync.failure'));
+      }
+    } finally {
+      setTimeout(() => {
+        setSyncButtonDisabled(false);
+      }, 2000);
     }
   };
 
@@ -159,7 +201,13 @@ const SalesScreen = () => {
         renderItem={renderSaleItem}
         ListEmptyComponent={<Text>{t('no.online.sales')}</Text>}
       />
-      <TouchableOpacity style={styles.syncButton} onPress={synchronizeSales}>
+      <TouchableOpacity
+        style={[
+          styles.syncButton,
+          syncButtonDisabled && styles.syncButtonDisabled,
+        ]}
+        onPress={synchronizeSales}
+        disabled={syncButtonDisabled}>
         <Text style={styles.syncButtonText}>{t('sync')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.clearButton} onPress={clearSales}>

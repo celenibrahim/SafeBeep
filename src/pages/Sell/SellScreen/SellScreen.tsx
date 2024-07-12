@@ -5,7 +5,7 @@ import SearchBar from '../../../components/SearchBar';
 import CategoryCard from '../../../components/CategoryCard';
 import Button from '../../../components/Button';
 import {useTranslation} from 'react-i18next';
-import OffOnline from '../../../components/OffOnLine/offonline'; // veya OffOnline bileşeninizin doğru yolunu buraya ekleyin
+import OffOnLine from '../../../components/OffOnLine';
 
 function SellScreen({navigation}: any) {
   const {t}: any = useTranslation();
@@ -70,7 +70,7 @@ function SellScreen({navigation}: any) {
         />
       </View>
       <View style={styles.offOnlineContainer}>
-        <OffOnline />
+        <OffOnLine />
       </View>
     </ScrollView>
   );

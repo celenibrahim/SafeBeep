@@ -140,8 +140,12 @@
   "error.saleSave": "Kayıt esnasında hata oluştu!",
   "sales.cleared": "Tüm Satışlar Silindi!",
   "date": "Tarih",
-  "offline.sales": "Offline Sales",
-  "no.offline.sales": "There is no offline sales",
-  "online.sales": "Online Sales",
-  "no.online.sales": "There is no online sales"
+  "offline.sales": "Çevrimdışı Satışlar",
+  "no.offline.sales": "Çevrimdışı satış yok",
+  "online.sales": "Çevrimiçi Satışlar",
+  "no.online.sales": "Çevrimiçi satış yok",
+  "rem.price": "Kalan Tutar",
+  "err.server": "Sunucuya erişim hatasından dolayı satış çevrimdışı olarak kayıt edildi!",
+  "clear.failure": "Satışlar Silinemedi!",
+  "no.unsynced.sales": "Senkronize edilmemiş satış yok!"
 }

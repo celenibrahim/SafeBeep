@@ -6,14 +6,12 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
-  Button,
   ScrollView,
   TextInput,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTranslation} from 'react-i18next';
 import styles from './PaymentButtons.style';
-import ButtonComp from '../Button';
 
 function PaymentButtons({navigation}: any) {
   const {t}: any = useTranslation();
@@ -24,8 +22,8 @@ function PaymentButtons({navigation}: any) {
   const [groupedCartItems, setGroupedCartItems] = useState<GroupedCartItem[]>(
     [],
   );
-  const [deleteQuantity, setDeleteQuantity] = useState<number>(1); // Silinecek adet miktarı
-  const [deleteModalVisible, setDeleteModalVisible] = useState(false); // Silme modal görünürlüğü
+  const [deleteQuantity, setDeleteQuantity] = useState<number>(1);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   interface GroupedCartItem {
     product_name: string;

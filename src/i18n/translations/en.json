@@ -143,5 +143,9 @@
   "offline.sales": "Offline Sales",
   "no.offline.sales": "There is no offline sales",
   "online.sales": "Online Sales",
-  "no.online.sales": "There is no online sales"
+  "no.online.sales": "There is no online sales",
+  "rem.price": "Remaining Price",
+  "err.server": "Due to a server access error, the sale was saved offline!",
+  "clear.failure": "Sales could not be deleted.",
+  "no.unsynced.sales": "There is no unsynced sales!"
 }
