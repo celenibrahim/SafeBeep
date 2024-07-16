@@ -7,7 +7,7 @@ import SortButton from '../../../components/SortButton';
 import CartButton from '../../../components/CartButton';
 import productsData from '../../../products-data.json';
 import {useTranslation} from 'react-i18next';
-
+import Toast from 'react-native-root-toast';
 function Products({navigation}: any) {
   interface Product {
     id: string;
@@ -15,15 +15,24 @@ function Products({navigation}: any) {
     price: number;
     category: string;
   }
-
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
   const {t}: any = useTranslation();
 
   useEffect(() => {
     fetchData();
+    fetchFavorites();
   }, []);
-
+  const fetchFavorites = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@favorites');
+      const favoritesArray = jsonValue != null ? JSON.parse(jsonValue) : [];
+      setFavorites(favoritesArray);
+    } catch (error) {
+      console.error('Error fetching favorites:', error);
+    }
+  };
   const fetchData = async () => {
     try {
       setProducts(productsData);
@@ -44,6 +53,7 @@ function Products({navigation}: any) {
   const renderProduct = ({item}: any) => (
     <ProductCard
       item={item}
+      isFavorited={favorites.includes(item.id)}
       addToCartPress={() => handleAddToCart(item.id)}
       addToFavoritesPress={() => handleAddToFavorites(item.id)}
     />
@@ -61,6 +71,10 @@ function Products({navigation}: any) {
       if (productToAdd) {
         cart.push(productToAdd);
         await AsyncStorage.setItem('@cart', JSON.stringify(cart));
+        Toast.show(t('mes.cart'), {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.BOTTOM,
+        });
         console.log('Ürün (' + productToAdd.product_name + ') sepete eklendi!');
         console.log('Updated Cart:', cart);
       } else {
@@ -73,13 +87,31 @@ function Products({navigation}: any) {
 
   const handleAddToFavorites = async (productId: string) => {
     try {
-      const jsonValue = await AsyncStorage.getItem('@favorites');
-      let favorites = jsonValue != null ? JSON.parse(jsonValue) : [];
-      const newFavorites = [...favorites, productId];
-      await AsyncStorage.setItem('@favorites', JSON.stringify(newFavorites));
-      console.log('Ürün (' + productId + ') favorilere eklendi!');
-    } catch (e) {
-      console.error('Error adding product to favorites:', e);
+      const favorites = await AsyncStorage.getItem('@favorites');
+      let favoritesArray = favorites ? JSON.parse(favorites) : [];
+
+      const isCurrentlyFavorited = favoritesArray.includes(productId);
+
+      if (isCurrentlyFavorited) {
+        const index = favoritesArray.indexOf(productId);
+        if (index > -1) {
+          favoritesArray.splice(index, 1);
+          Toast.show(t('mes.fav.del'), {
+            duration: Toast.durations.SHORT,
+            position: Toast.positions.BOTTOM,
+          });
+        }
+      } else {
+        favoritesArray.push(productId);
+        Toast.show(t('mes.fav'), {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.BOTTOM,
+        });
+      }
+
+      await AsyncStorage.setItem('@favorites', JSON.stringify(favoritesArray));
+    } catch (error) {
+      console.error('Error toggling favorites:', error);
     }
   };
 

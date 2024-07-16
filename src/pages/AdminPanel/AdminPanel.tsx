@@ -60,12 +60,33 @@ const AdminPanel = () => {
   }, []);
 
   const handleSignUp = async () => {
+    const isEnglishCharacter = (str: string) =>
+      /^[A-Za-z0-9!@#\$%\^\&*\)\(+=._-]*$/.test(str);
+    const containsUpperCase = (str: string) => /[A-Z]/.test(str);
+    const containsPunctuation = (str: string) =>
+      /[!@#\$%\^\&*\)\(+=._-]/.test(str);
+
     if (
       usercode.trim() === '' ||
       password.trim() === '' ||
       checkoutNo.trim() === ''
     ) {
       Alert.alert(t('alert.warning'), t('alert.handleSignUp'));
+      return;
+    }
+
+    if (usercode.length < 8 || password.length < 8) {
+      Alert.alert(t('alert.warning'), t('alert.minLength'));
+      return;
+    }
+
+    if (!isEnglishCharacter(usercode) || !isEnglishCharacter(password)) {
+      Alert.alert(t('alert.warning'), t('alert.englishCharacters'));
+      return;
+    }
+
+    if (!containsUpperCase(password) || !containsPunctuation(password)) {
+      Alert.alert(t('alert.warning'), t('alert.passwordComplexity'));
       return;
     }
 

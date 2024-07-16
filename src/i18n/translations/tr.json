@@ -147,5 +147,13 @@
   "rem.price": "Kalan Tutar",
   "err.server": "Sunucuya erişim hatasından dolayı satış çevrimdışı olarak kayıt edildi!",
   "clear.failure": "Satışlar Silinemedi!",
-  "no.unsynced.sales": "Senkronize edilmemiş satış yok!"
+  "no.unsynced.sales": "Senkronize edilmemiş satış yok!",
+  "alert": {
+    "minLength": "Kullanıcı kodu ve şifre en az 8 karakter uzunluğunda olmalıdır.",
+    "englishCharacters": "Kullanıcı kodu ve şifre sadece İngilizce karakterler içermelidir.",
+    "passwordComplexity": "Şifre en az bir büyük harf ve bir noktalama işareti içermelidir."
+  },
+  "mes.cart": "Ürün sepete eklendi!",
+  "mes.fav": "Ürün favorilere eklendi!",
+  "mes.fav.del": "Ürün favorilerden silindi!"
 }

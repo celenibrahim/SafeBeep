@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect, useContext} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,7 +11,8 @@ import CartItem from './../../../components/CartCard';
 import styles from './CartPage.style';
 import {useTranslation} from 'react-i18next';
 import {useFocusEffect} from '@react-navigation/native';
-import {useCart} from '../../../context/CartContext'; // Context hook
+import {useCart} from '../../../context/CartContext';
+
 interface Product {
   id: string;
   product_name: string;
@@ -32,8 +33,8 @@ const CartPage = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isFocused, setIsFocused] = useState<boolean>(false);
   const {subtotal, setSubtotal, totalPrice, setTotalPrice} = useCart();
+
   const fetchData = async () => {
     try {
       const cartData = await AsyncStorage.getItem('@cart');
@@ -52,14 +53,11 @@ const CartPage = ({navigation}: any) => {
     const total = calculateTotalPrice();
     setSubtotal(subtotal);
     setTotalPrice(total);
-    fetchData();
   }, [cartItems]);
 
   useFocusEffect(
     useCallback(() => {
       fetchData();
-      setIsFocused(true);
-      return () => setIsFocused(false);
     }, []),
   );
 
@@ -129,9 +127,7 @@ const CartPage = ({navigation}: any) => {
           {cartItems.length === 0 ? (
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <View>
-                <Text style={styles.emptyText}>{t('cart.empty')}</Text>
-              </View>
+              <Text style={styles.emptyText}>{t('cart.empty')}</Text>
             </View>
           ) : (
             <View style={styles.container}>
@@ -172,8 +168,14 @@ const CartPage = ({navigation}: any) => {
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
-          <TouchableOpacity onPress={goToTotal}>
-            <View style={styles.bottom_button}>
+          <TouchableOpacity
+            onPress={goToTotal}
+            disabled={cartItems.length === 0}>
+            <View
+              style={[
+                styles.bottom_button,
+                cartItems.length === 0 && {opacity: 0.5},
+              ]}>
               <Text style={styles.bc_text}>{t('t/p')}</Text>
             </View>
           </TouchableOpacity>

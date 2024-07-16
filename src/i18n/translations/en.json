@@ -147,5 +147,13 @@
   "rem.price": "Remaining Price",
   "err.server": "Due to a server access error, the sale was saved offline!",
   "clear.failure": "Sales could not be deleted.",
-  "no.unsynced.sales": "There is no unsynced sales!"
+  "no.unsynced.sales": "There is no unsynced sales!",
+  "alert": {
+    "minLength": "Usercode and password must be at least 8 characters long.",
+    "englishCharacters": "Usercode and password must contain only English characters.",
+    "passwordComplexity": "Password must contain at least one uppercase letter and one punctuation mark."
+  },
+  "mes.cart": "The product has been added to the cart!",
+  "mes.fav": "The product has been added to the favorites!",
+  "mes.fav.del": "The product has been deleted from the favorites!"
 }
