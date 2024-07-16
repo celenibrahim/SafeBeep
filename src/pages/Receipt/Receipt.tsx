@@ -16,7 +16,8 @@ import {encode} from 'base-64';
 import styles from './Receipt.syles';
 import {useUser} from '../../context/UserContext';
 import NetInfo from '@react-native-community/netinfo';
-
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import RNFS from 'react-native-fs';
 const Receipt = ({navigation}: any) => {
   const ONE_SECOND_IN_MS = 1000;
   const {t}: any = useTranslation();
@@ -27,7 +28,6 @@ const Receipt = ({navigation}: any) => {
   const {userInfo}: any = useUser();
   const [isOnline, setIsOnline] = useState(true);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-
   interface CartItem {
     id: string;
     price: number;
@@ -153,6 +153,17 @@ const Receipt = ({navigation}: any) => {
       console.error('Error sending email:', error);
     }
   };
+  const getUniqueFileName = async (): Promise<string> => {
+    let fileIndex = 1;
+    let filePath = `${RNFS.DocumentDirectoryPath}/Receipt_${fileIndex}.pdf`;
+
+    while (await RNFS.exists(filePath)) {
+      fileIndex++;
+      filePath = `${RNFS.DocumentDirectoryPath}/Receipt_${fileIndex}.pdf`;
+    }
+
+    return filePath;
+  };
 
   const handleFinish = async () => {
     const sale = {
@@ -164,7 +175,59 @@ const Receipt = ({navigation}: any) => {
       totalPrice: totalPrice ? totalPrice.toFixed(2) : '0.00',
       change: change ? change.toFixed(2) : '0.00',
     };
+    const htmlContent = `
+  <html>
+    <head>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 20px;
+        }
+        h1, h2, h3 {
+          margin: 10px 0;
+        }
+        p {
+          margin: 5px 0;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>${t('receipt')}</h1>
+      <p>${formattedDate}</p>
+      <p>${t('id.cashier')}: ${userInfo.id}</p>
+      <p>${t('checkout')}: ${userInfo.checkoutNo}</p>
+      <h2>${t('items')}</h2>
+      ${cartItems
+        .map(
+          item => `
+        <p>${item.product_name} - ${item.quantity} ${t('pieces')} - ${(
+            item.price * item.quantity
+          ).toFixed(2)} $</p>
+      `,
+        )
+        .join('')}
+      <h3>${t('total.price')}: ${totalPrice.toFixed(2)} $</h3>
+      <h3>${t('totalPaid')}: ${(totalPrice + change).toFixed(2)} $</h3>
+      <h3>${t('change')}: ${change.toFixed(2)} $</h3>
+    </body>
+  </html>
+`;
+    const uniqueFilePath: string = await getUniqueFileName();
+    const options = {
+      html: htmlContent,
+      fileName: uniqueFilePath.split('/').pop()?.split('.')[0] || 'Receipt',
+      directory: 'Documents',
+    };
 
+    try {
+      const file = await RNHTMLtoPDF.convert(options);
+      console.log('PDF created at: ', file.filePath);
+      const destinationPath = `${RNFS.DownloadDirectoryPath}/Receipt.pdf`;
+      await RNFS.moveFile(file.filePath, destinationPath);
+    } catch (error) {
+      console.error('Error creating PDF: ', error);
+    }
     let storageKey = 'offsales';
     let isOnlineSuccess = false;
 
