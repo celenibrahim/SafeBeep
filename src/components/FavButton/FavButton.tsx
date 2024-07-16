@@ -1,11 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Dimensions, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-const FavButton = ({onPress}: any) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const FavButton = ({onPress, isFavorited}: any) => {
+  const [isFavorite, setIsFavorite] = useState(isFavorited);
+
+  useEffect(() => {
+    setIsFavorite(isFavorited);
+  }, [isFavorited]);
 
   const toggleFavorite = () => {
-    setIsFavorite(prevState => !prevState);
+    setIsFavorite((prevState: any) => !prevState);
     onPress();
   };
 
