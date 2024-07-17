@@ -8,7 +8,9 @@ import CartButton from '../../../components/CartButton';
 import productsData from '../../../products-data.json';
 import {useTranslation} from 'react-i18next';
 import Toast from 'react-native-root-toast';
-function Products({navigation}: any) {
+
+function Products({navigation, route}: any) {
+  const {category} = route.params || {};
   interface Product {
     id: string;
     product_name: string;
@@ -18,12 +20,21 @@ function Products({navigation}: any) {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
-  const {t}: any = useTranslation();
+  const {t} = useTranslation();
 
   useEffect(() => {
     fetchData();
     fetchFavorites();
   }, []);
+
+  useEffect(() => {
+    if (category) {
+      filterProductsByCategory(category);
+    } else {
+      setProducts(originalProducts);
+    }
+  }, [category, originalProducts]);
+
   const fetchFavorites = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@favorites');
@@ -33,6 +44,7 @@ function Products({navigation}: any) {
       console.error('Error fetching favorites:', error);
     }
   };
+
   const fetchData = async () => {
     try {
       setProducts(productsData);
@@ -40,6 +52,13 @@ function Products({navigation}: any) {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const filterProductsByCategory = (category: string) => {
+    const filteredProducts = originalProducts.filter(
+      product => product.category === category,
+    );
+    setProducts(filteredProducts);
   };
 
   const resetProducts = () => {

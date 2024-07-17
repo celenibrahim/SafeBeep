@@ -208,7 +208,9 @@ const SalesScreen = () => {
         ]}
         onPress={synchronizeSales}
         disabled={syncButtonDisabled}>
-        <Text style={styles.syncButtonText}>{t('sync')}</Text>
+        <Text style={styles.syncButtonText}>
+          {t('sync')} ({offlineSales.length})
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.clearButton} onPress={clearSales}>
         <Text style={styles.clearButtonText}>{t('clr.sls')}</Text>

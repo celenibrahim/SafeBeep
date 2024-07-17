@@ -20,7 +20,6 @@ function Login({navigation}: {navigation: any}) {
   const {t}: any = useTranslation();
   const {isConnected}: any = useNetInfo();
   const {setUserInfo}: any = useUser();
-  const ONE_SECOND_IN_MS = 1000;
 
   useEffect(() => {
     fetchVersionInfo();
@@ -40,7 +39,7 @@ function Login({navigation}: {navigation: any}) {
 
   async function handleLogin() {
     if (!Usercode || !Password) {
-      Vibration.vibrate(1 * ONE_SECOND_IN_MS);
+      Vibration.vibrate(1000);
       Alert.alert(t('alert.warning'), t('control.CodePasswd'));
       return;
     }
