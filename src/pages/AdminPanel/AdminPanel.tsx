@@ -11,7 +11,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {Picker} from '@react-native-picker/picker';
-
 import styles from './AdminPanel.style';
 import {useTranslation} from 'react-i18next';
 import OffOnline from '../../components/OffOnLine/offonline';
@@ -55,7 +54,6 @@ const AdminPanel = () => {
         Alert.alert(t('error'), t('alert.retrievingUser'));
       }
     };
-
     fetchUsers();
   }, []);
 

@@ -42,8 +42,8 @@ function PaymentButtons({navigation}: any) {
         const storedCartItems = await AsyncStorage.getItem('@cart');
         if (storedCartItems) {
           const parsedItems = JSON.parse(storedCartItems);
-          console.log('Stored Cart Items:', storedCartItems);
-          console.log('Parsed Cart Items:', parsedItems);
+          //console.log('Stored Cart Items:', storedCartItems);
+          //console.log('Parsed Cart Items:', parsedItems);
           setCartItems(parsedItems);
           groupCartItems(parsedItems);
         }
@@ -79,8 +79,8 @@ function PaymentButtons({navigation}: any) {
         const allKeys = await AsyncStorage.getAllKeys();
         const allData = await AsyncStorage.multiGet(allKeys);
 
-        console.log('AsyncStorage All Keys:', allKeys);
-        console.log('AsyncStorage All Data:', allData);
+        //console.log('AsyncStorage All Keys:', allKeys);
+        //console.log('AsyncStorage All Data:', allData);
       } catch (error) {
         console.error('Failed to get AsyncStorage contents:', error);
       }
@@ -170,11 +170,6 @@ function PaymentButtons({navigation}: any) {
     setInput(input.slice(0, -1));
   };
 
-  const clearInput = () => {
-    setInput('');
-    setResult('');
-  };
-
   const [installmentModalVisible, setInstallmentModalVisible] = useState(false);
   const [CampListModalVisible, setCampListModalVisible] = useState(false);
   const openInstallmentModal = () => {
@@ -183,15 +178,6 @@ function PaymentButtons({navigation}: any) {
   const openCampListModal = () => {
     setCampListModalVisible(true);
   };
-
-  const calculateResult = () => {
-    try {
-      setResult(eval(input).toString());
-    } catch (error) {
-      setResult('Error');
-    }
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.sub_container}>
@@ -355,7 +341,7 @@ function PaymentButtons({navigation}: any) {
               <View style={styles.row}>
                 <TouchableOpacity
                   style={styles.bot_top_buttons}
-                  onPress={clearInput}>
+                  onPress={() => null}>
                   <Text style={styles.bt_text}>X</Text>
                 </TouchableOpacity>
                 <TouchableOpacity

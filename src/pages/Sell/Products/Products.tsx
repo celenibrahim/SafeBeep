@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, StyleSheet, Text} from 'react-native';
+import {View, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ProductCard from '../../../components/ProductCard';
 import SearchBar from '../../../components/SearchBar';
@@ -8,6 +8,8 @@ import CartButton from '../../../components/CartButton';
 import productsData from '../../../products-data.json';
 import {useTranslation} from 'react-i18next';
 import Toast from 'react-native-root-toast';
+import OffOnLine from '../../../components/OffOnLine';
+import styles from './Products.styles';
 
 function Products({navigation, route}: any) {
   const {category} = route.params || {};
@@ -94,8 +96,8 @@ function Products({navigation, route}: any) {
           duration: Toast.durations.SHORT,
           position: Toast.positions.BOTTOM,
         });
-        console.log('Ürün (' + productToAdd.product_name + ') sepete eklendi!');
-        console.log('Updated Cart:', cart);
+        //console.log('Ürün (' + productToAdd.product_name + ') sepete eklendi!');
+        //console.log('Updated Cart:', cart);
       } else {
         console.error('Ürün bulunamadı: ' + productId);
       }
@@ -180,53 +182,46 @@ function Products({navigation, route}: any) {
 
   return (
     <View style={styles.container}>
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1}}>
-          <SearchBar placeholder={t('srch')} onChangeText={handleSearch} />
+      <View style={styles.product_con}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={styles.searchbar_con}>
+            <SearchBar placeholder={t('srch')} onChangeText={handleSearch} />
+          </View>
+          <View style={styles.but_con}>
+            <SortButton
+              onpress={sortByPriceAscending}
+              onpressB={sortByPriceDescending}
+              onpressC={sortByAlphabeticalOrder}
+              onPressD={sortFavoriteProducts}
+              onPressE={resetProducts}
+              iconUrl={require('../../../assets/icons/sort.png')}
+            />
+            <CartButton
+              onpress={goToCart}
+              iconUrl={require('../../../assets/icons/sell.png')}
+            />
+          </View>
         </View>
-        <View style={{margin: 2, flexDirection: 'row'}}>
-          <SortButton
-            onpress={sortByPriceAscending}
-            onpressB={sortByPriceDescending}
-            onpressC={sortByAlphabeticalOrder}
-            onPressD={sortFavoriteProducts}
-            onPressE={resetProducts}
-            iconUrl={require('../../../assets/icons/sort.png')}
-          />
-          <CartButton
-            onpress={goToCart}
-            iconUrl={require('../../../assets/icons/sell.png')}
-          />
-        </View>
+        <FlatList
+          keyExtractor={product => product.id.toString()}
+          data={products}
+          renderItem={renderProduct}
+          ItemSeparatorComponent={renderSeparator}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          windowSize={5}
+          removeClippedSubviews={true}
+          getItemLayout={(data, index) => ({
+            length: 100,
+            offset: 100 * index,
+            index,
+          })}
+        />
       </View>
-      <FlatList
-        keyExtractor={product => product.id.toString()}
-        data={products}
-        renderItem={renderProduct}
-        ItemSeparatorComponent={renderSeparator}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        windowSize={5}
-        removeClippedSubviews={true}
-        getItemLayout={(data, index) => ({
-          length: 100,
-          offset: 100 * index,
-          index,
-        })}
-      />
+      <View style={styles.offOnlineContainer}>
+        <OffOnLine />
+      </View>
     </View>
   );
 }
-
 export default Products;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  separator: {
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
-  },
-});

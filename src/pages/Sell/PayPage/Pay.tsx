@@ -8,11 +8,12 @@ import {
   Modal,
   TextInput,
 } from 'react-native';
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './Pay.styles';
 import {useTranslation} from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useCart} from '../../../context/CartContext'; //useCart hook
+
 const Pay = ({navigation}: any) => {
   const {t}: any = useTranslation();
   const [input, setInput] = useState('');

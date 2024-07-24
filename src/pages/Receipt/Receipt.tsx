@@ -18,7 +18,8 @@ import {useUser} from '../../context/UserContext';
 import NetInfo from '@react-native-community/netinfo';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import RNFS from 'react-native-fs';
-const Receipt = ({navigation}: any) => {
+
+function Receipt({navigation}: any) {
   const ONE_SECOND_IN_MS = 1000;
   const {t}: any = useTranslation();
   const {totalPrice, change} = useCart();
@@ -224,7 +225,7 @@ const Receipt = ({navigation}: any) => {
 
     try {
       const file = await RNHTMLtoPDF.convert(options);
-      console.log('PDF created at: ', file.filePath);
+      //console.log('PDF created at: ', file.filePath);
       const destinationPath = `${RNFS.DownloadDirectoryPath}/${uniqueFileName}`;
       await RNFS.moveFile(file.filePath, destinationPath);
       //console.log('PDF moved to: ', destinationPath);
@@ -357,6 +358,6 @@ const Receipt = ({navigation}: any) => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 export default Receipt;

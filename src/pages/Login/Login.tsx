@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, ScrollView, Image, Text, Alert, Vibration} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import styles from './Login.styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -10,9 +9,11 @@ import axios from 'axios';
 import {useUser} from '../../context/UserContext';
 import {useNetInfo} from '../../context/NetInfo';
 import OffOnline from '../../components/OffOnLine/offonline';
+
 interface VersionInfo {
   version: string;
 }
+
 function Login({navigation}: {navigation: any}) {
   const [Usercode, setUser] = useState('');
   const [Password, setPassword] = useState('');
@@ -30,6 +31,7 @@ function Login({navigation}: {navigation: any}) {
       const response = await axios.get<VersionInfo>(
         'http://192.168.56.1:3001/version',
       );
+      //console.log(response.data);
       setVersionInfo(response.data);
     } catch (error) {
       console.error('Error fetching version info:', error);
