@@ -197,77 +197,91 @@ To learn more about React Native, take a look at the following resources:
 
 # Screenshots
 
-<p align="center">
-  <figure>
-    <img src="src/assets/screenshots/admin.png" alt="admin" width="200"/>
-    <figcaption>Admin Panel</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/login.png" alt="login" width="200"/>
-    <figcaption>Login Screen</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/menu.png" alt="menu" width="200"/>
-    <figcaption>Main Menu</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/reports.png" alt="reports" width="200"/>
-    <figcaption>Reports Screen</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="src/assets/screenshots/settings.png" alt="settings" width="200"/>
-    <figcaption>Settings</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/prices.png" alt="prices" width="200"/>
-    <figcaption>Prices Management</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/category.png" alt="category" width="200"/>
-    <figcaption>Category Management</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/favs.png" alt="favs" width="200"/>
-    <figcaption>Favorites</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="src/assets/screenshots/products.png" alt="products" width="200"/>
-    <figcaption>Products</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/sort.png" alt="sort" width="200"/>
-    <figcaption>Sorting Options</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/cart.png" alt="cart" width="200"/>
-    <figcaption>Shopping Cart</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/total.png" alt="total" width="200"/>
-    <figcaption>Total Calculation</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="src/assets/screenshots/pay.png" alt="pay" width="200"/>
-    <figcaption>Payment Screen</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/receipt.png" alt="receipt" width="200"/>
-    <figcaption>Receipt</figcaption>
-  </figure>
-  <figure>
-    <img src="src/assets/screenshots/sales.png" alt="sales" width="200"/>
-    <figcaption>Sales History</figcaption>
-  </figure>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="src/assets/screenshots/admin.png" alt="admin" width="200"/>
+      <br>
+      <b>Admin Panel</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/login.png" alt="login" width="200"/>
+      <br>
+      <b>Login Screen</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/menu.png" alt="menu" width="200"/>
+      <br>
+      <b>Main Menu</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/reports.png" alt="reports" width="200"/>
+      <br>
+      <b>Reports Screen</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="src/assets/screenshots/settings.png" alt="settings" width="200"/>
+      <br>
+      <b>Settings</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/prices.png" alt="prices" width="200"/>
+      <br>
+      <b>Prices Management</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/category.png" alt="category" width="200"/>
+      <br>
+      <b>Category Management</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/favs.png" alt="favs" width="200"/>
+      <br>
+      <b>Favorites</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="src/assets/screenshots/products.png" alt="products" width="200"/>
+      <br>
+      <b>Products</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/sort.png" alt="sort" width="200"/>
+      <br>
+      <b>Sorting Options</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/cart.png" alt="cart" width="200"/>
+      <br>
+      <b>Shopping Cart</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/total.png" alt="total" width="200"/>
+      <br>
+      <b>Total Calculation</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="src/assets/screenshots/pay.png" alt="pay" width="200"/>
+      <br>
+      <b>Payment Screen</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/receipt.png" alt="receipt" width="200"/>
+      <br>
+      <b>Receipt</b>
+    </td>
+    <td align="center">
+      <img src="src/assets/screenshots/sales.png" alt="sales" width="200"/>
+      <br>
+      <b>Sales History</b>
+    </td>
+  </tr>
+</table>
 
 # MIT License
 
