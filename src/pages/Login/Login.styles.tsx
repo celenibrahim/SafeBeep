@@ -25,4 +25,22 @@ export default StyleSheet.create({
     right: 0,
     alignItems: 'center',
   },
+  input_container: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    margin: 3,
+    borderRadius: 10,
+  },
+  label: {
+    marginLeft: 5,
+    fontWeight: 'bold',
+  },
+  form_but: {
+    backgroundColor: '#0bb1fa',
+    borderRadius: 10,
+    padding: 10,
+    margin: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

@@ -192,6 +192,9 @@ const AdminPanel = () => {
                     style={styles.userItem}
                     onPress={() => handleDeleteUser(item.id)}>
                     <Text style={styles.modalText}>
+                      {t('id.cashier')}: {item.id}
+                    </Text>
+                    <Text style={styles.modalText}>
                       {t('usercode')}: {item.usercode}
                     </Text>
                     <Text style={styles.modalText}>

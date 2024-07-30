@@ -1,22 +1,28 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Image, Text, Alert, Vibration} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Image,
+  TextInput,
+  Text,
+  Alert,
+  Vibration,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Login.styles';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
 import {useTranslation} from 'react-i18next';
 import axios from 'axios';
 import {useUser} from '../../context/UserContext';
 import {useNetInfo} from '../../context/NetInfo';
 import OffOnline from '../../components/OffOnLine/offonline';
+import {Formik} from 'formik';
 
 interface VersionInfo {
   version: string;
 }
 
 function Login({navigation}: {navigation: any}) {
-  const [Usercode, setUser] = useState('');
-  const [Password, setPassword] = useState('');
   const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null);
   const {t}: any = useTranslation();
   const {isConnected}: any = useNetInfo();
@@ -31,7 +37,6 @@ function Login({navigation}: {navigation: any}) {
       const response = await axios.get<VersionInfo>(
         'http://192.168.56.1:3001/version',
       );
-      //console.log(response.data);
       setVersionInfo(response.data);
     } catch (error) {
       console.error('Error fetching version info:', error);
@@ -39,8 +44,10 @@ function Login({navigation}: {navigation: any}) {
     }
   };
 
-  async function handleLogin() {
-    if (!Usercode || !Password) {
+  async function handleLogin(values: {usercode: string; password: string}) {
+    const {usercode, password} = values;
+
+    if (!usercode || !password) {
       Vibration.vibrate(1000);
       Alert.alert(t('alert.warning'), t('control.CodePasswd'));
       return;
@@ -52,7 +59,7 @@ function Login({navigation}: {navigation: any}) {
         const parsedUserInfo = JSON.parse(userInfo);
         const foundUser = parsedUserInfo.find(
           (user: {usercode: string; password: string}) =>
-            user.usercode === Usercode && user.password === Password,
+            user.usercode === usercode && user.password === password,
         );
 
         if (foundUser) {
@@ -92,25 +99,39 @@ function Login({navigation}: {navigation: any}) {
               )
             )}
           </View>
-
+          <Formik
+            initialValues={{usercode: '', password: ''}}
+            onSubmit={handleLogin}>
+            {({handleChange, handleBlur, handleSubmit, values}) => (
+              <View>
+                <View style={{margin: 10}}>
+                  <Text style={styles.label}>{t('usercode')}</Text>
+                  <View style={styles.input_container}>
+                    <TextInput
+                      placeholder={t('usercodeEntry')}
+                      onChangeText={handleChange('usercode')}
+                      onBlur={handleBlur('usercode')}
+                      value={values.usercode}
+                    />
+                  </View>
+                  <Text style={styles.label}>{t('password')}</Text>
+                  <View style={styles.input_container}>
+                    <TextInput
+                      placeholder={t('passwordEntry')}
+                      onChangeText={handleChange('password')}
+                      onBlur={handleBlur('password')}
+                      value={values.password}
+                      secureTextEntry
+                    />
+                  </View>
+                </View>
+                <View>
+                  <Button onPress={handleSubmit} text={t('sign')} />
+                </View>
+              </View>
+            )}
+          </Formik>
           <View>
-            <Input
-              label={t('usercode')}
-              placeholder={t('usercodeEntry')}
-              onChangeText={setUser}
-              value={Usercode}
-              secureTextEntry={false}
-            />
-            <Input
-              label={t('password')}
-              placeholder={t('passwordEntry')}
-              onChangeText={setPassword}
-              value={Password}
-              secureTextEntry
-            />
-          </View>
-          <View>
-            <Button text={t('sign')} onPress={handleLogin} />
             <Button text={t('adminPnl')} onPress={goToCreateUsers} />
           </View>
         </View>

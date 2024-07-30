@@ -40,6 +40,7 @@ exports[`should match with snapshot 1`] = `
       "padding": 10,
     }
   }
+  testID="button-touchable"
 >
   <Text
     style={
@@ -48,6 +49,7 @@ exports[`should match with snapshot 1`] = `
         "fontWeight": "bold",
       }
     }
+    testID="button-title"
   />
 </View>
 `;
